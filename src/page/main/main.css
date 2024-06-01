@@ -50,6 +50,9 @@
   position: relative;
   border-bottom: 1px solid grey;
 }
+.curse > span {
+  cursor:default;
+}
 .curseDone {
   background: #68f13e;
 }

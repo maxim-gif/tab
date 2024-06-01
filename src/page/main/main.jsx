@@ -1,9 +1,24 @@
 import './main.css';
-import { useState,} from 'react'
+import { useState, useEffect} from 'react'
 import { SelectCurse } from '../../components/list/list';
+import { getData, Curse} from '../../api';
 
 export const Main = () => {
+  // const [data, setData] = useState([])
+ 
+  const hundleData = async() => {
+    const res = await getData()
+    // setData(res)
+    setCursePar1(res.par1 === undefined ? []: res.par1)
+    setCursePar2(res.par2 === undefined ? []: res.par2)
+    setCursePar3(res.par3 === undefined ? []: res.par3)
+    setCursePar4(res.par4 === undefined ? []: res.par4)
+  }
+  useEffect(() => {
+    hundleData()
+  }, []);
 
+  getData()
   const [par1, setPar1] = useState(1)
   const [par2, setPar2] = useState(1)
   const [par3, setPar3] = useState(1)
@@ -15,10 +30,12 @@ export const Main = () => {
   const [cursePar4, setCursePar4] = useState([])
 
   const [cursesDone, setCursesDone] = useState([])
-
-const addCurse = (e, participant) => {
-
+  // useEffect(() => {
+  //   console.log(data);
+  // }, [data]);
+const addCurse = async(e, participant) => {
     const data = [cursePar1, cursePar2, cursePar3, cursePar4]
+    console.log(cursePar3);
     const selectElement = ["mySelect1", "mySelect2", "mySelect3", "mySelect4"]
     const setPar = [function() {setPar1(prevCount => prevCount + 1)},
                     function() {setPar2(prevCount => prevCount + 1)},
@@ -32,8 +49,9 @@ const addCurse = (e, participant) => {
 
     setPar[participant]()
 
-    console.log(e.target.value);
     if (e.target.value === "Мутант") {
+      console.log(participant);
+      console.log(data[participant]);
       data[participant].push({name:e.target.value, title: "Игрок 1/2/3/4 обязан следующей мутацией взять цветную мутацию НЕ самого прокаченного цвета. Пример: если у стримера 10 брутальности и 2 и 4 тактики и живучести, он должен брать зелёные или фиолетовые мутации. Бесцветные брать нельзя, когда есть проклятие мутанта."})
       setData[participant]()
     }
@@ -49,10 +67,11 @@ const addCurse = (e, participant) => {
       data[participant].push({name:e.target.value, title: "Персонаж Игрока 1/2/3/4 наелся. Запрещается использовать следующую встреченную еду. Еду желательно сразу продать, если уже открыта переработка. Если это еда из магазина, то запрещается покупать ту еду, на которую хватает денег слева направо соответственно количеству проклятий, проклятия сразу сбрасываются, когда увидел еду в магазе, на которую хватает денег. Бутылка в магазине считается едой. "})
       setData[participant]()
     }
+    Curse(participant,data[participant])
     document.getElementById(selectElement[participant]).value = "";
 }
 
-const Done = (id) => {
+const Done = async(id) => { 
   const element = document.getElementById(id);
   if (cursesDone.includes(id)) {
     element.classList.remove("curseDone");
@@ -66,9 +85,8 @@ const Done = (id) => {
 }
 
   return (
-    <div className="app">
-
-<div>
+   <div className="app">
+      <div>
         <div className="participant" style={{gridTemplateRows: `repeat(${par1}, 25px)`}}>
           <div className="participantName">Участник №1</div>
           {cursePar1.map((item, index) => ((<div id={index + "par1"} title={item.title} key={index} className="curse">

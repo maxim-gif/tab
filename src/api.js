@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, update } from "firebase/database";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 // import { useDispatch } from "react-redux";
 // import { setParticipant } from "./store/slice/slice";
 
@@ -14,7 +15,7 @@ const firebaseConfig = {
   };
 
 const app = initializeApp(firebaseConfig);
-
+const auth = getAuth();
 const db = getDatabase(app);
 
 export async function getData() {
@@ -22,6 +23,34 @@ export async function getData() {
     const response = await fetch("https://table-d13fe-default-rtdb.firebaseio.com/pars.json");
     const data = await response.json();
     return data;
+}
+
+export async function GetAuth(email,password) {
+  createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    console.log(user);
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+}
+
+export async function Enter(email,password) {
+  signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    console.log(user);
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
 }
 
 export async function Curse(id, data) {

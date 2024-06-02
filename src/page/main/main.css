@@ -1,15 +1,34 @@
 *{
   box-sizing: border-box;
+  padding: 0 0;
+  margin:  0 0;
+}
+.containerApp{
+  height: 100vh;
+  background-image: url("/public/bg.png");
+}
+.enter{
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.enter > input {
+  height: 30px;
+  width: 150px;
+}
+.enter > button {
+  height: 30px;
+  width: 100px;
 }
 .app {
-  width: 100%;
-  height: 100vh;
+  position: relative;
+
   display: grid;
   align-items: start;
   grid-template-columns: repeat(4, 1fr);
-  padding: 50px;
+  padding: 30px;
   gap: 30px;
-  background-image: url("/public/bg.png");
+  
 }
 
 .participant {

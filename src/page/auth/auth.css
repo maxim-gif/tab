@@ -1,0 +1,14 @@
+.contain {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;  
+    margin: 40vh 40vw;
+}
+input {
+    height: 50px;
+    width: 300px;
+}
+button {
+    height: 50px;
+    width: 300px;
+}

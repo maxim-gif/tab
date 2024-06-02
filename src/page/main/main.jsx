@@ -1,7 +1,7 @@
 import './main.css';
 import { useState, useEffect} from 'react'
 import { SelectCurse } from '../../components/list/list';
-import { getData, Curse,Delete,doneCurse} from '../../api';
+import { getData, Curse,Delete,doneCurse,Enter} from '../../api';
 import { DataSubscriber } from '../../components/reload/reload';
 import { useSelector } from "react-redux";
 
@@ -28,6 +28,8 @@ export const Main = () => {
 
   getData()
 
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const [cursePar1, setCursePar1] = useState([])
   const [cursePar2, setCursePar2] = useState([])
@@ -71,7 +73,6 @@ const addCurse = async(e, participant) => {
 
 
 const deleteCurse = (id,arr,index) => {
-
   arr.splice(index,1)
   Delete(id,arr)
   if (id === 0) {
@@ -83,60 +84,71 @@ const deleteCurse = (id,arr,index) => {
   } else {
     setCursePar4(arr)
   }
- 
+
   console.log(arr.length);
 }
+
+const handleEnter = () => {
+  Enter(email,password)
+}
+
   return (
-   <div className="app">
+   <div className="containerApp">
+    <div className="enter">
+        <input type="text" placeholder="email" onChange={(e) => {setEmail(e.target.value)}}></input>
+        <input type="text" placeholder="password" onChange={(e) => {setPassword(e.target.value)}}></input>
+        <button onClick={() => {handleEnter()}}>Войти</button>
+    </div>
     <DataSubscriber/>
-      <div>
-        <div className="participant" style={{gridTemplateRows: `repeat(${cursePar1.length}, 25px)`}}>
-          <div className="participantName">Участник №1</div>
-          {cursePar1?.map((item, index) => ((<div id={index + "par1"} title={item.title} key={index} className={item.status ? "curseDone":"curse"}>
-              <span>{item.name}</span>
-              <div className="done" onClick={() => {doneCurse(0,index,!item.status)}}></div>
-              <div className="delete" onClick={() => {deleteCurse(0,cursePar1,index)}}></div>
-            </div>)))}
+      <div className="app">
+        <div>
+          <div className="participant" style={{gridTemplateRows: `repeat(${cursePar1.length}, 25px)`}}>
+            <div className="participantName">Участник №1</div>
+            {cursePar1?.map((item, index) => ((<div id={index + "par1"} title={item.title} key={index} className={item.status ? "curseDone":"curse"}>
+                <span>{item.name}</span>
+                <div className="done" onClick={() => {doneCurse(0,index,!item.status)}}></div>
+                <div className="delete" onClick={() => {deleteCurse(0,cursePar1,index)}}></div>
+              </div>)))}
+          </div>
+          <SelectCurse addCurse={addCurse} id={0}/>
         </div>
-        <SelectCurse addCurse={addCurse} id={0}/>
-      </div>
 
-      <div>
-        <div className="participant" style={{gridTemplateRows: `repeat(${cursePar2.length}, 25px)`}}>
-          <div className="participantName">Участник №2</div>
-          {cursePar2?.map((item, index) => ((<div id={index + "par2"} title={item.title} key={index} className={item.status ? "curseDone":"curse"}>
-              <span>{item.name}</span>
-              <div className="done" onClick={() => {doneCurse(1,index,!item.status)}}></div>
-              <div className="delete" onClick={() => {deleteCurse(1,cursePar2,index)}}></div>
-            </div>)))}
+        <div>
+          <div className="participant" style={{gridTemplateRows: `repeat(${cursePar2.length}, 25px)`}}>
+            <div className="participantName">Участник №2</div>
+            {cursePar2?.map((item, index) => ((<div id={index + "par2"} title={item.title} key={index} className={item.status ? "curseDone":"curse"}>
+                <span>{item.name}</span>
+                <div className="done" onClick={() => {doneCurse(1,index,!item.status)}}></div>
+                <div className="delete" onClick={() => {deleteCurse(1,cursePar2,index)}}></div>
+              </div>)))}
+          </div>
+          <SelectCurse addCurse={addCurse} id={1}/>
         </div>
-        <SelectCurse addCurse={addCurse} id={1}/>
-      </div>
 
-      <div>
-        <div className="participant" style={{gridTemplateRows: `repeat(${cursePar3.length}, 25px)`}}>
-          <div className="participantName">Участник №3</div>
-          {cursePar3?.map((item, index) => ((<div id={index + "par3"} title={item.title} key={index} className={item.status ? "curseDone":"curse"}>
-              <span>{item.name}</span>
-              <div className="done" onClick={() => {doneCurse(2,index,!item.status)}}></div>
-              <div className="delete" onClick={() => {deleteCurse(2,cursePar3,index)}}></div>
-            </div>)))}
+        <div>
+          <div className="participant" style={{gridTemplateRows: `repeat(${cursePar3.length}, 25px)`}}>
+            <div className="participantName">Участник №3</div>
+            {cursePar3?.map((item, index) => ((<div id={index + "par3"} title={item.title} key={index} className={item.status ? "curseDone":"curse"}>
+                <span>{item.name}</span>
+                <div className="done" onClick={() => {doneCurse(2,index,!item.status)}}></div>
+                <div className="delete" onClick={() => {deleteCurse(2,cursePar3,index)}}></div>
+              </div>)))}
+          </div>
+          <SelectCurse addCurse={addCurse} id={2}/>
         </div>
-        <SelectCurse addCurse={addCurse} id={2}/>
-      </div>
 
-      <div>
-        <div className="participant" style={{gridTemplateRows: `repeat(${cursePar4.length}, 25px)`}}>
-          <div className="participantName">Участник №4</div>
-          {cursePar4?.map((item, index) => ((<div id={index + "par4"} title={item.title} key={index} className={item.status ? "curseDone":"curse"}>
-              <span>{item.name}</span>
-              <div className="done" onClick={() => {doneCurse(3,index,!item.status)}}></div>
-              <div className="delete" onClick={() => {deleteCurse(3,cursePar4,index)}}></div>
-            </div>)))}
+        <div>
+          <div className="participant" style={{gridTemplateRows: `repeat(${cursePar4.length}, 25px)`}}>
+            <div className="participantName">Участник №4</div>
+            {cursePar4?.map((item, index) => ((<div id={index + "par4"} title={item.title} key={index} className={item.status ? "curseDone":"curse"}>
+                <span>{item.name}</span>
+                <div className="done" onClick={() => {doneCurse(3,index,!item.status)}}></div>
+                <div className="delete" onClick={() => {deleteCurse(3,cursePar4,index)}}></div>
+              </div>)))}
+          </div>
+          <SelectCurse addCurse={addCurse} id={3}/>
         </div>
-        <SelectCurse addCurse={addCurse} id={3}/>
       </div>
-
     </div>
   );
 }

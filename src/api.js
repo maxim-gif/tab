@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set} from "firebase/database";
+// import { useDispatch } from "react-redux";
+// import { setParticipant } from "./store/slice/slice";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCqv9KvlyVN94mXloU1OzlMyvAgOBWUvWk",
@@ -16,6 +18,7 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 export async function getData() {
+  
     const response = await fetch("https://table-d13fe-default-rtdb.firebaseio.com/pars.json");
     const data = await response.json();
     return data;
@@ -29,5 +32,12 @@ export async function Curse(id, data) {
   } catch (error) {
     console.log(error);
   }
- 
 }
+
+// export const dataRef = ref(db, 'pars/');
+// onValue(dataRef, async(snapshot) => {
+//   const data = snapshot.val();
+//   const dispatch = useDispatch();
+//   dispatch(setParticipant(data));
+//   console.log(data);
+// });

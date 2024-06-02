@@ -2,13 +2,17 @@ import './main.css';
 import { useState, useEffect} from 'react'
 import { SelectCurse } from '../../components/list/list';
 import { getData, Curse} from '../../api';
+import { DataSubscriber } from '../../components/reload/reload';
+import { useSelector } from "react-redux";
+
+
 
 export const Main = () => {
-  // const [data, setData] = useState([])
- 
+
+  const dataPar = useSelector((state) => state.table.participant);
+
   const hundleData = async() => {
     const res = await getData()
-    // setData(res)
     setCursePar1(res.par1 === undefined ? []: res.par1)
     setCursePar2(res.par2 === undefined ? []: res.par2)
     setCursePar3(res.par3 === undefined ? []: res.par3)
@@ -17,6 +21,10 @@ export const Main = () => {
   useEffect(() => {
     hundleData()
   }, []);
+
+  useEffect(() => {
+    hundleData()
+  }, [dataPar]);
 
   getData()
   const [par1, setPar1] = useState(1)
@@ -34,6 +42,7 @@ export const Main = () => {
   //   console.log(data);
   // }, [data]);
 const addCurse = async(e, participant) => {
+
     const data = [cursePar1, cursePar2, cursePar3, cursePar4]
     console.log(cursePar3);
     const selectElement = ["mySelect1", "mySelect2", "mySelect3", "mySelect4"]
@@ -86,6 +95,7 @@ const Done = async(id) => {
 
   return (
    <div className="app">
+    <DataSubscriber/>
       <div>
         <div className="participant" style={{gridTemplateRows: `repeat(${par1}, 25px)`}}>
           <div className="participantName">Участник №1</div>

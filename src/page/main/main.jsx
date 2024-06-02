@@ -99,7 +99,7 @@ const Done = async(id) => {
 
       <div>
         <div className="participant" style={{gridTemplateRows: `repeat(${par2}, 25px)`}}>
-          <div className="participantName">Участник №1</div>
+          <div className="participantName">Участник №2</div>
           {cursePar2.map((item, index) => ((<div id={index + "par2"} title={item.title} key={index} className="curse">
               <span>{item.name}</span>
               <div className="done" onClick={() => {Done(index + "par2")}}></div>
@@ -110,7 +110,7 @@ const Done = async(id) => {
 
       <div>
         <div className="participant" style={{gridTemplateRows: `repeat(${par3}, 25px)`}}>
-          <div className="participantName">Участник №1</div>
+          <div className="participantName">Участник №3</div>
           {cursePar3.map((item, index) => ((<div id={index + "par3"} title={item.title} key={index} className="curse">
               <span>{item.name}</span>
               <div className="done" onClick={() => {Done(index + "par3")}}></div>
@@ -121,7 +121,7 @@ const Done = async(id) => {
 
       <div>
         <div className="participant" style={{gridTemplateRows: `repeat(${par4}, 25px)`}}>
-          <div className="participantName">Участник №1</div>
+          <div className="participantName">Участник №4</div>
           {cursePar4.map((item, index) => ((<div id={index + "par4"} title={item.title} key={index} className="curse">
               <span>{item.name}</span>
               <div className="done" onClick={() => {Done(index + "par4")}}></div>

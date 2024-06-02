@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getDatabase, ref, set, get, update } from "firebase/database";
+import { getDatabase, ref, set} from "firebase/database";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCqv9KvlyVN94mXloU1OzlMyvAgOBWUvWk",
@@ -13,7 +12,7 @@ const firebaseConfig = {
   };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
 const db = getDatabase(app);
 
 export async function getData() {

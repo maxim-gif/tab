@@ -54,5 +54,21 @@
   cursor:default;
 }
 .curseDone {
+  width: 100%;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  border-bottom: 1px solid grey;
   background: #68f13e;
+}
+.delete {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  left: 10px;
+  top: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("/public/del.png");
 }

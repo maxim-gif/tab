@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set} from "firebase/database";
+import { getDatabase, ref, set, update } from "firebase/database";
 // import { useDispatch } from "react-redux";
 // import { setParticipant } from "./store/slice/slice";
 
@@ -34,10 +34,22 @@ export async function Curse(id, data) {
   }
 }
 
-// export const dataRef = ref(db, 'pars/');
-// onValue(dataRef, async(snapshot) => {
-//   const data = snapshot.val();
-//   const dispatch = useDispatch();
-//   dispatch(setParticipant(data));
-//   console.log(data);
-// });
+export async function Delete(id, data) {
+  const list = ["par1/","par2/","par3/","par4/"]
+  try {
+    const userRef = ref(db, 'pars/' + list[id]);
+    await set(userRef, data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function doneCurse(id, curse,status) {
+  const list = ["par1/","par2/","par3/","par4/"]
+  try {
+    const curseRef = ref(db, 'pars/' + list[id] + curse);
+    await update(curseRef, {status:status});
+  } catch (error) {
+    console.log(error);
+  }
+}

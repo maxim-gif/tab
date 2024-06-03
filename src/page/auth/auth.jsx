@@ -22,6 +22,7 @@ export const Auth = () => {
       const splitHash = hash.split('&')[0]
       const code = splitHash.split('=')[1]
       const token = await getToken(code)
+      console.log(code);
       console.log(token);
       const userData = await getUserData(token.access_token)
       console.log(userData === undefined ? null:userData[0]);

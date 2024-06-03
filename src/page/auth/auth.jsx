@@ -20,6 +20,7 @@ export const Auth = () => {
     const auth = async() => {
       const hash = document.location.href
       console.log(hash);
+      console.log(document.location.hash);
       const splitHash = hash.split('&')[0]
       const code = splitHash.split('=')[1]
       const token = await getToken(code)

@@ -1,24 +1,43 @@
 import React from "react";
 import './auth.css';
-import { useState} from 'react'
-import { GetAuth } from "../../api";
+import {useEffect, useState} from 'react'
+import { getToken, getUserData, addUser } from "../../api";
+// import { useNavigate } from 'react-router-dom'
 
 
 export const Auth = () => {
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    // const navigate = useNavigate()
+    const [hello, setHello] = useState('')
+  
 
-    const reg = () => {
-        console.log(email);
-        console.log(password);
-        GetAuth(email,password)
+    useEffect(() => {
+  if (document.location.href !== "http://localhost:3000/auth") {
+    auth()
+  } 
+    }, []);
+
+    const auth = async() => {
+      const hash = document.location.href
+      const splitHash = hash.split('&')[0]
+      const code = splitHash.split('=')[1]
+      const token = await getToken(code)
+      console.log(token);
+      const userData = await getUserData(token.access_token)
+      console.log(userData === undefined ? null:userData[0]);
+      if (userData !== undefined) {
+        addUser(userData[0].id,userData[0].login)
+        setHello(userData[0].login)
+      }
+      
     }
+
   return (
     <div className="contain">
-        <input type="text" placeholder="email" onChange={(e) => {setEmail(e.target.value)}}></input>
-        <input type="text" placeholder="password" onChange={(e) => {setPassword(e.target.value)}}></input>
-        <button onClick={() => {reg()}}>Регистрация</button>
+        <a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=9tme6blew754pa56v75lf5mgqg0iro&redirect_uri=http://localhost:3000/auth" >
+          <div className="twitch"></div>
+        </a>
+        {hello !== "" && <span>Пользавтель {hello} успешно зарегистрировался</span>}
     </div>
   );
 };

@@ -37,7 +37,7 @@ export const Auth = () => {
 
   return (
     <div className="contain">
-        <a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=9tme6blew754pa56v75lf5mgqg0iro&redirect_uri=http://localhost:3000/auth" >
+        <a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=9tme6blew754pa56v75lf5mgqg0iro&redirect_uri=https://tab-jet.vercel.app/auth" >
           <div className="twitch"></div>
         </a>
         {hello !== "" && <span>Пользавтель {hello} успешно зарегистрировался</span>}

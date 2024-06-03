@@ -12,7 +12,7 @@ export const Auth = () => {
   
 
     useEffect(() => {
-  if (document.location.href !== "http://localhost:3000/auth") {
+  if (document.location.href !== "https://tab-jet.vercel.app/auth") {
     auth()
   } 
     }, []);

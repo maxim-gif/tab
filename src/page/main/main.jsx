@@ -1,15 +1,31 @@
 import './main.css';
 import { useState, useEffect} from 'react'
 import { SelectCurse } from '../../components/list/list';
-import { getData, Curse,Delete,doneCurse,Enter} from '../../api';
+import { getData, Curse,Delete,doneCurse,Enter,getToken, getUserData,addUser} from '../../api';
 import { DataSubscriber } from '../../components/reload/reload';
 import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom'
 
 
 
 export const Main = () => {
 
+  const navigate = useNavigate()
   const dataPar = useSelector((state) => state.table.participant);
+
+  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
+  const [password, setPassword] = useState('')
+  const [cursePar1, setCursePar1] = useState([])
+  const [cursePar2, setCursePar2] = useState([])
+  const [cursePar3, setCursePar3] = useState([])
+  const [cursePar4, setCursePar4] = useState([])
+
+
+  const hash = document.location.href
+    const splitHash = hash.split('&')[0]
+    let code = splitHash.split('=')[1]
+  
 
   const hundleData = async() => {
     const res = await getData()
@@ -18,27 +34,39 @@ export const Main = () => {
     setCursePar3(res?.par3 === undefined ? []: res.par3)
     setCursePar4(res?.par4 === undefined ? []: res.par4)
   }
+
+  const getUser = async() => {
+    const userData = await getUserData(window.localStorage.getItem('access_token'))
+    setName(userData[0].login)
+  }
+
+  const auth = async(code) => {
+    const token = await getToken(code)
+    console.log(token);
+    window.localStorage.setItem('access_token', token.access_token)
+    window.localStorage.setItem('refresh_token', token.refresh_token)
+    const userData = await getUserData(token.access_token)
+    console.log(userData === undefined ? null:userData[0]);
+    addUser(userData[0].id,userData[0].login)
+    navigate("/")
+  }
+
   useEffect(() => {
-    hundleData()
+    if (code !== undefined) {
+      auth(code)
+      code = undefined
+    } else {
+      getUser()
+    }
   }, []);
+
+ 
 
   useEffect(() => {
     hundleData()
   }, [dataPar]);
 
-  getData()
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-  const [cursePar1, setCursePar1] = useState([])
-  const [cursePar2, setCursePar2] = useState([])
-  const [cursePar3, setCursePar3] = useState([])
-  const [cursePar4, setCursePar4] = useState([])
-
-  // useEffect(() => {
-  //   console.log(data);
-  // }, [data]);
 const addCurse = async(e, participant) => {
 
     const data = [cursePar1, cursePar2, cursePar3, cursePar4]
@@ -98,6 +126,10 @@ const handleEnter = () => {
         <input type="text" placeholder="email" onChange={(e) => {setEmail(e.target.value)}}></input>
         <input type="text" placeholder="password" onChange={(e) => {setPassword(e.target.value)}}></input>
         <button onClick={() => {handleEnter()}}>Войти</button>
+        <a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=9tme6blew754pa56v75lf5mgqg0iro&redirect_uri=http://localhost:3000" >
+          <div className="twitch"></div>
+        </a>
+        {name !== "" && <span>{name}</span>}
     </div>
     <DataSubscriber/>
       <div className="app">

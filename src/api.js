@@ -92,7 +92,7 @@ export async function getToken(code) {
   params.append('client_secret', 'ls1nk9j93maxa6g94j9fckch0m8you');
   params.append('code', code);
   params.append('grant_type', 'authorization_code');
-  params.append('redirect_uri', 'https://tab-jet.vercel.app/auth');
+  params.append('redirect_uri', 'http://localhost:3000');
 
  const getToken = await fetch(url, {
   method: 'POST',
@@ -118,8 +118,6 @@ export async function getUserData(token) {
 
 export async function addUser(id,name) { 
   try {
-    console.log(id);
-    console.log(name);
     const userRef = ref(db, 'users/' + String(id));
     await set(userRef, {id:id,name:name});
   } catch (error) {

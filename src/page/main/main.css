@@ -48,6 +48,13 @@
   text-align: center;
   background: rgb(196, 226, 247);
 }
+.twitch {
+  height: 50px;
+  width: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("/public/twitch.png");
+}
 .done {
   position: absolute;
   height: 15px;

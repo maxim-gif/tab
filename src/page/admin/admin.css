@@ -1,0 +1,40 @@
+.admin {
+    height: 100vh;
+    background-image: url("/public/bg.png");
+}
+.titleMod {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(196, 226, 247);
+    text-align: center;
+}
+.inputName {
+    height: 30px;
+}
+.deleteModerator{
+    position: absolute;
+    height: 100%;
+    width: 30px;
+    right: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("/public/deleteMod.png");
+    
+}
+.moderators {
+    display: grid;
+    grid-template-rows: repeat(1, 30px);
+    width: 400px;
+}
+.moderator{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-bottom: 1px solid gray;
+}
+.buttonAddModerator{
+    width: 100%;
+}

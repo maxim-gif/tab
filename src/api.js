@@ -19,18 +19,19 @@ const auth = getAuth();
 const db = getDatabase(app);
 
 export async function getData() {
-  
     const response = await fetch("https://table-d13fe-default-rtdb.firebaseio.com/pars.json");
     const data = await response.json();
     return data;
 }
 
 export async function GetAuth(email,password) {
+  console.log("GetAuth");
   createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
     console.log(user);
+    return user
   })
   .catch((error) => {
     // const errorCode = error.code;
@@ -38,6 +39,13 @@ export async function GetAuth(email,password) {
     // ..
   });
 }
+
+export async function GetModerators () {
+  const response = await fetch("https://table-d13fe-default-rtdb.firebaseio.com/moderators.json");
+  const data = await response.json();
+  return data;
+}
+
 
 export async function Enter(email,password) {
   signInWithEmailAndPassword(auth, email, password)
@@ -57,6 +65,15 @@ export async function Curse(id, data) {
   const list = ["par1/","par2/","par3/","par4/"]
   try {
     const userRef = ref(db, 'pars/' + list[id]);
+    await set(userRef, data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function sendModerator(data) {
+  try {
+    const userRef = ref(db, 'moderators/');
     await set(userRef, data);
   } catch (error) {
     console.log(error);
@@ -92,7 +109,7 @@ export async function getToken(code) {
   params.append('client_secret', 'ls1nk9j93maxa6g94j9fckch0m8you');
   params.append('code', code);
   params.append('grant_type', 'authorization_code');
-  params.append('redirect_uri', 'http://localhost:3000');
+  params.append('redirect_uri', 'https://tab-jet.vercel.app');
 
  const getToken = await fetch(url, {
   method: 'POST',

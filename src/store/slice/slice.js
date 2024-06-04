@@ -2,9 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     participant: [],
+    moderators: [],
 };
 
-export const participantSlice = createSlice({
+export const appSlice = createSlice({
   name: "participant",
   initialState,
 
@@ -12,9 +13,12 @@ export const participantSlice = createSlice({
     setParticipant: (state, action) => {
       state.participant = action.payload;
     },
+    setModerators: (state, action) => {
+      state.moderators = action.payload;
+    },
   },
 });
 
-export const { setParticipant } = participantSlice.actions;
+export const { setParticipant, setModerators } = appSlice.actions;
 
-export default participantSlice.reducer;
+export default appSlice.reducer;

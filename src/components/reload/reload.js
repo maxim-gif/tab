@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setParticipant } from '../../store/slice/slice';
+import { setParticipant , setModerators} from '../../store/slice/slice';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
 export const DataSubscriber = () => {
@@ -12,8 +12,16 @@ export const DataSubscriber = () => {
       const data = snapshot.val();
       dispatch(setParticipant(data));
     });
-
-    return () => unsubscribe();
+    const moderRef = ref(db, 'moderators/');
+    const unsub = onValue(moderRef, (snapshot) => {
+      const data = snapshot.val();
+      console.log(data);
+      dispatch(setModerators(data));
+    });
+    return () => {
+      unsubscribe()
+      unsub()
+    }
   }, [dispatch]);
 
   return null; 

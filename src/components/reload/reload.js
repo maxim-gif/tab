@@ -10,7 +10,6 @@ export const DataSubscriber = () => {
     const dataRef = ref(db, 'pars/');
     const unsubscribe = onValue(dataRef, (snapshot) => {
       const data = snapshot.val();
-      console.log(data);
       dispatch(setParticipant(data));
     });
     const moderRef = ref(db, 'moderators/');

@@ -87,10 +87,8 @@ export const Main = () => {
   }, [name]);
 
   useEffect(() => {
-    setCursePar1(dataPar?.par1 === undefined ? []: dataPar.par1)
-    setCursePar2(dataPar?.par2 === undefined ? []: dataPar.par2)
-    setCursePar3(dataPar?.par3 === undefined ? []: dataPar.par3)
-    setCursePar4(dataPar?.par4 === undefined ? []: dataPar.par4)
+    hundleData()
+    
   }, [dataPar]);
 
   useEffect(() => {

@@ -87,7 +87,10 @@ export const Main = () => {
   }, [name]);
 
   useEffect(() => {
-    hundleData()
+    setCursePar1(dataPar?.par1 === undefined ? []: dataPar.par1)
+    setCursePar2(dataPar?.par2 === undefined ? []: dataPar.par2)
+    setCursePar3(dataPar?.par3 === undefined ? []: dataPar.par3)
+    setCursePar4(dataPar?.par4 === undefined ? []: dataPar.par4)
   }, [dataPar]);
 
   useEffect(() => {
@@ -149,7 +152,7 @@ const deleteCurse = (id,arr,index) => {
     <div className="logo">
     <div className="enter">
         {name.length === 0  && <span >Войти с помощью </span>}
-        <a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=9tme6blew754pa56v75lf5mgqg0iro&redirect_uri=https://tab-jet.vercel.app&scope=user:read:email" >
+        <a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=9tme6blew754pa56v75lf5mgqg0iro&redirect_uri=http://localhost:3000&scope=user:read:email" >
           <div className="twitch"></div>
         </a>
         {name !== "" && <span>{name} {moderatorsAccess}</span>}

@@ -63,7 +63,6 @@ export async function Enter(email,password) {
 }
 
 export async function addCurse(id, data) {
-  console.log(id);
   const list = ["member1/","member2/","member3/","member4/"]
   try {
     const userRef = ref(db, list[id]);

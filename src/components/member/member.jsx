@@ -4,8 +4,7 @@ import { Member1Subscriber } from "../reload/member1.js";
 import { Member2Subscriber } from "../reload/member2.js";
 import { Member3Subscriber } from "../reload/member3.js";
 import { Member4Subscriber } from "../reload/member4.js";
-import { getDataMember,doneCurse,Delete,addCurse } from "../../api";
-import { useState, useEffect } from "react";
+import { doneCurse,Delete,addCurse } from "../../api";
 import { useSelector } from "react-redux";
 
 export const Member = ({ id, moderatorsAccess }) => {
@@ -17,25 +16,25 @@ export const Member = ({ id, moderatorsAccess }) => {
   const dataMember3 = useSelector((state) => state.table.member3);
   const dataMember4 = useSelector((state) => state.table.member4);
 
-  const [memberCurses, setMemberCurses] = useState([])
-
-  const handleGetData = async(id) => {
-    const data = await getDataMember(id);
-    setMemberCurses(data)
-  };
+  const list  = [dataMember1,dataMember2,dataMember3,dataMember4]
 
   const deleteCurse = (index) => {
-    console.log(memberCurses);
-    memberCurses.splice(index,1)
-    Delete(id,memberCurses)
+    let newData
+    if (id === 0) newData = [...dataMember1]
+    if (id === 1) newData = [...dataMember2]
+    if (id === 2) newData = [...dataMember3]
+    if (id === 3) newData = [...dataMember4]
+    
+    newData.splice(index,1)
+    Delete(id,newData)
   }
 
   const handleAddCurse = (curse,id) => {
     let newData
-    if (memberCurses === null) {
+    if (list[id] === null) {
       newData = []
     } else {
-      newData = [...memberCurses]
+      newData = [...list[id]]
     }
   
     if (curse === "Мутант") {
@@ -54,9 +53,6 @@ export const Member = ({ id, moderatorsAccess }) => {
     document.getElementById(selectElement[id]).value = "";
   }
 
-  useEffect(() => {
-    handleGetData(id);
-  }, [dataMember1,dataMember3,dataMember2,dataMember4]);
 
 
   
@@ -71,7 +67,7 @@ export const Member = ({ id, moderatorsAccess }) => {
         className="curseList"
         style={{ gridTemplateRows: `repeat(5, 25px)` }}
       >
-        {memberCurses?.map((item, index) => (
+        {list[id]?.map((item, index) => (
           <div
             title={item.title}
             key={index}

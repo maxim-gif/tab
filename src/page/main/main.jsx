@@ -147,12 +147,16 @@ const deleteCurse = (id,arr,index) => {
 
   return (
    <div className="containerApp">
+    <div className="logo">
     <div className="enter">
+        <span >Войти с помощью </span>
         <a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=9tme6blew754pa56v75lf5mgqg0iro&redirect_uri=https://tab-jet.vercel.app&scope=user:read:email" >
           <div className="twitch"></div>
         </a>
         {name !== "" && <span>{name} {moderatorsAccess}</span>}
     </div>
+    </div>
+   
     <DataSubscriber/>
       <div className="app">
         <div>

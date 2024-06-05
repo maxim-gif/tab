@@ -1,6 +1,7 @@
 .admin {
     height: 100vh;
     background-image: url("/public/bg.png");
+    padding: 50px 50px;
 }
 .titleMod {
     display: flex;

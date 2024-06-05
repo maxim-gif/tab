@@ -45,9 +45,14 @@ export const Main = () => {
   }
 
   const getUser = async() => {
-    const userData = await getUserData(window.localStorage.getItem('access_token'))
-    // console.log(userData[0]);
+    const token = (window.localStorage.getItem('access_token'))
+    console.log(token);
+    const userData = await getUserData(token)
+  if (userData) {
     setName(userData[0].display_name)
+  }
+    // console.log(userData[0]);
+    
   }
 
   const auth = async(code) => {

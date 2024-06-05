@@ -15,7 +15,6 @@ export const DataSubscriber = () => {
     const moderRef = ref(db, 'moderators/');
     const unsub = onValue(moderRef, (snapshot) => {
       const data = snapshot.val();
-      console.log(data);
       dispatch(setModerators(data));
     });
     return () => {

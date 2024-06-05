@@ -27,9 +27,7 @@ export const Main = () => {
     let code = splitHash.split('=')[1]
   
     const handleGetModerators = async() => {
-      console.log("handleGetModerators");
       const data = await GetModerators()
-      console.log(data);
       if (data !== null) {
         setModeratorsAccess(data.includes(name))
       } else {

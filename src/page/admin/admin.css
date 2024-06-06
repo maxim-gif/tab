@@ -1,9 +1,13 @@
 .admin {
     display: flex;
-    justify-content: space-between;
     height: 100vh;
+    flex-direction: column;
     background-image: url("/public/bg.png");
-    padding: 50px 50px;
+}
+.modContain{
+display: flex;
+justify-content: space-between;
+margin: 50px;
 }
 .titleMod {
     display: flex;

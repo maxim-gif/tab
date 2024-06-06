@@ -49,9 +49,10 @@ const deleteModerator = (index) => {
  
   return (
    <div className="admin">
+    <div className="logo">  </div>
     <ModeratorSubscriber/>
     
-         <div>
+         <div className="modContain">
           <div className="moderators" style={{gridTemplateRows: `repeat(${moderators?.length+3 || 3}, 30px)`}}>
             <div className="titleMod">Модераторы</div>
             { moderators !== null && moderators?.map((item, index) => ((
@@ -63,9 +64,9 @@ const deleteModerator = (index) => {
             <input className="inputName" type='text' placeholder='Введите твич никнейм' value={name} onChange={(e) => {setName(e.target.value)}}></input>
             <button className="buttonAddModerator" onClick={() => addModerator()}>Добавить модератора</button>  
           </div>
-        </div>
-        <CurseList/>
+          <CurseList/>
         <AddList/>
+        </div>
     </div>
   );
 }

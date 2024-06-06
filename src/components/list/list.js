@@ -12,7 +12,7 @@ export const SelectCurse = ({handleAddCurse, id}) => {
       <CursesSubscriber />
         <option value="">Добавить проклятие</option>
         { curses !== null && curses?.map((item, index) => ((
-                  <option key={index} value="Мутант">{item.name}</option>
+                  <option key={index} value={item.name}>{item.name}</option>
                 )))
           }
     </select>

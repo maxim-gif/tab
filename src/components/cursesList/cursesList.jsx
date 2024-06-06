@@ -4,9 +4,8 @@ import { CursesSubscriber } from "../reload/curses";
 
 export const CurseList = () => {
   const curses = useSelector((state) => state.table.curses);
-console.log(curses?.length*30+30);
   return (
-    <div className="cursesList" style={{height: `${curses?.length*30+30}px`}}>
+    <div className="cursesList">
       <CursesSubscriber />
       <div className="titleCurses">Список проклятий</div>
         {curses !== null &&

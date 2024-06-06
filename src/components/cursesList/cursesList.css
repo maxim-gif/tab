@@ -1,5 +1,22 @@
-.curse {
+.curseItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 400px;
     height: 30px;
+    border-bottom: 1px solid gray;
+    background: white;
 }
-.curseList {}
+.titleCurses{
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    background: rgb(196, 226, 247);  
+    height: 30px;
+}
+.curseUl{
+  
+}
+.cursesList {
+    display: grid;
+}

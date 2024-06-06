@@ -1,21 +1,20 @@
-import './cursesList.css';
+import "./cursesList.css";
 import { useSelector } from "react-redux";
-import { CursesSubscriber } from '../reload/curses';
-
+import { CursesSubscriber } from "../reload/curses";
 
 export const CurseList = () => {
-
   const curses = useSelector((state) => state.table.curses);
-
-
+console.log(curses?.length*30+30);
   return (
-   <div className="curseList">
-    <CursesSubscriber/>
-   { curses !== null && curses?.map((item, index) => ((
-                  <div className="curse" key={index}>
-                      <span>{item.name}</span>
-                  </div>)))
-            }
-    </div>
+    <div className="cursesList" style={{height: `${curses?.length*30+30}px`}}>
+      <CursesSubscriber />
+      <div className="titleCurses">Список проклятий</div>
+        {curses !== null &&
+          curses?.map((item, index) => (
+            <div className="curseItem" key={index}>
+              <span>{item.name}</span>
+            </div>
+          ))}
+      </div>
   );
-}
+};

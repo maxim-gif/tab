@@ -1,4 +1,6 @@
 .admin {
+    display: flex;
+    justify-content: space-between;
     height: 100vh;
     background-image: url("/public/bg.png");
     padding: 50px 50px;

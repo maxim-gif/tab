@@ -1,0 +1,25 @@
+.addList{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+}
+.curseName{
+    height: 30px;
+    padding-left: 10px;
+}
+.curseTitle{
+    height: 90px;
+    padding: 10px;
+    resize:none;
+
+}
+.curseTitle::placeholder {
+    padding-top: 23px;
+    padding-left: 120px;
+}
+.curseAddButton{
+    height: 30px;
+}

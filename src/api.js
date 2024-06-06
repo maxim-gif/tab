@@ -25,6 +25,21 @@ export async function getDataMember(id) {
     return data;
 }
 
+export async function getCurses() {
+  const response = await fetch(`https://table-d13fe-default-rtdb.firebaseio.com/curses.json`);
+  const data = await response.json();
+  return data;
+}
+
+export async function addListCurses(data) {
+  try {
+    const userRef = ref(db, 'curses/');
+    await set(userRef, data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function GetAuth(email,password) {
   console.log("GetAuth");
   createUserWithEmailAndPassword(auth, email, password)

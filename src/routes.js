@@ -3,9 +3,9 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Main } from "./page/main/main";
 import { Admin } from "./page/admin/admin";
 import { useEffect } from "react";
-import { getDataMember } from "./api";
+import { getDataMember,getCurses } from "./api";
 import { useDispatch } from 'react-redux';
-import { setMember1, setMember2,setMember3,setMember4} from './store/slice/slice';
+import { setMember1, setMember2,setMember3,setMember4,setCurses} from './store/slice/slice';
 
 export const AppRoutes = () => {
 
@@ -20,6 +20,8 @@ export const AppRoutes = () => {
     dispatch(setMember3(data3));
     const data4 = await getDataMember(3);
     dispatch(setMember4(data4));
+    const curses = await getCurses();
+    dispatch(setCurses(curses));
 
   };
 

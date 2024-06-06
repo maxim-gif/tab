@@ -3,6 +3,8 @@ import { useState, useEffect} from 'react'
 import { GetModerators, sendModerator } from '../../api';
 import { useSelector } from "react-redux";
 import { ModeratorSubscriber } from '../../components/reload/moderator.js';
+import { AddList } from "../../components/addCurse/addCurse.jsx";
+import { CurseList } from '../../components/cursesList/cursesList.jsx';
 
 
 export const Admin = () => {
@@ -48,6 +50,7 @@ const deleteModerator = (index) => {
   return (
    <div className="admin">
     <ModeratorSubscriber/>
+    
          <div>
           <div className="moderators" style={{gridTemplateRows: `repeat(${moderators?.length+3 || 3}, 30px)`}}>
             <div className="titleMod">Модераторы</div>
@@ -61,6 +64,8 @@ const deleteModerator = (index) => {
             <button className="buttonAddModerator" onClick={() => addModerator()}>Добавить модератора</button>  
           </div>
         </div>
+        <CurseList/>
+        <AddList/>
     </div>
   );
 }

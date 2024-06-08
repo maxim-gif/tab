@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { ModeratorSubscriber } from '../../components/reload/moderator.js';
 import { AddList } from "../../components/addCurse/addCurse.jsx";
 import { CurseList } from '../../components/cursesList/cursesList.jsx';
+import { NameMembersList } from '../../components/nameMemberList/nameMemberList.jsx';
 
 
 export const Admin = () => {
@@ -51,7 +52,6 @@ const deleteModerator = (index) => {
    <div className="admin">
     <div className="logo">  </div>
     <ModeratorSubscriber/>
-    
          <div className="modContain">
           <div className="moderators" style={{gridTemplateRows: `repeat(${moderators?.length+3 || 3}, 30px)`}}>
             <div className="titleMod">Модераторы</div>
@@ -61,9 +61,10 @@ const deleteModerator = (index) => {
                       <div className="deleteModerator" onClick={() => deleteModerator(index)}></div>
                   </div>)))
             }
-            <input className="inputName" type='text' placeholder='Введите твич никнейм' value={name} onChange={(e) => {setName(e.target.value)}}></input>
-            <button className="buttonAddModerator" onClick={() => addModerator()}>Добавить модератора</button>  
+            <input className="inputAdmin" type='text' placeholder='Введите твич никнейм' value={name} onChange={(e) => {setName(e.target.value)}}></input>
+            <button className="buttonAdmin" onClick={() => addModerator()}>Добавить модератора</button>  
           </div>
+          <NameMembersList/>
           <CurseList/>
         <AddList/>
         </div>

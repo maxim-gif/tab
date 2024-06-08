@@ -28,9 +28,9 @@ export const AddList = () => {
 
   return (
    <div className="addList">
-        <input type='tet' className="curseName" value={curseName} placeholder='Введите название проклятия' onChange={(e) => {setCurseName(e.target.value)}}></input>
+        <input type='tet' className="inputAdmin" value={curseName} placeholder='Введите название проклятия' onChange={(e) => {setCurseName(e.target.value)}}></input>
         <textarea className="curseTitle" value={curseTitle} placeholder='Описане проклятия' onChange={(e) => {setCurseTitle(e.target.value)}}></textarea>
-        <button className="curseAddButton" onClick={() => {addCurse()}}>Добавить проклятие</button>
+        <button className="buttonAdmin" onClick={() => {addCurse()}}>Добавить проклятие</button>
     </div>
   );
 }

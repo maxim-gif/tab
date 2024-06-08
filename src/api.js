@@ -30,6 +30,20 @@ export async function getCurses() {
   const data = await response.json();
   return data;
 }
+export async function getNameMembers() {
+  const response = await fetch(`https://table-d13fe-default-rtdb.firebaseio.com/members.json`);
+  const data = await response.json();
+  return data;
+}
+
+export async function addNameMembers(data) {
+  try {
+    const userRef = ref(db, 'members/');
+    await set(userRef, data);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export async function addListCurses(data) {
   try {

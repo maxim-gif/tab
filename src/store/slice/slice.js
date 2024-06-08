@@ -8,6 +8,7 @@ const initialState = {
     member3: [],
     member4: [],
     curses: [],
+    nameMembers: [],
 };
 
 export const appSlice = createSlice({
@@ -36,9 +37,12 @@ export const appSlice = createSlice({
     setCurses: (state, action) => {
       state.curses = action.payload;
     },
+    setNameMembers: (state, action) => {
+      state.nameMembers = action.payload;
+    },
   },
 });
 
-export const { setParticipant, setModerators,setMember1,setMember2,setMember3,setMember4,setCurses } = appSlice.actions;
+export const { setParticipant, setModerators,setMember1,setMember2,setMember3,setMember4,setCurses,setNameMembers } = appSlice.actions;
 
 export default appSlice.reducer;

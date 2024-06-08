@@ -7,7 +7,7 @@ import { Member4Subscriber } from "../reload/member4.js";
 import { doneCurse,Delete,addCurse } from "../../api";
 import { useSelector } from "react-redux";
 
-export const Member = ({ id, moderatorsAccess }) => {
+export const Member = ({ id, moderatorsAccess, name }) => {
 
   const selectElement = ["mySelect1", "mySelect2", "mySelect3", "mySelect4"]
 
@@ -52,7 +52,7 @@ export const Member = ({ id, moderatorsAccess }) => {
       {id === 1 && <Member2Subscriber />}
       {id === 2 && <Member3Subscriber />}
       {id === 3 && <Member4Subscriber />}
-      <div className="memberName">Участник №4</div>
+      <div className="memberName">{name}</div>
       <div
         className="curseList"
         style={{ gridTemplateRows: `repeat(5, 25px)` }}

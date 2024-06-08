@@ -10,6 +10,7 @@ import { DataSubscriber } from "../../components/reload/reload";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Member } from "../../components/member/member";
+import { MembersSubscriber } from "../../components/reload/membersName";
 
 
 export const Main = () => {
@@ -17,6 +18,8 @@ export const Main = () => {
   const navigate = useNavigate();
 
   let dataModerators = useSelector((state) => state.table.moderators);
+  let nameMembers = useSelector((state) => state.table.nameMembers);
+
 
   const [name, setName] = useState("");
   const [moderatorsAccess, setModeratorsAccess] = useState(false);
@@ -36,7 +39,6 @@ export const Main = () => {
 
   const getUser = async () => {
     const token = window.localStorage.getItem("access_token");
-    console.log(token);
     const userData = await getUserData(token);
     if (userData) {
       setName(userData[0].display_name);
@@ -45,7 +47,6 @@ export const Main = () => {
 
   const auth = async (code) => {
     const token = await getToken(code);
-    console.log(token);
     window.localStorage.setItem("access_token", token.access_token);
     window.localStorage.setItem("refresh_token", token.refresh_token);
     const userData = await getUserData(token.access_token);
@@ -71,6 +72,10 @@ export const Main = () => {
   useEffect(() => {
     handleGetModerators();
   }, [dataModerators,name]);
+  
+  useEffect(() => {
+    console.log(nameMembers);
+  }, [nameMembers]);
 
   return (
     <div className="containerApp">
@@ -88,12 +93,13 @@ export const Main = () => {
         </div>
       </div>
       <div className="memberList">
-        <Member id={0} moderatorsAccess={moderatorsAccess} />
-        <Member id={1} moderatorsAccess={moderatorsAccess} />
-        <Member id={2} moderatorsAccess={moderatorsAccess} />
-        <Member id={3} moderatorsAccess={moderatorsAccess} />
+        <Member id={0} moderatorsAccess={moderatorsAccess} name={nameMembers[0]}/>
+        <Member id={1} moderatorsAccess={moderatorsAccess} name={nameMembers[1]}/>
+        <Member id={2} moderatorsAccess={moderatorsAccess} name={nameMembers[2]}/>
+        <Member id={3} moderatorsAccess={moderatorsAccess} name={nameMembers[3]}/>
       </div>
       <DataSubscriber />
+      <MembersSubscriber/>
     </div>
   );
 };

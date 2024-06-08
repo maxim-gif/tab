@@ -32,12 +32,13 @@ export const Main = () => {
   let code = splitHash.split("=")[1];
 
   useEffect(() => {
+    console.log(dataModerators);
     if (dataModerators !== null) {
       setModeratorsAccess(dataModerators.includes(name));
     } else {
       setModeratorsAccess(false);
     }
-  }, [dataModerators]);
+  }, [dataModerators,name]);
 
 
   const getUser = async () => {
@@ -53,8 +54,6 @@ export const Main = () => {
     window.localStorage.setItem("access_token", token.access_token);
     window.localStorage.setItem("refresh_token", token.refresh_token);
     const userData = await getUserData(token.access_token);
-
-    console.log(userData === undefined ? null : userData[0]);
     addUser(userData[0].id, userData[0].display_name);
     setName(userData[0].display_name);
     navigate("/");

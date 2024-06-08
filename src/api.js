@@ -172,3 +172,13 @@ export async function addUser(id,name) {
   }
  
 }
+
+export async function Rename(id,name) { 
+  try {
+    const userRef = ref(db, 'members/' + String(id));
+    await update(userRef, {id:name});
+  } catch (error) {
+    console.log(error);
+  }
+ 
+}

@@ -1,3 +1,30 @@
 .membersList{
     width: 100%;
 }
+.editItem {
+    left: 5px;
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("/public/edit.png");
+}
+.itemInput {
+    height: 30px;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid rgb(199, 180, 180);
+    outline: none;
+    text-align: center;
+    font-style: italic;
+}
+.saveEditItem {
+    left: 5px;
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("/public/save.png");
+}

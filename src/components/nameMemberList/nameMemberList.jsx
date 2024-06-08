@@ -8,6 +8,9 @@ export const NameMembersList = () => {
 
     let nameMembers = useSelector((state) => state.table.nameMembers);
     const [name, setName] = useState("");
+    const [editName, setEditName] = useState("");
+
+    const [indexElement, setIndexElement] = useState();
 
     const editMembers = () => {
         let newData
@@ -28,6 +31,17 @@ export const NameMembersList = () => {
         addNameMembers(newData)
     }
 
+    const edit = (index,item) => {
+        setIndexElement(index)
+        setEditName(item)
+    }
+
+    const saveEdit = (id) => {
+        let newData = [...nameMembers]
+        newData[id] = editName
+        addNameMembers(newData)
+        setIndexElement()
+    }
 
   return (
         <div className="membersList">
@@ -36,7 +50,9 @@ export const NameMembersList = () => {
             {nameMembers !== null &&
             nameMembers?.map((item, index) => (
                 <div className="itemList" key={index}>
-                    <span>{item}</span>
+                    {index === indexElement ? (<input className="itemInput" value={editName} onChange={(e) =>{setEditName(e.target.value)}}></input>):(<span>{item}</span>)}
+                    {indexElement !== index && <div className="editItem" onClick={() => {edit(index,item)}}></div>}
+                    {indexElement === index && <div className="saveEditItem" onClick={() => {saveEdit(index)}}></div>}
                     <div className="curseItemDelete" onClick={() => {deleteMember(index)}}></div>
                 </div>
             ))}

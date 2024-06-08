@@ -62,7 +62,6 @@ export const Member = ({ id, moderatorsAccess }) => {
             title={item.title}
             key={index}
             className={item.status ? "curseDone" : "curse"}
-            onTouchStart={() => alert(item.title)}
           >
             <span>{item.name}</span>
             {moderatorsAccess && <div className="done" onClick={() => {doneCurse(id,index,!item.status)}}></div>}

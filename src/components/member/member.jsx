@@ -44,7 +44,10 @@ export const Member = ({ id, moderatorsAccess, name }) => {
   }
 
 
-
+const toch = (e) => {
+  e.preventDefault()
+  e.stopPropagation();
+}
   
   return (
     <div className="member">
@@ -52,7 +55,7 @@ export const Member = ({ id, moderatorsAccess, name }) => {
       {id === 1 && <Member2Subscriber />}
       {id === 2 && <Member3Subscriber />}
       {id === 3 && <Member4Subscriber />}
-      <div className="memberName">{name}</div>
+      <div className="memberName" onTouchStart={(e) => {toch(e)}}>{name}</div>
       <div
         className="curseList"
         style={{ gridTemplateRows: `repeat(5, 25px)` }}

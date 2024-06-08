@@ -1,20 +1,4 @@
-.curseItem {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 400px;
-    height: 30px;
-    border-bottom: 1px solid gray;
-    background: white;
-}
-.titleCurses{
-    display: flex;
-    align-items: center;
-    justify-content: center;  
-    background: rgb(196, 226, 247);  
-    height: 30px;
-}
+
 .curseItemDelete{
     position: absolute;
     height: 30px;

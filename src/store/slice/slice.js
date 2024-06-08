@@ -38,7 +38,7 @@ export const appSlice = createSlice({
       state.curses = action.payload;
     },
     setNameMembers: (state, action) => {
-      state.nameMembers = action.payload;
+      state.nameMembers = action.payload === null ? []:action.payload;
     },
   },
 });

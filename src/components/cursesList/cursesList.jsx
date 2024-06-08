@@ -15,10 +15,10 @@ const deleteCurse = (index) => {
   return (
     <div className="cursesList">
       <CursesSubscriber />
-      <div className="titleCurses">Список проклятий</div>
+      <div className="titleAdmin">Список проклятий</div>
         {curses !== null &&
           curses?.map((item, index) => (
-            <div className="curseItem" key={index}>
+            <div className="itemList" key={index}>
               <span>{item.name}</span>
               <div className="curseItemDelete" onClick={() => {deleteCurse(index)}}></div>
             </div>

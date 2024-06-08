@@ -6,7 +6,9 @@
     display: flex;
     flex-direction: column;
 }
-
+.addList > input {
+    margin-top: 0;
+}
 .curseTitle{
     height: 90px;
     padding: 10px;

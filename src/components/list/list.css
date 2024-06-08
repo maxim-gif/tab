@@ -10,6 +10,6 @@
     text-align: center;
     background: rgb(196, 226, 247);
 }
-.listCurse > option:hover {
-    background: red;
+option {
+    background: white;
 }

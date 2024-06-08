@@ -50,7 +50,7 @@ const toch = (e) => {
   setTimeout(() => {
     alert("fgw")
   },2000)
-  alert("fgw")
+
 }
   
   return (

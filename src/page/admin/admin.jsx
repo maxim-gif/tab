@@ -3,6 +3,7 @@ import { AddList } from "../../components/addCurse/addCurse.jsx";
 import { CurseList } from '../../components/cursesList/cursesList.jsx';
 import { NameMembersList } from '../../components/nameMemberList/nameMemberList.jsx';
 import { ModeratorList } from '../../components/moderators/moderators.jsx';
+import { SelectCurse } from '../../components/list/list.js';
 
 
 export const Admin = () => {
@@ -16,7 +17,9 @@ export const Admin = () => {
           <NameMembersList/>
           <CurseList/>
           <AddList/>
+          <SelectCurse/>
         </div>
+        
     </div>
   );
 }

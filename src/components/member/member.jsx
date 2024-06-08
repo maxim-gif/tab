@@ -44,22 +44,14 @@ export const Member = ({ id, moderatorsAccess, name }) => {
   }
 
 
-const toch = (e) => {
-  e.preventDefault()
-  e.stopPropagation();
-  setTimeout(() => {
-    alert("fgw")
-  },2000)
 
-}
-  
   return (
     <div className="member">
       {id === 0 && <Member1Subscriber />}
       {id === 1 && <Member2Subscriber />}
       {id === 2 && <Member3Subscriber />}
       {id === 3 && <Member4Subscriber />}
-      <div className="memberName" onTouchStart={(e) => {toch(e)}}>{name}</div>
+      <div className="memberName">{name}</div>
       <div
         className="curseList"
         style={{ gridTemplateRows: `repeat(5, 25px)` }}
@@ -70,7 +62,7 @@ const toch = (e) => {
             key={index}
             className={item.status ? "curseDone" : "curse"}
           >
-            <span onTouchStart={(e) => {toch(e)}}>{item.name}</span>
+            <span>{item.name}</span>
             {moderatorsAccess && <div className="done" onClick={() => {doneCurse(id,index,!item.status)}}></div>}
             {moderatorsAccess && <div className="delete" onClick={() => {deleteCurse(index)}}></div>}
           </div>

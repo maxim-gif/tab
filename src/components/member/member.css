@@ -18,7 +18,7 @@
   height: 15px;
   width: 15px;
   right: 10px;
-  top: 5px;
+  top: 7px;
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url("/public/done.png");
@@ -31,7 +31,7 @@
   height: 15px;
   width: 15px;
   left: 10px;
-  top: 5px;
+  top: 7px;
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url("/public/del.png");

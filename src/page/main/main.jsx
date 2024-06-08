@@ -4,7 +4,6 @@ import {
   getToken,
   getUserData,
   addUser,
-  GetModerators,
 } from "../../api";
 import { DataSubscriber } from "../../components/reload/reload";
 import { useSelector } from "react-redux";

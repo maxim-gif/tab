@@ -3,13 +3,14 @@ import { useSelector } from "react-redux";
 import { CursesSubscriber } from "../reload/curses";
 import { addListCurses } from "../../api";
 
-export const CurseList = () => {
+export const CurseList = ({setMessage}) => {
   const curses = useSelector((state) => state.table.curses);
 
-const deleteCurse = (index) => {
+const deleteCurse = async(index) => {
     let newData = [...curses]
     newData.splice(index,1)
-    addListCurses(newData)
+    const message = await addListCurses(newData)
+    setMessage(message)
 }
 
   return (

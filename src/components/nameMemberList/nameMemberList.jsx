@@ -4,7 +4,7 @@ import { MembersSubscriber } from "../reload/membersName";
 import { addNameMembers } from "../../api";
 import { useState} from "react";
 
-export const NameMembersList = () => {
+export const NameMembersList = ({setMessage}) => {
 
     let nameMembers = useSelector((state) => state.table.nameMembers);
     const [name, setName] = useState("");
@@ -12,7 +12,7 @@ export const NameMembersList = () => {
 
     const [indexElement, setIndexElement] = useState();
 
-    const editMembers = () => {
+    const editMembers = async() => {
         let newData
         if (nameMembers === null) {
             newData = []
@@ -20,15 +20,17 @@ export const NameMembersList = () => {
             newData = [...nameMembers]
         }
         newData.push(name)
-        addNameMembers(newData)
+        const message = await addNameMembers(newData)
+        setMessage(message)
         setName('')
     }
 
-    const deleteMember = (index) => {
+    const deleteMember = async(index) => {
         let newData = [...nameMembers]
         newData.splice(index,1)
         console.log(newData);
-        addNameMembers(newData)
+        const message = await addNameMembers(newData)
+        setMessage(message)
     }
 
     const edit = (index,item) => {
@@ -36,10 +38,11 @@ export const NameMembersList = () => {
         setEditName(item)
     }
 
-    const saveEdit = (id) => {
+    const saveEdit = async(id) => {
         let newData = [...nameMembers]
         newData[id] = editName
-        addNameMembers(newData)
+        const message = await addNameMembers(newData)
+        setMessage(message)
         setIndexElement()
     }
 

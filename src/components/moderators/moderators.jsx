@@ -5,18 +5,19 @@ import { sendModerator } from "../../api";
 import { useState} from "react";
 
 
-export const ModeratorList = () => {
+export const ModeratorList = ({setMessage}) => {
     let dataModerators = useSelector((state) => state.table.moderators)
     const [name, setName] = useState("");
 
-    const deleteModerator = (index) => {
+    const deleteModerator = async(index) => {
         let newData = [...dataModerators]
         newData.splice(index,1)
         console.log(newData);
-        sendModerator(newData)
+        const message = await sendModerator(newData)
+        setMessage(message)
     }
 
-    const addModerator = () => {
+    const addModerator = async() => {
         let newData
         if (dataModerators === null) {
             newData = []
@@ -24,7 +25,8 @@ export const ModeratorList = () => {
             newData = [...dataModerators]
         }
        newData.push(name)
-       sendModerator(newData)
+       const message = await sendModerator(newData)
+        setMessage(message)
        setName('')
     }
   return (

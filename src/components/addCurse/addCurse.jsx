@@ -4,14 +4,14 @@ import { useState} from "react";
 import { addListCurses } from '../../api';
 
 
-export const AddList = () => {
+export const AddList = ({setMessage}) => {
 
   const curses = useSelector((state) => state.table.curses);
 
   const [curseName, setCurseName] = useState("");
   const [curseTitle, setCurseTitle] = useState("");
 
-  const addCurse = () => {
+  const addCurse = async() => {
     let newData 
     console.log(curses);
     if (curses === null) {
@@ -20,9 +20,10 @@ export const AddList = () => {
       newData = [...curses]
     }
     newData.push({name:curseName,title:curseTitle})
-    addListCurses(newData)
+    const message = await addListCurses(newData)
     setCurseName("")
     setCurseTitle("")
+    setMessage(message)
   }
 
 

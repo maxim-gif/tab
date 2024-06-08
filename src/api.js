@@ -15,7 +15,7 @@ const firebaseConfig = {
   };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth();
+export const auth = getAuth();
 const db = getDatabase(app);
 
 export async function getDataMember(id) {
@@ -38,24 +38,34 @@ export async function getNameMembers() {
 
 export async function addNameMembers(data) {
   try {
-    const userRef = ref(db, 'members/');
-    await set(userRef, data);
+    if (!auth.currentUser) {
+      throw new Error("Доступ запрещен")
+    } else {
+      const userRef = ref(db, 'members/');
+      await set(userRef, data);
+    }
+    
   } catch (error) {
-    console.log(error);
+    return error.message
   }
 }
 
 export async function addListCurses(data) {
+  console.log(auth.currentUser);
   try {
-    const userRef = ref(db, 'curses/');
-    await set(userRef, data);
+    if (!auth.currentUser) {
+      throw new Error("Доступ запрещен")
+    } else {
+      const userRef = ref(db, 'curses/');
+      await set(userRef, data);
+    }
   } catch (error) {
-    console.log(error);
+    return error.message
   }
 }
 
 export async function GetAuth(email,password) {
-  console.log("GetAuth");
+  console.log(email);
   createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed up 
@@ -64,9 +74,7 @@ export async function GetAuth(email,password) {
     return user
   })
   .catch((error) => {
-    // const errorCode = error.code;
-    // const errorMessage = error.message;
-    // ..
+    console.log(error);
   });
 }
 
@@ -80,14 +88,11 @@ export async function GetModerators () {
 export async function Enter(email,password) {
   signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
+    const user = userCredential.user.auth.currentUser;
     console.log(user);
   })
   .catch((error) => {
-    // const errorCode = error.code;
-    // const errorMessage = error.message;
-    // ..
+    console.log(error.message);
   });
 }
 
@@ -103,10 +108,14 @@ export async function addCurse(id, data) {
 
 export async function sendModerator(data) {
   try {
-    const userRef = ref(db, 'moderators/');
-    await set(userRef, data);
+    if (!auth.currentUser) {
+      throw new Error("Доступ запрещен")
+    } else {
+      const userRef = ref(db, 'moderators/');
+      await set(userRef, data);
+    }
   } catch (error) {
-    console.log(error);
+    return error.message
   }
 }
 

@@ -7,7 +7,7 @@ import { Member4Subscriber } from "../reload/member4.js";
 import { doneCurse,Delete,addCurse } from "../../api";
 import { useSelector } from "react-redux";
 
-export const Member = ({ id, moderatorsAccess, name }) => {
+export const Member = ({ id, moderatorsAccess, name, }) => {
 
   const selectElement = ["mySelect1", "mySelect2", "mySelect3", "mySelect4"]
 

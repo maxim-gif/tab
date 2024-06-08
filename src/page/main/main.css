@@ -50,9 +50,24 @@
   background-repeat: no-repeat;
   background-image: url("/public/twitch.png");
 }
-
+.switchMember {
+  display: none;
+}
 @media (max-width: 600px) {
   .memberList {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .switchMember{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .switchMember > button {
+    display: flex;
+    justify-content: center;
+    border: none;
+    border-bottom: 1px solid rgb(199, 180, 180);
+    border-left: 1px solid rgb(199, 180, 180);
+    font-size: 12px;
+    margin-top: 10px;
   }
 }

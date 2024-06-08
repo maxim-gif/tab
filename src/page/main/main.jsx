@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Member } from "../../components/member/member";
 import { MembersSubscriber } from "../../components/reload/membersName";
+import { ModeratorSubscriber } from "../../components/reload/moderator";
 
 
 export const Main = () => {
@@ -22,20 +23,22 @@ export const Main = () => {
 
 
   const [name, setName] = useState("");
+  // const [member, setMember] = useState(1);
   const [moderatorsAccess, setModeratorsAccess] = useState(false);
+
 
   const hash = document.location.href;
   const splitHash = hash.split("&")[0];
   let code = splitHash.split("=")[1];
 
-  const handleGetModerators = async () => {
-    const data = await GetModerators();
-    if (data !== null) {
-      setModeratorsAccess(data.includes(name));
+  useEffect(() => {
+    if (dataModerators !== null) {
+      setModeratorsAccess(dataModerators.includes(name));
     } else {
       setModeratorsAccess(false);
     }
-  };
+  }, [dataModerators]);
+
 
   const getUser = async () => {
     const token = window.localStorage.getItem("access_token");
@@ -66,16 +69,15 @@ export const Main = () => {
         getUser();
       }
     }
-    handleGetModerators();
   }, []);
 
-  useEffect(() => {
-    handleGetModerators();
-  }, [dataModerators,name]);
+ 
   
-  useEffect(() => {
-    console.log(nameMembers);
-  }, [nameMembers]);
+
+  // const switchMember = (index) => {
+  //   console.log(index);
+  //   setMember(index)
+  // }
 
   return (
     <div className="containerApp">
@@ -92,6 +94,11 @@ export const Main = () => {
           )}
         </div>
       </div>
+      {/* <div className="switchMember">
+        {nameMembers.map((item, index) => (
+          <button key={index} onClick={() => {switchMember(index)}}>{item}</button>
+        ))}
+      </div> */}
       <div className="memberList">
         <Member id={0} moderatorsAccess={moderatorsAccess} name={nameMembers[0]}/>
         <Member id={1} moderatorsAccess={moderatorsAccess} name={nameMembers[1]}/>
@@ -100,6 +107,7 @@ export const Main = () => {
       </div>
       <DataSubscriber />
       <MembersSubscriber/>
+      <ModeratorSubscriber/>
     </div>
   );
 };

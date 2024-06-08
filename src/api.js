@@ -51,7 +51,6 @@ export async function addNameMembers(data) {
 }
 
 export async function addListCurses(data) {
-  console.log(auth.currentUser);
   try {
     if (!auth.currentUser) {
       throw new Error("Доступ запрещен")
@@ -86,14 +85,20 @@ export async function GetModerators () {
 
 
 export async function Enter(email,password) {
-  signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    const user = userCredential.user.auth.currentUser;
-    console.log(user);
-  })
-  .catch((error) => {
-    console.log(error.message);
-  });
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password)
+    return userCredential.user.auth.currentUser
+  } catch (error) {
+    return error.message
+  }
+  // signInWithEmailAndPassword(auth, email, password)
+  // .then((userCredential) => {
+  //   const user = userCredential.user.auth.currentUser;
+  //   console.log(user.uid);
+  // })
+  // .catch((error) => {
+  //   console.log(error.message);
+  // });
 }
 
 export async function addCurse(id, data) {

@@ -8,7 +8,7 @@
 display: grid;
 grid-template-columns: repeat(4, 1fr);
 gap: 30px;
-margin: 50px;
+margin: 0px 50px 50px 50px;
 }
 .titleAdmin {
     display: flex;

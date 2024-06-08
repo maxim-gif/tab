@@ -13,7 +13,6 @@ export const AddList = ({setMessage}) => {
 
   const addCurse = async() => {
     let newData 
-    console.log(curses);
     if (curses === null) {
       newData = []
     } else {
@@ -29,7 +28,7 @@ export const AddList = ({setMessage}) => {
 
   return (
    <div className="addList">
-        <input type='tet' className="inputAdmin" value={curseName} placeholder='Введите название проклятия' onChange={(e) => {setCurseName(e.target.value)}}></input>
+        <input type='text' className="inputAdmin" value={curseName} placeholder='Введите название проклятия' onChange={(e) => {setCurseName(e.target.value)}}></input>
         <textarea className="curseTitle" value={curseTitle} placeholder='Описане проклятия' onChange={(e) => {setCurseTitle(e.target.value)}}></textarea>
         <button className="buttonAdmin" onClick={() => {addCurse()}}>Добавить проклятие</button>
     </div>

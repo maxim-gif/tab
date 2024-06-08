@@ -5,6 +5,7 @@ import { NameMembersList } from '../../components/nameMemberList/nameMemberList.
 import { ModeratorList } from '../../components/moderators/moderators.jsx';
 import { useState,useEffect} from "react";
 import { Enter } from '../../api.js';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 
 export const Admin = () => {
@@ -13,8 +14,25 @@ export const Admin = () => {
   const [message, setMessage] = useState("");
   const [password, setPassword] = useState("");
 
-  const Auth = () => {
-    Enter(email,password)
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid = user.uid;
+      console.log(uid);
+    } else {
+      console.log("object");
+    }
+  });
+
+  const Auth = async() => {
+    const response = await Enter(email,password)
+    console.log(response);
+    if (response.uid) {
+      setMessage("Вход выполнен успешно")
+    } else {
+      setMessage("Ошибка авторизации")
+    }
+    console.log(response.uid);
     setEmail('')
     setPassword("")
   }
@@ -22,7 +40,7 @@ export const Admin = () => {
   useEffect(() => {
     setTimeout(() => {
       setMessage("")
-    },1000)
+    },1500)
   }, [message]);
 
   return (

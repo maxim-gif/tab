@@ -41,7 +41,6 @@
   grid-template-columns: repeat(4, 1fr);
   padding: 30px;
   gap: 30px;
-  
 }
 
 .twitch {
@@ -52,3 +51,8 @@
   background-image: url("/public/twitch.png");
 }
 
+@media (max-width: 600px) {
+  .memberList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -56,3 +56,15 @@
   border-bottom: 1px solid grey;
   background: #68f13e;
 }
+
+@media (max-width: 600px) {
+  .memberName {
+    font-size: 13px;
+  }
+  .curseDone {
+    font-size: 13px;
+  }
+  .curse {
+    font-size: 13px;
+  }
+}

@@ -52,14 +52,13 @@ export const Admin = () => {
           <button className="authButton" onClick={() => {Auth()}}>Войти</button>
         </div>
         {message !== "" && <span className="message">{message}</span>}
+        {message === "" &&<span className="message"></span>}
         <div className="modContain">
           <ModeratorList setMessage={setMessage}/>
           <NameMembersList setMessage={setMessage}/>
           <CurseList setMessage={setMessage}/>
           <AddList setMessage={setMessage}/>
         </div>
-        
-        
     </div>
   );
 }

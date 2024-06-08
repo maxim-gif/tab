@@ -66,7 +66,7 @@ const toch = (e) => {
             key={index}
             className={item.status ? "curseDone" : "curse"}
           >
-            <span>{item.name}</span>
+            <span onTouchStart={(e) => {toch(e)}}>{item.name}</span>
             {moderatorsAccess && <div className="done" onClick={() => {doneCurse(id,index,!item.status)}}></div>}
             {moderatorsAccess && <div className="delete" onClick={() => {deleteCurse(index)}}></div>}
           </div>

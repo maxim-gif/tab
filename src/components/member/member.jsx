@@ -47,6 +47,9 @@ export const Member = ({ id, moderatorsAccess, name }) => {
 const toch = (e) => {
   e.preventDefault()
   e.stopPropagation();
+  setTimeout(() => {
+    alert("fgw")
+  },2000)
   alert("fgw")
 }
   

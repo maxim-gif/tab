@@ -7,15 +7,26 @@
   height: 100vh;
   background-image: url("/public/bg.png");
 }
-.logo {
+.header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-    justify-content: flex-end;
-  width: 100%;
-  height: 64px;
- 
+  padding: 10px;
+}
+
+.logoIcon {
+  height: 100px;
+  width: 150px;
+  background-size: contain;
   background-repeat: no-repeat;
-  background-image: url("/public/logo.jpeg");
+  background-image: url("/public/MI.png");
+}
+.logoTitle {
+  height: 80px;
+  width: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("/public/logo.png");
 }
 .enter{
   display: flex;
@@ -24,7 +35,7 @@
   padding: 20px;
 }
 .enter > span {
-  color: rgb(255, 255, 255);
+  color: rgb(92, 12, 81);
 }
 .enter > input {
   height: 30px;

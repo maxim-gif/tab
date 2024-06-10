@@ -79,7 +79,9 @@ export const Main = () => {
 
   return (
     <div className="containerApp">
-      <div className="logo">
+      <div className="header">
+        <div className="logoIcon"></div>
+        <div className="logoTitle"></div>
         <div className="enter">
           {name.length === 0 && <span>Войти с помощью </span>}
           <a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=9tme6blew754pa56v75lf5mgqg0iro&redirect_uri=https://tab-jet.vercel.app&scope=user:read:email">

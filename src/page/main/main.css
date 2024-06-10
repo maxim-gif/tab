@@ -12,6 +12,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+  border-bottom: 1px solid rgb(199, 180, 180);
+  background-image: url("/public/bgHeader.jpg");
 }
 
 .logoIcon {

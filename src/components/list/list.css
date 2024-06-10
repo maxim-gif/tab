@@ -2,13 +2,13 @@
     width: 100%;
     height: 30px;
     border-radius: 0 0 5px 5px;
-    border: 1px solid rgb(52,225,242);
+    border: 1px solid rgb(199, 180, 180);
     border-top: none;
     outline: none;
     appearance: none;
     padding-left: 10px;
     text-align: center;
-    background: rgb(196, 226, 247);
+    background: rgb(52,225,242);
 }
 option {
     background: white;

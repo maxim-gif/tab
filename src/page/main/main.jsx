@@ -81,16 +81,23 @@ export const Main = () => {
       <div className="header">
         <div className="logoIcon"></div>
         <div className="logoTitle"></div>
-        <div className="enter">
-          {name.length === 0 && <span>Войти: </span>}
-          <a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=9tme6blew754pa56v75lf5mgqg0iro&redirect_uri=https://tab-jet.vercel.app&scope=user:read:email">
-            <div className="twitch"></div>
-          </a>
-          {name !== "" && (
-            <span>
-              {name} {moderatorsAccess}
-            </span>
-          )}
+        <div className="icons">
+          <div className="enter">
+            {name.length === 0 && <span>Войти: </span>}
+            <a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=9tme6blew754pa56v75lf5mgqg0iro&redirect_uri=https://tab-jet.vercel.app&scope=user:read:email">
+              <div className="twitch"></div>
+            </a>
+            {name !== "" && (
+              <span>
+                {name} {moderatorsAccess}
+              </span>
+            )}
+          </div>
+          <div className="moreBox">
+            <span>Подробнее:</span>
+           <div className="more" onClick={() => {navigate("/info");}} ></div>
+          </div>
+          
         </div>
       </div>
       {/* <div className="switchMember">

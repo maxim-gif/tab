@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Main } from "./page/main/main";
 import { Admin } from "./page/admin/admin";
+import { Info } from "./page/info/info";
 import { useEffect } from "react";
 import { getDataMember,getCurses,getNameMembers } from "./api";
 import { useDispatch } from 'react-redux';
@@ -56,6 +57,7 @@ export const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/info" element={<Info />} />
       </Routes>
     </BrowserRouter>
   );

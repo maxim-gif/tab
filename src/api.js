@@ -44,23 +44,23 @@ export async function getNameMembers() {
   return data;
 }
 
-const topic = 'curse';
-const registrationTokens = ['eBXx3AshQMES8yy_hYFTFO:APA91bHFetEtS8GXXLDxrSrqixBuKXo0ZbUQ0sSL4L6cP5QrcCv3WZG0rNXny7pPKiEpyjZks_hY5wyqNfb9U0aX9jd9daNSb5zhndDlDY4z2vJQjH3D6v9vLfiwvUFZmbkIZmV5CVsH'];
-export const subscribeUserToTopic = async (registrationTokens, topic) => {
-  const response = await fetch('https://iid.googleapis.com/iid/v1:batchAdd', {
-    method: 'POST',
-    headers: new Headers({
-      'Content-Type': 'application/json',
-      'Authorization': 'key=BA8ju7o9mTrdHwP5qluooPJislwxIT-hGAMbIiE7vBO4OCkgi-YNVZtaf-ODZTltLFxclR-z7nPuA6_P2SlpC8A'
-    }),
-    body: JSON.stringify({
-      to: '/topics/' + topic,
-      registration_tokens: registrationTokens
-    })
-  });
-  const data = await response.json();
-  console.log(data);
-};
+// const topic = 'curse';
+// const registrationTokens = ['eBXx3AshQMES8yy_hYFTFO:APA91bHFetEtS8GXXLDxrSrqixBuKXo0ZbUQ0sSL4L6cP5QrcCv3WZG0rNXny7pPKiEpyjZks_hY5wyqNfb9U0aX9jd9daNSb5zhndDlDY4z2vJQjH3D6v9vLfiwvUFZmbkIZmV5CVsH'];
+// export const subscribeUserToTopic = async (registrationTokens, topic) => {
+//   const response = await fetch('https://iid.googleapis.com/iid/v1:batchAdd', {
+//     method: 'POST',
+//     headers: new Headers({
+//       'Content-Type': 'application/json',
+//       'Authorization': 'key=BA8ju7o9mTrdHwP5qluooPJislwxIT-hGAMbIiE7vBO4OCkgi-YNVZtaf-ODZTltLFxclR-z7nPuA6_P2SlpC8A'
+//     }),
+//     body: JSON.stringify({
+//       to: '/topics/' + topic,
+//       registration_tokens: registrationTokens
+//     })
+//   });
+//   const data = await response.json();
+//   console.log(data);
+// };
 
 
 // getMessaging().subscribeToTopic(registrationTokens, topic)

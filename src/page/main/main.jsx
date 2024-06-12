@@ -4,7 +4,6 @@ import {
   getUserToken,
   getUserData,
   addUser,
-  getPushToken,
 } from "../../api";
 import { DataSubscriber } from "../../components/reload/reload";
 import { useSelector } from "react-redux";
@@ -51,12 +50,10 @@ export const Main = () => {
 
   const auth = async (code) => {
     const token = await getUserToken(code);
-    const pushToken = await getPushToken()
-    console.log(pushToken);
     window.localStorage.setItem("access_token", token.access_token);
     window.localStorage.setItem("refresh_token", token.refresh_token);
     const userData = await getUserData(token.access_token);
-    addUser(userData[0].id, userData[0].display_name, pushToken);
+    addUser(userData[0].id, userData[0].display_name);
     setName(userData[0].display_name);
     navigate("/");
   };

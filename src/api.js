@@ -3,8 +3,8 @@ import { getDatabase, ref, set, update } from "firebase/database";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { getMessaging, getToken, onMessage  } from "firebase/messaging"
 import { onBackgroundMessage } from "firebase/messaging/sw";
-// import { useDispatch } from "react-redux";
-// import { setParticipant } from "./store/slice/slice";
+import { useDispatch } from "react-redux";
+import { setParticipant } from "./store/slice/slice";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCqv9KvlyVN94mXloU1OzlMyvAgOBWUvWk",
@@ -22,7 +22,7 @@ export const auth = getAuth();
 const db = getDatabase(app);
 
 export const getPushToken = async() => {
- const tok = await getToken(messaging, { vapidKey: 'BKn-2_w-_ANo63K3bpSNRp1Z_hYf0LODil0GmH_KL87bimOYxzHP9Jue-7azy_Evzq5UzDcYUHFsyasscHJ6mpg' })
+ const tok = await getToken(messaging, { vapidKey: 'BA8ju7o9mTrdHwP5qluooPJislwxIT-hGAMbIiE7vBO4OCkgi-YNVZtaf-ODZTltLFxclR-z7nPuA6_P2SlpC8A' })
       console.log(tok);
       return tok
 }
@@ -45,6 +45,18 @@ export async function getNameMembers() {
   const data = await response.json();
   return data;
 }
+
+// const topic = 'curse';
+// const registrationTokens = ['eBXx3AshQMES8yy_hYFTFO:APA91bEIN9MJyIVSaHiCUOcBPAbh1HPKDXKWZZnAlNUZ_mWVWMeMQdbnNwqvHYd8HaFXptd39pDu4EyHVm-Ua11hC_bpgpktX3CA5Fx-BYbvpY0-_UH14pJzJSx354OGW1JZXSXpLIX6'];
+// getMessaging().subscribeToTopic(registrationTokens, topic)
+//   .then((response) => {
+//     // See the MessagingTopicManagementResponse reference documentation
+//     // for the contents of response.
+//     console.log('Successfully subscribed to topic:', response);
+//   })
+//   .catch((error) => {
+//     console.log('Error subscribing to topic:', error);
+//   });
 
 export async function addNameMembers(data) {
   try {
@@ -101,14 +113,6 @@ export async function Enter(email,password) {
   } catch (error) {
     return error.message
   }
-  // signInWithEmailAndPassword(auth, email, password)
-  // .then((userCredential) => {
-  //   const user = userCredential.user.auth.currentUser;
-  //   console.log(user.uid);
-  // })
-  // .catch((error) => {
-  //   console.log(error.message);
-  // });
 }
 
 export async function addCurse(id, data) {

@@ -4,7 +4,7 @@ import { setMember2} from '../../store/slice/slice';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
 export const Member2Subscriber = () => {
-  const dataLengthRef = useRef(0);
+  const dataLengthRef1 = useRef(0);
   const dispatch = useDispatch();
   useEffect(() => {
     const db = getDatabase();
@@ -13,10 +13,10 @@ export const Member2Subscriber = () => {
       const data = snapshot.val();
       const newDataLength = data?.length || 0;
       dispatch(setMember2(data));
-      if (newDataLength > dataLengthRef.current) {
+      if (newDataLength > dataLengthRef1.current) {
         new Notification("Добавлено новое проклятие");
       }
-      dataLengthRef.current = newDataLength;
+      dataLengthRef1.current = newDataLength;
     });
 
     return () => unsubscribe();

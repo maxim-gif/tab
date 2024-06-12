@@ -5,14 +5,17 @@ import { getDatabase, ref, onValue } from 'firebase/database';
 
 
 export const Member1Subscriber = () => {
+
   const dispatch = useDispatch();
   useEffect(() => {
     const db = getDatabase();
     const dataRef = ref(db, 'member1/');
     const unsubscribe = onValue(dataRef, (snapshot) => {
       const data = snapshot.val();
+      console.log(data?.length);
       dispatch(setMember1(data));
-      new Notification("dg")
+      new Notification("Добавлено новое проклятие")
+
     });
 
     return () => unsubscribe();

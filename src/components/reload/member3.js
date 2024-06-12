@@ -18,7 +18,9 @@ export const Member3Subscriber = ({successPush}) => {
       if (newDataLength > dataLengthRef2.current) {
         console.log(successPush);
         const rr = window.localStorage.getItem("name")
+        const members = JSON.parse(localStorage.getItem('members'));
           console.log(rr);
+          console.log(members[2]);
         if (dataLengthRef2.current !== 0) {
         
             new Notification("Добавлено новое проклятие");

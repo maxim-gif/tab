@@ -80,7 +80,6 @@ export async function addNameMembers(data) {
     } else {
       const userRef = ref(db, 'members/');
       await set(userRef, data);
-      localStorage.setItem('members', JSON.stringify(data));
     }
     
   } catch (error) {

@@ -19,6 +19,7 @@ export const Main = () => {
 
   let dataModerators = useSelector((state) => state.table.moderators);
   let nameMembers = useSelector((state) => state.table.nameMembers);
+  localStorage.setItem('members', JSON.stringify(nameMembers));
 
 
   const [name, setName] = useState("");

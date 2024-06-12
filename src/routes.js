@@ -26,21 +26,26 @@ export const AppRoutes = () => {
     dispatch(setNameMembers(names));
 
   };
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('../sw.js').then(function(registration) {
-        // Успешная регистрация
-        console.log('ServiceWorker registration successful');
-      }, function(err) {
-        // При регистрации произошла ошибка
-        console.log('ServiceWorker registration failed: ', err);
-      });
-    });
-  }
+  // if ('serviceWorker' in navigator) {
+  //   window.addEventListener('load', function() {
+  //     navigator.serviceWorker.register('../sw.js').then(function(registration) {
+  //       // Успешная регистрация
+  //       console.log('ServiceWorker registration successful');
+  //     }, function(err) {
+  //       // При регистрации произошла ошибка
+  //       console.log('ServiceWorker registration failed: ', err);
+  //     });
+  //   });
+  // }
   
-  Notification.requestPermission(function(status) {
-    console.log('Статус разрешения уведомления:', status);
-  });
+ 
+    Notification.requestPermission().then((permission) => {
+      if (permission === 'granted') {
+        console.log('Notification permission granted.') }})
+
+  // Notification.requestPermission(function(status) {
+  //   console.log('Статус разрешения уведомления:', status);
+  // });
   
   useEffect(() => {
     handleGetData()

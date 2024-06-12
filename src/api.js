@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, update } from "firebase/database";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { getMessaging } from "firebase/messaging"
+import { getMessaging, getToken, onMessage  } from "firebase/messaging"
 // import { useDispatch } from "react-redux";
 // import { setParticipant } from "./store/slice/slice";
 
@@ -19,6 +19,23 @@ const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 export const auth = getAuth();
 const db = getDatabase(app);
+
+export const getPushToken = () => {
+  getToken(messaging, { vapidKey: 'BKn-2_w-_ANo63K3bpSNRp1Z_hYf0LODil0GmH_KL87bimOYxzHP9Jue-7azy_Evzq5UzDcYUHFsyasscHJ6mpg' }).then((currentToken) => {
+    if (currentToken) {
+      console.log(currentToken);
+      return currentToken
+    } else {
+      console.log('No registration token available. Request permission to generate one.');
+    }
+  }).catch((err) => {
+    console.log('An error occurred while retrieving token. ', err);
+  });
+}
+
+
+
+
 
 export async function getDataMember(id) {
     const members = ["member1", "member2", "member3","member4"]
@@ -179,10 +196,10 @@ export async function getUserData(token) {
   return user.data
 }
 
-export async function addUser(id,name) { 
+export async function addUser(id,name,pushToken) { 
   try {
     const userRef = ref(db, 'users/' + String(id));
-    await set(userRef, {id:id,name:name});
+    await set(userRef, {id:id,name:name, pushToken:pushToken});
   } catch (error) {
     console.log(error);
   }

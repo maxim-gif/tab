@@ -7,11 +7,12 @@ import { Member4Subscriber } from "../reload/member4.js";
 import { doneCurse,Delete,addCurse } from "../../api";
 import { useSelector } from "react-redux";
 
-export const Member = ({ id, moderatorsAccess, name, }) => {
+export const Member = ({ id, moderatorsAccess, name, userName}) => {
 
   const selectElement = ["mySelect1", "mySelect2", "mySelect3", "mySelect4"]
 
   const curses = useSelector((state) => state.table.curses);
+  const members = useSelector((state) => state.table.nameMembers);
   const dataMember1 = useSelector((state) => state.table.member1);
   const dataMember2 = useSelector((state) => state.table.member2);
   const dataMember3 = useSelector((state) => state.table.member3);
@@ -47,10 +48,10 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
 
   return (
     <div className="member">
-      {id === 0 && <Member1Subscriber />}
-      {id === 1 && <Member2Subscriber />}
-      {id === 2 && <Member3Subscriber />}
-      {id === 3 && <Member4Subscriber />}
+      {id === 0 && <Member1Subscriber name={members[0]} userName={userName}/>}
+      {id === 1 && <Member2Subscriber name={members[1]} userName={userName}/>}
+      {id === 2 && <Member3Subscriber name={members[2]} userName={userName}/>}
+      {id === 3 && <Member4Subscriber name={members[3]} userName={userName}/>}
       <div className="memberName">{name}</div>
       <div
         className="curseList"

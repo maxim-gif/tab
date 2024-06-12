@@ -31,7 +31,6 @@ export const Main = () => {
   let code = splitHash.split("=")[1];
 
   useEffect(() => {
-    console.log(dataModerators);
     if (dataModerators !== null) {
       setModeratorsAccess(dataModerators.includes(name));
     } else {

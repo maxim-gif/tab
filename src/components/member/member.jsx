@@ -50,7 +50,7 @@ export const Member = ({ id, moderatorsAccess, name, userName}) => {
     <div className="member">
       {id === 0 && <Member1Subscriber name={members[0]} userName={userName}/>}
       {id === 1 && <Member2Subscriber name={members[1]} userName={userName}/>}
-      {id === 2 && <Member3Subscriber name={members[2]} userName={userName}/>}
+      {id === 2 && <Member3Subscriber name={members[2]} userName={true}/>}
       {id === 3 && <Member4Subscriber name={members[3]} userName={userName}/>}
       <div className="memberName">{name}</div>
       <div

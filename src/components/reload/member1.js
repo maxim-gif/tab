@@ -15,7 +15,9 @@ export const Member1Subscriber = () => {
       const newDataLength = data?.length || 0;
       console.log(data?.length);      dispatch(setMember1(data));
       if (newDataLength > dataLengthRef.current) {
-        new Notification("Добавлено новое проклятие");
+        if (dataLengthRef.current !== 0) {
+          new Notification("Добавлено новое проклятие");
+        }
       }
       dataLengthRef.current = newDataLength;
     });

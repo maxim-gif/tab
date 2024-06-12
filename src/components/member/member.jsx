@@ -44,14 +44,14 @@ export const Member = ({ id, moderatorsAccess, name, userName}) => {
     document.getElementById(selectElement[id]).value = "";
   }
 
-
+console.log(userName);
 
   return (
     <div className="member">
-      {id === 0 && <Member1Subscriber name={members[0]} userName={userName}/>}
-      {id === 1 && <Member2Subscriber name={members[1]} userName={userName}/>}
-      {id === 2 && <Member3Subscriber name={members[2]} userName={true}/>}
-      {id === 3 && <Member4Subscriber name={members[3]} userName={userName}/>}
+      {id === 0 && <Member1Subscriber successPush={members[0] === userName}/>}
+      {id === 1 && <Member2Subscriber successPush={members[0] === userName}/>}
+      {id === 2 && <Member3Subscriber successPush={members[0] === userName}/>}
+      {id === 3 && <Member4Subscriber successPush={members[0] === userName}/>}
       <div className="memberName">{name}</div>
       <div
         className="curseList"

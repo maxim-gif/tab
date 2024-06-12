@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, update } from "firebase/database";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { getMessaging, getToken, onMessage, subscribeToTopic } from 'firebase/messaging';
+// import { getMessaging, getToken, onMessage, subscribeToTopic } from 'firebase/messaging';
 
 
 const firebaseConfig = {
@@ -15,15 +15,15 @@ const firebaseConfig = {
   };
 
 const app = initializeApp(firebaseConfig);
-const messaging = getMessaging(app);
+// const messaging = getMessaging(app);
 export const auth = getAuth();
 const db = getDatabase(app);
 
-export const getPushToken = async() => {
- const tok = await getToken(messaging, { vapidKey: 'BA8ju7o9mTrdHwP5qluooPJislwxIT-hGAMbIiE7vBO4OCkgi-YNVZtaf-ODZTltLFxclR-z7nPuA6_P2SlpC8A' })
-      console.log(tok);
-      return tok
-}
+// export const getPushToken = async() => {
+//  const tok = await getToken(messaging, { vapidKey: 'BA8ju7o9mTrdHwP5qluooPJislwxIT-hGAMbIiE7vBO4OCkgi-YNVZtaf-ODZTltLFxclR-z7nPuA6_P2SlpC8A' })
+//       console.log(tok);
+//       return tok
+// }
 
 
 export async function getDataMember(id) {
@@ -208,12 +208,8 @@ export async function getUserData(token) {
 
 export async function addUser(id,name) { 
   try {
-    const tok = await getPushToken()
-    console.log(tok);
-    console.log(id);
-    console.log(name);
     const userRef = ref(db, 'users/' + String(id));
-    await set(userRef, {id:id,name:name, pushToken:tok});
+    await set(userRef, {id:id,name:name});
   } catch (error) {
     console.log(error);
   }

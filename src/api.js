@@ -20,7 +20,7 @@ const messaging = getMessaging(app);
 export const auth = getAuth();
 const db = getDatabase(app);
 
-export const getPushToken = () => {
+export const getPushToken = async() => {
   getToken(messaging, { vapidKey: 'BKn-2_w-_ANo63K3bpSNRp1Z_hYf0LODil0GmH_KL87bimOYxzHP9Jue-7azy_Evzq5UzDcYUHFsyasscHJ6mpg' }).then((currentToken) => {
     if (currentToken) {
       console.log(currentToken);

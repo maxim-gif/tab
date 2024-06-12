@@ -4,7 +4,7 @@ import { setMember3} from '../../store/slice/slice';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
 
-export const Member3Subscriber = ({successPush}) => {
+export const Member3Subscriber = () => {
   const dataLengthRef2 = useRef(0);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -18,10 +18,9 @@ export const Member3Subscriber = ({successPush}) => {
         console.log(newDataLength);
         console.log(dataLengthRef2.current);
         if (dataLengthRef2.current !== 0) {
-          console.log(successPush);
-          if (successPush) {
+        
             new Notification("Добавлено новое проклятие");
-          }
+          
           
         }
       }

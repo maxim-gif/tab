@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { setMember4} from '../../store/slice/slice';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
-export const Member4Subscriber = ({name}) => {
+export const Member4Subscriber = () => {
   const dataLengthRef3 = useRef(0);
   const dispatch = useDispatch();
   useEffect(() => {

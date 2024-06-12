@@ -4,7 +4,7 @@ import { setMember1} from '../../store/slice/slice';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
 
-export const Member1Subscriber = ({name, userName}) => {
+export const Member1Subscriber = () => {
  
   const dataLengthRef = useRef(0);
   const dispatch = useDispatch();

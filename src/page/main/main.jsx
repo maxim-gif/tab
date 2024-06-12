@@ -44,6 +44,7 @@ export const Main = () => {
     const userData = await getUserData(token);
     if (userData) {
       setName(userData[0].display_name);
+      window.localStorage.setItem("name",userData[0].display_name);
     }
   };
 

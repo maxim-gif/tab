@@ -44,10 +44,6 @@ export const Member = ({ id, moderatorsAccess, name, userName}) => {
     document.getElementById(selectElement[id]).value = "";
   }
 
-console.log(userName);
-
-console.log(members);
-console.log(members[2] === userName);
 
   return (
     <div className="member">

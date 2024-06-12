@@ -51,7 +51,7 @@ export const subscribeUserToTopic = async (registrationTokens, topic) => {
     method: 'POST',
     headers: new Headers({
       'Content-Type': 'application/json',
-      'Authorization': 'key=PlaxbtRV2XQI_AcabjOwNFiTfhX6ilZnxEUwQkaLmyk'
+      'Authorization': 'key=BA8ju7o9mTrdHwP5qluooPJislwxIT-hGAMbIiE7vBO4OCkgi-YNVZtaf-ODZTltLFxclR-z7nPuA6_P2SlpC8A'
     }),
     body: JSON.stringify({
       to: '/topics/' + topic,

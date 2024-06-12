@@ -17,7 +17,9 @@ export const Member3Subscriber = ({name, userName}) => {
       dispatch(setMember3(data));
       if (newDataLength > dataLengthRef2.current) {
         if (dataLengthRef2.current !== 0) {
-          new Notification("Добавлено новое проклятие");
+          if (name === userName) {
+            new Notification("Добавлено новое проклятие");
+          }
         }
       }
       dataLengthRef2.current = newDataLength;

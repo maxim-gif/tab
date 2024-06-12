@@ -11,6 +11,7 @@ export const MembersSubscriber = () => {
     const unsubscribe = onValue(dataRef, (snapshot) => {
       const data = snapshot.val();
       dispatch(setNameMembers(data));
+      localStorage.setItem('members', JSON.stringify(data));
     });
 
     return () => unsubscribe();

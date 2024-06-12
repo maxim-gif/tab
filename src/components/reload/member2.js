@@ -19,7 +19,9 @@ export const Member2Subscriber = () => {
           const name = window.localStorage.getItem("name")
         const members = JSON.parse(localStorage.getItem('members'));
         if (name === members[1]) {
-          new Notification("Добавлено новое проклятие");
+          new Notification("Добавлено новое проклятие", {
+            title:"Мастер Игорей"
+          });
         }
         }
       }

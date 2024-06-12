@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, update } from "firebase/database";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { getMessaging, getToken, onMessage  } from "firebase/messaging"
+import { onBackgroundMessage } from "firebase/messaging/sw";
 // import { useDispatch } from "react-redux";
 // import { setParticipant } from "./store/slice/slice";
 
@@ -25,9 +26,6 @@ export const getPushToken = async() => {
       console.log(tok);
       return tok
 }
-
-
-
 
 
 export async function getDataMember(id) {
@@ -192,6 +190,9 @@ export async function getUserData(token) {
 export async function addUser(id,name) { 
   try {
     const tok = await getPushToken()
+    console.log(tok);
+    console.log(id);
+    console.log(name);
     const userRef = ref(db, 'users/' + String(id));
     await set(userRef, {id:id,name:name, pushToken:tok});
   } catch (error) {

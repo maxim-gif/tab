@@ -5,5 +5,8 @@ self.addEventListener('push', function(event) {
       icon: 'icon.png',
       badge: 'badge.png'
     };
-    event.waitUntil(self.registration.showNotification('Мастер Игорей', options));
+    event.waitUntil(self.registration.showNotification('Мастер Игорей1', options));
   });
+
+
+  

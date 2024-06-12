@@ -17,7 +17,11 @@ export const Member4Subscriber = () => {
         console.log(newDataLength);
         console.log(dataLengthRef3.current);
         if (dataLengthRef3.current !== 0) {
-          new Notification("Добавлено новое проклятие");
+          const name = window.localStorage.getItem("name")
+          const members = JSON.parse(localStorage.getItem('members'));
+          if (name === members[3]) {
+            new Notification("Добавлено новое проклятие");
+          }
         }
       }
       dataLengthRef3.current = newDataLength;

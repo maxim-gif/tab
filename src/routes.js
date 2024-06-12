@@ -25,6 +25,7 @@ export const AppRoutes = () => {
     dispatch(setCurses(curses));
     const names = await getNameMembers();
     dispatch(setNameMembers(names));
+    localStorage.setItem('members', JSON.stringify(names));
 
   };
   // if ('serviceWorker' in navigator) {

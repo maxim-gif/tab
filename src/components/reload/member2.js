@@ -20,7 +20,8 @@ export const Member2Subscriber = () => {
         const members = JSON.parse(localStorage.getItem('members'));
         if (name === members[1]) {
           new Notification("Добавлено новое проклятие", {
-            title:"Мастер Игорей"
+            body: 'Have a good day',
+            icon: './img/goodday.png'
           });
         }
         }

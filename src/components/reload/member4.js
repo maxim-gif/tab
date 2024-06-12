@@ -20,7 +20,10 @@ export const Member4Subscriber = () => {
           const name = window.localStorage.getItem("name")
           const members = JSON.parse(localStorage.getItem('members'));
           if (name === members[3]) {
-            new Notification("Добавлено новое проклятие");
+            new Notification("Добавлено новое проклятие", {
+              body: data[data?.length - 1].name,
+              icon: './img/goodday.png'
+            });
           }
         }
       }

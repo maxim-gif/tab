@@ -13,8 +13,7 @@ export const Member1Subscriber = () => {
     const unsubscribe = onValue(dataRef, (snapshot) => {
       const data = snapshot.val();
       const newDataLength = data?.length || 0;
-      console.log(data?.length);
-      dispatch(setMember1(data));
+      console.log(data?.length);      dispatch(setMember1(data));
       if (newDataLength > dataLengthRef.current) {
         new Notification("Добавлено новое проклятие");
       }

@@ -1,17 +1,12 @@
 /* eslint-disable no-restricted-globals */
-import { getMessaging } from "firebase/messaging/sw";
-import { onBackgroundMessage } from "firebase/messaging/sw";
+self.addEventListener('push', function(event) {
+    const options = {
+      body: 'У вас новое проклятие.',
+      icon: 'icon.png',
+      badge: 'badge.png'
+    };
+    event.waitUntil(self.registration.showNotification('Мастер Игорей', options));
+  });
 
-const messaging = getMessaging();
-onBackgroundMessage(messaging, (payload) => {
-  console.log('[firebase-messaging-sw.js] Received background message ', payload);
-  // Customize notification here
-  const notificationTitle = 'Background Message Title';
-  const notificationOptions = {
-    body: 'Background Message body.',
-    icon: '/firebase-logo.png'
-  };
 
-  self.registration.showNotification(notificationTitle,
-    notificationOptions);
-});
+  

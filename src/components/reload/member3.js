@@ -16,8 +16,10 @@ export const Member3Subscriber = ({name, userName}) => {
       if (newDataLength > dataLengthRef2.current) {
         console.log(newDataLength);
         console.log(dataLengthRef2.current);
-        if (dataLengthRef2.current !== 0) {
+        if (dataLengthRef2.current === 0 && newDataLength === 1) {
             new Notification("Добавлено новое проклятие");
+        } else if (dataLengthRef2.current !== 0) {
+          new Notification("Добавлено новое проклятие");
         }
       }
       dataLengthRef2.current = newDataLength;

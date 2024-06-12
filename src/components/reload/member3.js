@@ -4,7 +4,8 @@ import { setMember3} from '../../store/slice/slice';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
 export const Member3Subscriber = ({name, userName}) => {
- 
+  console.log(name);
+  console.log(userName);
   const dataLengthRef2 = useRef(0);
   const dispatch = useDispatch();
   useEffect(() => {

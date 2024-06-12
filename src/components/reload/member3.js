@@ -18,7 +18,7 @@ export const Member3Subscriber = ({name, userName}) => {
       dispatch(setMember3(data));
       if (newDataLength > dataLengthRef2.current) {
         if (dataLengthRef2.current !== 0) {
-          if (name === userName) {
+          if (String(name) === String(userName)) {
             console.log("yes");
             new Notification("Добавлено новое проклятие");
           } else {

@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, update } from "firebase/database";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getMessaging } from "firebase/messaging"
 // import { useDispatch } from "react-redux";
 // import { setParticipant } from "./store/slice/slice";
 
@@ -15,6 +16,7 @@ const firebaseConfig = {
   };
 
 const app = initializeApp(firebaseConfig);
+const messaging = getMessaging(app);
 export const auth = getAuth();
 const db = getDatabase(app);
 
@@ -146,7 +148,7 @@ export async function doneCurse(id, curse,status) {
 
 
 
-export async function getToken(code) {
+export async function getUserToken(code) {
   const url = 'https://id.twitch.tv/oauth2/token';
   const params = new URLSearchParams();
   params.append('client_id', '9tme6blew754pa56v75lf5mgqg0iro');

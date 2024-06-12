@@ -12,6 +12,7 @@ export const Member1Subscriber = () => {
     const unsubscribe = onValue(dataRef, (snapshot) => {
       const data = snapshot.val();
       dispatch(setMember1(data));
+      new Notification("dg")
     });
 
     return () => unsubscribe();

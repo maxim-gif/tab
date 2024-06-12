@@ -62,7 +62,7 @@ export const subscribeUserToTopic = async (registrationTokens, topic) => {
   console.log(data);
 };
 
-subscribeUserToTopic(registrationTokens, topic);
+
 // getMessaging().subscribeToTopic(registrationTokens, topic)
 //   .then((response) => {
 //     // See the MessagingTopicManagementResponse reference documentation

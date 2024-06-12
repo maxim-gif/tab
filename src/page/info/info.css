@@ -30,3 +30,8 @@
 .containInfo::-webkit-scrollbar {
     display: none;
 }
+@media (max-width: 600px) {
+    .containInfo {
+        grid-template-columns: repeat(1, 1fr);
+    }
+  }

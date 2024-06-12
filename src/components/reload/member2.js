@@ -16,6 +16,8 @@ export const Member2Subscriber = () => {
       dispatch(setMember2(data));
       if (newDataLength > dataLengthRef1.current) {
         if (dataLengthRef1.current !== 0) {
+          const rr = window.localStorage.getItem("name")
+          console.log(rr);
           new Notification("Добавлено новое проклятие");
         }
       }

@@ -49,7 +49,7 @@ export async function getNameMembers() {
 // const topic = 'curse';
 // const registrationTokens = ['eBXx3AshQMES8yy_hYFTFO:APA91bHFetEtS8GXXLDxrSrqixBuKXo0ZbUQ0sSL4L6cP5QrcCv3WZG0rNXny7pPKiEpyjZks_hY5wyqNfb9U0aX9jd9daNSb5zhndDlDY4z2vJQjH3D6v9vLfiwvUFZmbkIZmV5CVsH'];
 // const name = async() => {
-//   const data = await getMessaging().subscribeToTopic(registrationTokens, topic)
+//   const data = await getMessaging.subscribeToTopic(registrationTokens, topic)
 //   console.log(data);
 // }
 

@@ -4,9 +4,6 @@ import { setMember3} from '../../store/slice/slice';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
 export const Member3Subscriber = ({name, userName}) => {
-  console.log(name);
-  console.log(userName);
-  console.log(String(name) === String(userName));
   const dataLengthRef2 = useRef(0);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -22,6 +19,9 @@ export const Member3Subscriber = ({name, userName}) => {
             console.log("yes");
             new Notification("Добавлено новое проклятие");
           } else {
+            console.log(name);
+            console.log(userName);
+            console.log(String(name) === String(userName));
             console.log("not");
           }
         }

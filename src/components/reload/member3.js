@@ -4,7 +4,7 @@ import { setMember3} from '../../store/slice/slice';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
 
-export const Member3Subscriber = ({userName}) => {
+export const Member3Subscriber = ({successPush}) => {
   const dataLengthRef2 = useRef(0);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -18,8 +18,11 @@ export const Member3Subscriber = ({userName}) => {
         console.log(newDataLength);
         console.log(dataLengthRef2.current);
         if (dataLengthRef2.current !== 0) {
-          console.log(userName);
-          new Notification("Добавлено новое проклятие");
+          console.log(successPush);
+          if (successPush) {
+            new Notification("Добавлено новое проклятие");
+          }
+          
         }
       }
       dataLengthRef2.current = newDataLength;

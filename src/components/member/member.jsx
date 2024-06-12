@@ -49,7 +49,7 @@ export const Member = ({ id, moderatorsAccess, name, userName}) => {
     <div className="member">
       {id === 0 && <Member1Subscriber successPush={members[0] === userName}/>}
       {id === 1 && <Member2Subscriber successPush={members[1] === userName}/>}
-      {id === 2 && <Member3Subscriber successPush={members[2] === userName}/>}
+      {id === 2 && <Member3Subscriber successPush={members[2]}/>}
       {id === 3 && <Member4Subscriber successPush={members[3] === userName}/>}
       <div className="memberName">{name}</div>
       <div

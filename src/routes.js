@@ -41,7 +41,7 @@ export const AppRoutes = () => {
  
     Notification.requestPermission().then((permission) => {
       if (permission === 'granted') {
-       
+         }})
 
   Notification.requestPermission(function(status) {
     console.log('Статус разрешения уведомления:', status);

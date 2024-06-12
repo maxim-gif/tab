@@ -19,7 +19,6 @@ export const Member4Subscriber = () => {
         if (dataLengthRef3.current !== 0) {
           new Notification("Добавлено новое проклятие");
         }
-        
       }
       dataLengthRef3.current = newDataLength;
     });

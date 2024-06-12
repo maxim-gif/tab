@@ -11,7 +11,7 @@ export const Member2Subscriber = ({name}) => {
     const dataRef = ref(db, 'member2/');
     const unsubscribe = onValue(dataRef, (snapshot) => {
       const data = snapshot.val();
-      const newDataLength = data?.length || 0;
+      const newDataLength = data?.length || -1;
       dispatch(setMember2(data));
       if (newDataLength > dataLengthRef1.current) {
         if (dataLengthRef1.current !== 0) {

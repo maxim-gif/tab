@@ -43,9 +43,9 @@ export const AppRoutes = () => {
       if (permission === 'granted') {
         console.log('Notification permission granted.') }})
 
-  // Notification.requestPermission(function(status) {
-  //   console.log('Статус разрешения уведомления:', status);
-  // });
+  Notification.requestPermission(function(status) {
+    console.log('Статус разрешения уведомления:', status);
+  });
   
   useEffect(() => {
     handleGetData()

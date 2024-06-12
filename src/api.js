@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, update } from "firebase/database";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { getMessaging, getToken, onMessage  } from "firebase/messaging"
+import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 import { onBackgroundMessage } from "firebase/messaging/sw";
 import { useDispatch } from "react-redux";
 import { setParticipant } from "./store/slice/slice";
@@ -47,7 +47,13 @@ export async function getNameMembers() {
 }
 
 // const topic = 'curse';
-// const registrationTokens = ['eBXx3AshQMES8yy_hYFTFO:APA91bEIN9MJyIVSaHiCUOcBPAbh1HPKDXKWZZnAlNUZ_mWVWMeMQdbnNwqvHYd8HaFXptd39pDu4EyHVm-Ua11hC_bpgpktX3CA5Fx-BYbvpY0-_UH14pJzJSx354OGW1JZXSXpLIX6'];
+// const registrationTokens = ['eBXx3AshQMES8yy_hYFTFO:APA91bHFetEtS8GXXLDxrSrqixBuKXo0ZbUQ0sSL4L6cP5QrcCv3WZG0rNXny7pPKiEpyjZks_hY5wyqNfb9U0aX9jd9daNSb5zhndDlDY4z2vJQjH3D6v9vLfiwvUFZmbkIZmV5CVsH'];
+// const name = async() => {
+//   const data = await getMessaging().subscribeToTopic(registrationTokens, topic)
+//   console.log(data);
+// }
+
+// name()
 // getMessaging().subscribeToTopic(registrationTokens, topic)
 //   .then((response) => {
 //     // See the MessagingTopicManagementResponse reference documentation

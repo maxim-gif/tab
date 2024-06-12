@@ -1,12 +1,11 @@
 /* eslint-disable no-restricted-globals */
-self.addEventListener('push', function(event) {
-    const options = {
-      body: 'У вас новое проклятие.',
-      icon: 'icon.png',
-      badge: 'badge.png'
-    };
-    event.waitUntil(self.registration.showNotification('Мастер Игорей1', options));
-  });
+importScripts('https://www.gstatic.com/firebasejs/3.6.8/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/3.6.8/firebase-messaging.js');
 
+firebase.initializeApp({
+    messagingSenderId: '<SENDER_ID>'
+});
+
+const messaging = firebase.messaging();
 
   

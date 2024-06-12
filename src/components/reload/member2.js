@@ -12,7 +12,7 @@ export const Member2Subscriber = () => {
     const unsubscribe = onValue(dataRef, (snapshot) => {
       const data = snapshot.val();
       const newDataLength = data?.length || -1;
-      console.log(data);
+      console.log(data[data?.length - 1]);
       dispatch(setMember2(data));
       if (newDataLength > dataLengthRef1.current) {
         if (dataLengthRef1.current !== 0) {
@@ -20,7 +20,7 @@ export const Member2Subscriber = () => {
         const members = JSON.parse(localStorage.getItem('members'));
         if (name === members[1]) {
           new Notification("Добавлено новое проклятие", {
-            body: 'Have a good day',
+            body: data[data?.length - 1].name,
             icon: './img/goodday.png'
           });
         }

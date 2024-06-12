@@ -4,13 +4,11 @@ import { setMember3} from '../../store/slice/slice';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
 export const Member3Subscriber = ({name, userName}) => {
-  console.log(name);
-  console.log(userName);
   const dataLengthRef2 = useRef(0);
+  const name1 = useRef(name);
+  const name2 = useRef(userName);
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log(name);
-    console.log(userName);
     const db = getDatabase();
     const dataRef = ref(db, 'member3/');
     const unsubscribe = onValue(dataRef, (snapshot) => {
@@ -19,12 +17,12 @@ export const Member3Subscriber = ({name, userName}) => {
       dispatch(setMember3(data));
       if (newDataLength > dataLengthRef2.current) {
         if (dataLengthRef2.current !== 0) {
-          if (name === userName) {
+          if (name1.current === name2.current) {
             console.log("yes");
             new Notification("Добавлено новое проклятие");
           } else {
-            console.log(name);
-            console.log(userName);
+            console.log(name1.current);
+            console.log(name2.current);
             console.log(String(name) === String(userName));
             console.log("not");
           }

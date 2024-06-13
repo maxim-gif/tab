@@ -19,12 +19,12 @@ export const Member3Subscriber = () => {
         const members = JSON.parse(localStorage.getItem('members'));
         if (dataLengthRef2.current !== 0) {
           if (name === members[2]) {
-            new Notification("Добавлено новое проклятие", {
+            const not = new Notification("Добавлено новое проклятие", {
               body: data[data?.length - 1].name,
               icon: './img/goodday.png'
             });
             setTimeout(() => {
-              Notification.close();
+              not.close();
             }, 1000);
           }
         }

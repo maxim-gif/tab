@@ -23,6 +23,9 @@ export const Member3Subscriber = () => {
               body: data[data?.length - 1].name,
               icon: './img/goodday.png'
             });
+            setTimeout(() => {
+              Notification.close();
+            }, 1000);
           }
         }
       }

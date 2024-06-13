@@ -26,7 +26,7 @@ export const Member4Subscriber = () => {
             });
             setTimeout(() => {
               not4.close();
-            }, 2000);
+            }, 1500);
           }
         }
       }

@@ -19,13 +19,13 @@ export const Member3Subscriber = () => {
         const members = JSON.parse(localStorage.getItem('members'));
         if (dataLengthRef2.current !== 0) {
           if (name === members[2]) {
-            const not = new Notification("Добавлено новое проклятие", {
+            const not3 = new Notification("Добавлено новое проклятие", {
               body: data[data?.length - 1].name,
               icon: './img/goodday.png'
             });
             setTimeout(() => {
-              not.close();
-            }, 1000);
+              not3.close();
+            }, 2000);
           }
         }
       }

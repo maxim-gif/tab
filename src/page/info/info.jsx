@@ -14,7 +14,6 @@ export const Info = () => {
                     <div className="infoItem" key={index}>
                         <h2>{item.name}</h2>
                         <h3>{item.title}</h3>
-                        <span>Шанс выпадения {chance.toFixed(2)}%</span>
                     </div>)))
                 }
             </div>

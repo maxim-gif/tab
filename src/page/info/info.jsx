@@ -13,7 +13,7 @@ export const Info = () => {
                 { curses !== null && curses?.map((item, index) => ((
                     <div className="infoItem" key={index}>
                         <h2>{item.name}</h2>
-                        <h3>{item.title}</h3>
+                        <span>{item.title}</span>
                     </div>)))
                 }
             </div>

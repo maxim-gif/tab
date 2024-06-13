@@ -5,6 +5,8 @@
  
 }
 .infoItem {
+    font-family: 'Philosopher-Regular'; 
+    font-weight: 400;
     display: grid;
     justify-items: center;
     grid-template-rows: 50px auto;

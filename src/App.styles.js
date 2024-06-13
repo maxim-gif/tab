@@ -5,4 +5,7 @@ export const GlobalStyle = createGlobalStyle`
   font-family: 'Philosopher-Regular';                              
   src: url('/fonts/Philosopher-Regular.ttf')  format('truetype'),
 }
+  * {
+font-family: 'Philosopher-Regular';
+}
 `;

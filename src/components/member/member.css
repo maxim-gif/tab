@@ -1,7 +1,6 @@
 .member {
 }
 .memberName {
-  font-family: 'Philosopher-Regular'; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +37,6 @@
   background-image: url("/public/del.png");
 }
 .curse {
-  font-family: 'Philosopher-Regular'; 
   display: flex;
   justify-content: center;
   position: relative;
@@ -52,7 +50,6 @@
   cursor: default;
 }
 .curseDone {
-  font-family: 'Philosopher-Regular'; 
   display: flex;
   justify-content: center;
   position: relative;

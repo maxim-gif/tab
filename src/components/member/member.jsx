@@ -47,11 +47,13 @@ export const Member = ({ id, moderatorsAccess, name, userName}) => {
 
   return (
     <div className="member">
-      {id === 0 && <Member1Subscriber successPush={members[0] === userName}/>}
-      {id === 1 && <Member2Subscriber successPush={members[1] === userName}/>}
-      {id === 2 && <Member3Subscriber successPush={members[2]}/>}
-      {id === 3 && <Member4Subscriber successPush={members[3] === userName}/>}
-      <div className="memberName">{name}</div>
+      {id === 0 && <Member1Subscriber />}
+      {id === 1 && <Member2Subscriber />}
+      {id === 2 && <Member3Subscriber />}
+      {id === 3 && <Member4Subscriber />}
+      <div className="memberName">
+        <span className="linkName">{name ? name:"Участник"}<a className="link" href={'https://www.twitch.tv/' + name?.toLowerCase()}></a></span>
+      </div>
       <div
         className="curseList"
         style={{ gridTemplateRows: `repeat(5, 25px)` }}

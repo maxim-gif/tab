@@ -12,6 +12,7 @@ export const Info = () => {
         <div className="containInfo">
                 { curses !== null && curses?.map((item, index) => ((
                     <div className="infoItem" key={index}>
+                      <img className="itemImg" src="/bgCurse.png" alt=''></img>
                         <h2>{item.name}</h2>
                         <span>{item.title}</span>
                     </div>)))

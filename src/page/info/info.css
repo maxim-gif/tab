@@ -10,7 +10,7 @@
     font-weight: 400;
     display: grid;
     justify-items: center;
-    grid-template-rows: 50px auto;
+    grid-template-rows: 60px auto;
     height: 400px;
     border-radius: 20px;
     padding: 40px 40px 10px 40px;
@@ -18,6 +18,10 @@
     border: 2px solid rgb(119, 0, 0);
     background: white;
     color: rgb(0, 0, 0);
+    overflow-y: auto;
+}
+.infoItem::-webkit-scrollbar {
+    display: none;
 }
 .itemImg {
     position: absolute;
@@ -25,8 +29,8 @@
     height: 100%;
     opacity: 0.1;
 }
-.infoItem > h3 {
-    margin-bottom: 5px;
+.infoItem > h2 {
+    font-size: 30px;
 }
 .infoItem > span {
     font-size: 18px;

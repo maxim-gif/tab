@@ -13,6 +13,7 @@
 .moreBox {
   display: flex;
   align-items: center;
+  color: rgb(92, 12, 81);
 }
 .icons {
   display: flex;

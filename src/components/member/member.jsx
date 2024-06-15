@@ -7,12 +7,11 @@ import { Member4Subscriber } from "../reload/member4.js";
 import { doneCurse,Delete,addCurse } from "../../api";
 import { useSelector } from "react-redux";
 
-export const Member = ({ id, moderatorsAccess, name, userName}) => {
+export const Member = ({ id, moderatorsAccess, name}) => {
 
   const selectElement = ["mySelect1", "mySelect2", "mySelect3", "mySelect4"]
 
   const curses = useSelector((state) => state.table.curses);
-  const members = useSelector((state) => state.table.nameMembers);
   const dataMember1 = useSelector((state) => state.table.member1);
   const dataMember2 = useSelector((state) => state.table.member2);
   const dataMember3 = useSelector((state) => state.table.member3);

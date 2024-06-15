@@ -104,10 +104,10 @@ export const Main = () => {
         </div>
       </div>
       <div className="memberList">
-        <Member id={0} moderatorsAccess={moderatorsAccess} name={nameMembers[0]} userName={name}/>
-        <Member id={1} moderatorsAccess={moderatorsAccess} name={nameMembers[1]} userName={name}/>
-        <Member id={2} moderatorsAccess={moderatorsAccess} name={nameMembers[2]} userName={name}/>
-        <Member id={3} moderatorsAccess={moderatorsAccess} name={nameMembers[3]} userName={name}/>
+        <Member id={0} moderatorsAccess={moderatorsAccess} name={nameMembers[0]} />
+        <Member id={1} moderatorsAccess={moderatorsAccess} name={nameMembers[1]} />
+        <Member id={2} moderatorsAccess={moderatorsAccess} name={nameMembers[2]} />
+        <Member id={3} moderatorsAccess={moderatorsAccess} name={nameMembers[3]} />
       </div>
       <DataSubscriber />
       <MembersSubscriber/>

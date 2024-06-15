@@ -71,7 +71,16 @@
   border: 1px solid rgb(199, 180, 180);
   border-top: none;
 }
-
+/* .dopInfo {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  left: 10px;
+  top: 7px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("/public/dopInfo.png");
+} */
 @media (max-width: 600px) {
   .memberName {
     font-size: 13px;

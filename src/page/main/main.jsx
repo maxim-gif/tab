@@ -103,11 +103,6 @@ export const Main = () => {
           
         </div>
       </div>
-      {/* <div className="switchMember">
-        {nameMembers.map((item, index) => (
-          <button key={index} onClick={() => {switchMember(index)}}>{item}</button>
-        ))}
-      </div> */}
       <div className="memberList">
         <Member id={0} moderatorsAccess={moderatorsAccess} name={nameMembers[0]} userName={name}/>
         <Member id={1} moderatorsAccess={moderatorsAccess} name={nameMembers[1]} userName={name}/>

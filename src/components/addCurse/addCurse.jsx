@@ -10,8 +10,10 @@ export const AddList = ({setMessage}) => {
 
   const [curseName, setCurseName] = useState("");
   const [curseTitle, setCurseTitle] = useState("");
+  const [checked, setChecked] = useState(false);
 
   const addCurse = async() => {
+    console.log(checked);
     let newData 
     if (curses === null) {
       newData = []
@@ -30,6 +32,10 @@ export const AddList = ({setMessage}) => {
    <div className="addList">
         <input type='text' className="inputAdmin" value={curseName} placeholder='Введите название проклятия' onChange={(e) => {setCurseName(e.target.value)}}></input>
         <textarea className="curseTitle" value={curseTitle} placeholder='Описане проклятия' onChange={(e) => {setCurseTitle(e.target.value)}}></textarea>
+        <div className="checkBox">
+          <input type="checkbox" id="check" className="check" checked={checked} onChange={(e) => setChecked(e.target.checked)}></input>
+          <label for="check">Общее проклятие</label>
+        </div>
         <button className="buttonAdmin" onClick={() => {addCurse()}}>Добавить проклятие</button>
     </div>
   );

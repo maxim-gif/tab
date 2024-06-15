@@ -20,6 +20,7 @@ export const AddList = ({setMessage}) => {
       newData = [...curses]
     }
     newData.push({name:curseName,title:curseTitle,general:checked})
+    console.log(newData);
     const message = await addListCurses(newData)
     setCurseName("")
     setCurseTitle("")

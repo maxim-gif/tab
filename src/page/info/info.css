@@ -4,6 +4,37 @@
   padding: 30px;
  
 }
+.searchInfo {
+    height: 40px;
+    width: 600px;
+    border-radius: 10px;
+    border: 1px solid #c7b4b4;
+    outline: none;
+    padding-left: 10px;
+    background-size: 5%;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 99%;
+    background-image: url("/public/search.png");
+}
+.headerInfo {
+    display: flex;
+    justify-content: space-between;
+}
+.logoInfo{
+    height: 40px;
+    width: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("/public/MI.png");
+}
+.closePage{
+    height: 40px;
+    width: 40px;
+    background-size: contain;
+    background-image: url("/public/close.png");
+    margin-bottom: 20px;
+}
 .infoItem {
     position: relative;
     overflow: hidden;

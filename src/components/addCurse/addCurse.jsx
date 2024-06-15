@@ -13,14 +13,13 @@ export const AddList = ({setMessage}) => {
   const [checked, setChecked] = useState(false);
 
   const addCurse = async() => {
-    console.log(checked);
     let newData 
     if (curses === null) {
       newData = []
     } else {
       newData = [...curses]
     }
-    newData.push({name:curseName,title:curseTitle})
+    newData.push({name:curseName,title:curseTitle,general:checked})
     const message = await addListCurses(newData)
     setCurseName("")
     setCurseTitle("")

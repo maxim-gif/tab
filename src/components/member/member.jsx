@@ -6,11 +6,13 @@ import { Member3Subscriber } from "../reload/member3.js";
 import { Member4Subscriber } from "../reload/member4.js";
 import { doneCurse,Delete,addCurse } from "../../api";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 export const Member = ({ id, moderatorsAccess, name}) => {
 
   const selectElement = ["mySelect1", "mySelect2", "mySelect3", "mySelect4"]
 
+  const [idCurse, setIdCurse] = useState("");
   const curses = useSelector((state) => state.table.curses);
   const dataMember1 = useSelector((state) => state.table.member1);
   const dataMember2 = useSelector((state) => state.table.member2);
@@ -42,7 +44,17 @@ export const Member = ({ id, moderatorsAccess, name}) => {
     addCurse(id,newData)
     document.getElementById(selectElement[id]).value = "";
   }
+  let timer
+  const showDescription = (index) => {
+    timer = setTimeout(() => {
+    setIdCurse(index + name)
+   }, 600);
+  }
 
+  const closeDescription = () => {
+    setIdCurse('')
+    clearTimeout(timer)
+  }
 
   return (
     <div className="member">
@@ -59,11 +71,19 @@ export const Member = ({ id, moderatorsAccess, name}) => {
       >
         {list[id]?.map((item, index) => (
           <div
-            title={item.title}
+            // title={item.title}
             key={index}
             className={item.status ? "curseDone" : "curse"}
           >
-            <span>{item.name}</span>
+            <span onMouseOver={() => {showDescription(index)}} onMouseLeave={() => {closeDescription()}} className ={idCurse === index + name ? "hover":null}>{item.name}</span>
+            {idCurse === index + name && <div className="description">
+              <span>{item.title}</span>
+              {item.image && <div>
+                {item.image[0] && <img className="descriptionImg" src={item.image[0]} alt=""></img>}
+                {item.image[1] && <img className="descriptionImg" src={item.image[1]} alt=""></img>}
+                {item.image[2] && <img className="descriptionImg" src={item.image[2]} alt=""></img>}
+              </div>}
+              </div>}
             {moderatorsAccess && <div className="done" onClick={() => {doneCurse(id,index,!item.status)}}></div>}
             {moderatorsAccess && <div className="delete" onClick={() => {deleteCurse(index)}}></div>}
           </div>

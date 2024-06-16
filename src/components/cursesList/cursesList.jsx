@@ -1,16 +1,17 @@
 import "./cursesList.css";
 import { useSelector } from "react-redux";
 import { CursesSubscriber } from "../reload/curses";
-import { addListCurses } from "../../api";
+import { addListCurses, DeleteFile } from "../../api";
 
 export const CurseList = ({setMessage}) => {
   const curses = useSelector((state) => state.table.curses);
 
-const deleteCurse = async(index) => {
+const deleteCurse = async(index,curseName) => {
     let newData = [...curses]
     newData.splice(index,1)
     const message = await addListCurses(newData)
     setMessage(message)
+    // DeleteFile(curseName)
 }
 
   return (
@@ -21,7 +22,7 @@ const deleteCurse = async(index) => {
           curses?.map((item, index) => (
             <div className="itemList" key={index}>
               <span>{item.name}</span>
-              <div className="curseItemDelete" onClick={() => {deleteCurse(index)}}></div>
+              <div className="curseItemDelete" onClick={() => {deleteCurse(index,item.name)}}></div>
             </div>
           ))}
       </div>

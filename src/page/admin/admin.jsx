@@ -19,8 +19,6 @@ export const Admin = () => {
     if (user) {
       const uid = user.uid;
       console.log(uid);
-    } else {
-      console.log("object");
     }
   });
 

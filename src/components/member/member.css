@@ -71,6 +71,40 @@
   border: 1px solid rgb(199, 180, 180);
   border-top: none;
 }
+.description {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 30px;
+  width: calc(100% - 40px);
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 10;
+  border: 1px solid rgb(168, 12, 142);
+  background: white;
+  background: #f4def7;
+  font-size: 20px;
+}
+.hover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 200px;
+  background: #f4def7;
+  border-radius: 5px 5px 0 0;
+  border: 1px solid rgb(168, 12, 142);
+  border-bottom: none;
+  z-index: 20;
+  font-size: 18px;
+  font-weight: 700;
+}
+.descriptionImg {
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+}
 /* .dopInfo {
   position: absolute;
   height: 15px;

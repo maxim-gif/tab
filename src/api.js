@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, update } from "firebase/database";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-// import { getMessaging, getToken, onMessage, subscribeToTopic } from 'firebase/messaging';
+import { getStorage,uploadBytes, getDownloadURL, deleteObject   } from "firebase/storage";
+import { ref as sRef } from 'firebase/storage'
 
 
 const firebaseConfig = {
@@ -19,12 +20,28 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 const db = getDatabase(app);
 
-// export const getPushToken = async() => {
-//  const tok = await getToken(messaging, { vapidKey: 'BA8ju7o9mTrdHwP5qluooPJislwxIT-hGAMbIiE7vBO4OCkgi-YNVZtaf-ODZTltLFxclR-z7nPuA6_P2SlpC8A' })
-//       console.log(tok);
-//       return tok
-// }
 
+export async function AddFile(name,data,fileName) { 
+  const storage = getStorage();
+    const storageRef = sRef(storage, `${name}/${fileName}`);
+    try {
+      await uploadBytes(storageRef, data)
+      const url = await getDownloadURL(sRef(storage, `${name}/${fileName}`))
+      return url
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+export async function  DeleteFile(name) { 
+  const storage = getStorage();
+    const storageRef = sRef(storage, name);
+    try {
+      await deleteObject(storageRef)
+    } catch (error) {
+      console.log(error);
+    }
+}
 
 export async function getDataMember(id) {
     const members = ["member1", "member2", "member3","member4"]
@@ -223,5 +240,5 @@ export async function Rename(id,name) {
   } catch (error) {
     console.log(error);
   }
- 
 }
+

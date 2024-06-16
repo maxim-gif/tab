@@ -60,6 +60,9 @@
 .curse > span {
   cursor: default;
 }
+.curseDone > span {
+  cursor: default;
+}
 .curseDone {
   display: flex;
   justify-content: center;

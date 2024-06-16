@@ -17,10 +17,7 @@ export const AddList = ({setMessage}) => {
   const [secondFile, setSecondFile] = useState('');
   const [thirdFile, setThirdFile] = useState('');
 
-  useEffect(() => {
-   console.log(firstFile);
-  }, [firstFile]);
-
+ 
   const addCurse = async() => {
     console.log("START");
     setLoading(true)

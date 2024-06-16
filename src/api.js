@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, update } from "firebase/database";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { getStorage,uploadBytes, getDownloadURL, deleteObject   } from "firebase/storage";
+import { getStorage,uploadBytes, getDownloadURL, deleteObject, listAll   } from "firebase/storage";
 import { ref as sRef } from 'firebase/storage'
 
 
@@ -33,9 +33,22 @@ export async function AddFile(name,data,fileName) {
     }
 }
 
-export async function  DeleteFile(name) { 
+export async function  DeleteFile(curseName,name) { 
+  console.log(`${curseName}/${name}`);
   const storage = getStorage();
-    const storageRef = sRef(storage, name);
+    const storageRef = sRef(storage, `${curseName}/${name}`);
+  //   const listRef = sRef(storage, 'test/');
+  //   listAll(listRef)
+  //   .then((res) => {
+  //     res.prefixes.forEach((folderRef) => {
+  //       console.log(folderRef);
+  //     });
+  //     res.items.forEach((itemRef) => {
+  //       console.log(itemRef);
+  //     });
+  //   }).catch((error) => {
+  //     // Uh-oh, an error occurred!
+  //   });
     try {
       await deleteObject(storageRef)
     } catch (error) {

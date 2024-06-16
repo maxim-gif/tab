@@ -19,20 +19,23 @@ export const AddList = ({setMessage}) => {
 
  
   const addCurse = async() => {
-    console.log("START");
     setLoading(true)
     let imagesUrl = []
+    let imagesName = []
     if (firstFile !== '') {
      const url = await AddFile(curseName,firstFile,firstFile.name)
      imagesUrl.push(url)
+     imagesName.push(firstFile.name)
     }
     if (secondFile !== '') {
       const url = await AddFile(curseName,secondFile,secondFile.name)
       imagesUrl.push(url)
+      imagesName.push(secondFile.name)
     }
     if (thirdFile !== '') {
       const url = await AddFile(curseName,thirdFile,thirdFile.name)
       imagesUrl.push(url)
+      imagesName.push(thirdFile.name)
     }
 
     let newData 
@@ -41,9 +44,8 @@ export const AddList = ({setMessage}) => {
     } else {
       newData = [...curses]
     }
-    newData.push({name:curseName,title:curseTitle,general:checked,image:imagesUrl})
+    newData.push({name:curseName,title:curseTitle,general:checked,image:imagesUrl,imagesName:imagesName})
     const message = await addListCurses(newData)
-    console.log("FINISH");
     setCurseName("")
     setCurseTitle("")
     setMessage(message)
@@ -82,7 +84,7 @@ const deleteImg = (e,index) => {
           </div>
         <div className="checkBox">
           <input type="checkbox" id="check" className="check" checked={checked} onChange={(e) => setChecked(e.target.checked)}></input>
-          <label for="check">Общее проклятие</label>
+          <label htmlFor="check">Общее проклятие</label>
         </div>
    
         <button className="buttonAdmin" onClick={() => {addCurse()}} disabled={curseName === ""}>Добавить проклятие</button>

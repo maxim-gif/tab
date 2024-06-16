@@ -6,12 +6,19 @@ import { addListCurses, DeleteFile } from "../../api";
 export const CurseList = ({setMessage}) => {
   const curses = useSelector((state) => state.table.curses);
 
-const deleteCurse = async(index,curseName) => {
+const deleteCurse = async(index,curseName,names) => {
     let newData = [...curses]
     newData.splice(index,1)
     const message = await addListCurses(newData)
     setMessage(message)
-    // DeleteFile(curseName)
+    console.log(names);
+    if (names) {
+      names.filter((item) => (
+        DeleteFile(curseName,item)
+      ))
+    }
+   
+
 }
 
   return (
@@ -22,7 +29,7 @@ const deleteCurse = async(index,curseName) => {
           curses?.map((item, index) => (
             <div className="itemList" key={index}>
               <span>{item.name}</span>
-              <div className="curseItemDelete" onClick={() => {deleteCurse(index,item.name)}}></div>
+              <div className="curseItemDelete" onClick={() => {deleteCurse(index,item.name,item.imagesName)}}></div>
             </div>
           ))}
       </div>

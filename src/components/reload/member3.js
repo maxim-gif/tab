@@ -18,7 +18,7 @@ export const Member3Subscriber = () => {
         const name = window.localStorage.getItem("name")
         const members = JSON.parse(localStorage.getItem('members'));
         if (dataLengthRef2.current !== 0) {
-          if (name === members[2]) {
+          if (name === members[2]?.split(' & ')[0] || name === members[2]?.split(' & ')[1]) {
             const not3 = new Notification("Добавлено новое проклятие", {
               body: data[data?.length - 1].name,
               icon: './img/goodday.png'

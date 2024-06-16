@@ -63,7 +63,10 @@ export const Member = ({ id, moderatorsAccess, name}) => {
       {id === 2 && <Member3Subscriber />}
       {id === 3 && <Member4Subscriber />}
       <div className="memberName">
-        <span className="linkName">{name ? name:"Участник"}<a className="link" href={'https://www.twitch.tv/' + name?.toLowerCase()}></a></span>
+        <span className="linkName">{name ? name:"Участник"}
+          <a className="link1" href={'https://www.twitch.tv/' + name?.split(' & ')[0]}></a>
+          {name?.split(' & ')[1] && <a className="link2" href={'https://www.twitch.tv/' + name?.split(' & ')[1]}></a>}
+        </span>
       </div>
       <div
         className="curseList"

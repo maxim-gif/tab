@@ -14,12 +14,10 @@ export const Member4Subscriber = () => {
       const newDataLength = data?.length || -1;
       dispatch(setMember4(data));
       if (newDataLength > dataLengthRef3.current) {
-        console.log(newDataLength);
-        console.log(dataLengthRef3.current);
         if (dataLengthRef3.current !== 0) {
           const name = window.localStorage.getItem("name")
           const members = JSON.parse(localStorage.getItem('members'));
-          if (name === members[3]) {
+          if (name === members[3]?.split(' & ')[0] || name === members[3]?.split(' & ')[1]) {
            const not4 = new Notification("Добавлено новое проклятие", {
               body: data[data?.length - 1].name,
               icon: './img/goodday.png'

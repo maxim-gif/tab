@@ -1,7 +1,17 @@
-.link {
+.link1 {
   height: 18px;
   width: 18px;
   left: -20px;
+  top: 0px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("/public/linkTwitch.png");
+  position: absolute;
+}
+.link2 {
+  height: 18px;
+  width: 18px;
+  right: -20px;
   top: 0px;
   background-size: contain;
   background-repeat: no-repeat;

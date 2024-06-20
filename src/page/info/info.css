@@ -40,6 +40,7 @@
 .infoItem {
     display: grid;
     grid-template-rows: 40px auto 30px;
+    max-height: 800px;
 }
 .headerItem {
     display: flex;

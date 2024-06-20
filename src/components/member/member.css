@@ -107,7 +107,7 @@
   height: 26px;
   width: 26px;
   top: -4px;
-  right: -30px;
+  left: -30px;
   border-radius: 50%;
 }
 .hover {

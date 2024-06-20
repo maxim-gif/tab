@@ -38,18 +38,6 @@ export async function  DeleteFile(curseName,name) {
   console.log(`${curseName}/${name}`);
   const storage = getStorage();
     const storageRef = sRef(storage, `${curseName}/${name}`);
-  //   const listRef = sRef(storage, 'test/');
-  //   listAll(listRef)
-  //   .then((res) => {
-  //     res.prefixes.forEach((folderRef) => {
-  //       console.log(folderRef);
-  //     });
-  //     res.items.forEach((itemRef) => {
-  //       console.log(itemRef);
-  //     });
-  //   }).catch((error) => {
-  //     // Uh-oh, an error occurred!
-  //   });
     try {
       await deleteObject(storageRef)
     } catch (error) {
@@ -62,6 +50,25 @@ export async function getDataMember(id) {
     const response = await fetch(`https://table-d13fe-default-rtdb.firebaseio.com/` + members[id] +`.json`);
     const data = await response.json();
     return data;
+}
+
+export async function getDataHistory() {
+  const response = await fetch(`https://table-d13fe-default-rtdb.firebaseio.com/historys.json`);
+  const data = await response.json();
+  return data;
+}
+
+export async function addDataHistory(data) {
+  try {
+    if (!auth.currentUser) {
+      throw new Error("Доступ запрещен")
+    } else {
+      const userRef = ref(db, 'historys/');
+      await set(userRef, data);
+    }
+  } catch (error) {
+    return error.message
+  }
 }
 
 export async function getCurses() {

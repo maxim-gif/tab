@@ -79,7 +79,7 @@ export const Member = ({ id, moderatorsAccess, name}) => {
             className={item.status ? "curseDone" : "curse"}
           >
             <span onMouseOver={() => {showDescription(index)}} onMouseLeave={() => {closeDescription()}} className ={idCurse === index + name ? "hover":null}>{item.name}
-              {item?.image?.icon && <img className="curseIcon" src={item.image.icon} alt=""></img>}
+              {item?.image?.icon && idCurse !== index + name && <img className="curseIcon" src={item.image.icon} alt=""></img>}
             </span>
             {idCurse === index + name && <div className="description">
               <span>{item.title}</span>

@@ -103,12 +103,12 @@
 }
 
 .curseIcon {
-position: absolute;
-height: 26px;
-width: 26px;
-top: -4px;
-right: -30px;
-border-radius: 50%;
+  position: absolute;
+  height: 26px;
+  width: 26px;
+  top: -4px;
+  right: -30px;
+  border-radius: 50%;
 }
 .hover {
   display: flex;
@@ -148,5 +148,10 @@ border-radius: 50%;
   }
   .curse {
     font-size: 13px;
+  }
+  .curseIcon{
+    height: 24px;
+    width: 24px;
+    top: -5px;
   }
 }

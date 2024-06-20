@@ -38,43 +38,60 @@
     background-image: url("/public/close.png");
 }
 .infoItem {
-    position: relative;
-    overflow: hidden;
-    font-weight: 400;
     display: grid;
-    justify-items: center;
-    grid-template-rows: 40px auto 40px;
-    height: 400px;
-    border-radius: 20px;
-    padding: 40px 40px 10px 40px;
-    color: rgb(14, 13, 13);
-    border: 2px solid rgb(119, 0, 0);
-    background: white;
-    color: rgb(0, 0, 0);
-    overflow-y: auto;
+    grid-template-rows: 40px auto 30px;
+}
+.headerItem {
+    display: flex;
+    justify-content: space-between;
+}
+
+.iconItem,
+.nameItem,
+.descriptionItem,
+.chanceItem {
+    display: flex;
     align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 5px;
+    border: 2px solid rgb(119, 0, 0);
+    font-weight: 700;
 }
-.infoItem::-webkit-scrollbar {
-    display: none;
+.nameItem {
+    width: calc(100% - 40px);
+    border-bottom: 0px solid rgb(119, 0, 0);
+    font-size: 28px;
+    border-radius: 5px 5px 5px 0 ;
 }
-.itemImg {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0.1;
+.descriptionItem {
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 10px;
+    border-bottom: 1px solid rgb(119, 0, 0);
+    padding: 10px;
 }
-.infoItem > h2 {
-    font-size: 30px;
+.descriptionItem > img {
+    height: 200px;
 }
-.infoItem > span {
-    font-size: 16px;
-    font-weight:900;
+.chanceItem {
+    border-top: 1px solid rgb(119, 0, 0);
 }
+.iconItem {
+    width: 40px;
+    height: 40px;
+    border-radius: 15px 5px 0 5px;
+    border-bottom: 0px solid rgb(119, 0, 0);
+    border-right: 0px solid rgb(119, 0, 0);
+    padding: 3px;
+
+}
+
 .containInfo {  
     height: 100%;
     overflow-y: auto;
     display: grid;
-    gap: 30px;
+    gap: 28px;
     grid-template-columns: repeat(4, 1fr);
 }
 .containInfo::-webkit-scrollbar {
@@ -83,5 +100,14 @@
 @media (max-width: 600px) {
     .containInfo {
         grid-template-columns: repeat(1, 1fr);
+    }
+    .searchInfo {
+        width: 200px;
+    }
+    .descriptionItem > img {
+        height: 100px;
+    }
+    .searchInfo {
+        background-size: 16%; 
     }
   }

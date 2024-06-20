@@ -22,6 +22,7 @@ const db = getDatabase(app);
 
 
 export async function AddFile(name,data,fileName) { 
+  console.log(fileName);
   const storage = getStorage();
     const storageRef = sRef(storage, `${name}/${fileName}`);
     try {

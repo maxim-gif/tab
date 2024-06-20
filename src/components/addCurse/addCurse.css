@@ -37,11 +37,15 @@
 }
 .fileBox {
     display: grid;
+    align-items: center;
     height: 100px;
     grid-template-columns: repeat(3, 1fr);
     gap: 33px;
     padding: 0 15px;
     margin: 10px 0;
+}
+.fileBox > span {
+    color: rgb(110, 110, 110);
 }
 .file {
  position: relative;

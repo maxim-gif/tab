@@ -78,13 +78,13 @@ export const Member = ({ id, moderatorsAccess, name}) => {
             key={index}
             className={item.status ? "curseDone" : "curse"}
           >
-            <span onMouseOver={() => {showDescription(index)}} onMouseLeave={() => {closeDescription()}} className ={idCurse === index + name ? "hover":null}>{item.name}</span>
+            <span onMouseOver={() => {showDescription(index)}} onMouseLeave={() => {closeDescription()}} className ={idCurse === index + name ? "hover":null}>{item.name}
+              {item?.image?.icon && <img className="curseIcon" src={item.image.icon} alt=""></img>}
+            </span>
             {idCurse === index + name && <div className="description">
               <span>{item.title}</span>
               {item.image && <div>
-                {item.image[0] && <img className="descriptionImg" src={item.image[0]} alt=""></img>}
-                {item.image[1] && <img className="descriptionImg" src={item.image[1]} alt=""></img>}
-                {item.image[2] && <img className="descriptionImg" src={item.image[2]} alt=""></img>}
+                {item.image.img && <img className="descriptionImg" src={item.image.img} alt=""></img>}
               </div>}
               </div>}
             {moderatorsAccess && <div className="done" onClick={() => {doneCurse(id,index,!item.status)}}></div>}

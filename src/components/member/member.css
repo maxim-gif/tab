@@ -69,9 +69,11 @@
 }
 .curse > span {
   cursor: default;
+  position: relative;
 }
 .curseDone > span {
   cursor: default;
+  position: relative;
 }
 .curseDone {
   display: flex;
@@ -97,7 +99,16 @@
   border: 1px solid rgb(168, 12, 142);
   background: white;
   background: #f4def7;
-  font-size: 20px;
+  font-size: 17px;
+}
+
+.curseIcon {
+position: absolute;
+height: 26px;
+width: 26px;
+top: -4px;
+right: -30px;
+border-radius: 50%;
 }
 .hover {
   display: flex;
@@ -114,8 +125,8 @@
   font-weight: 700;
 }
 .descriptionImg {
-  height: 100px;
-  width: 100px;
+  height: 200px;
+  width: 200px;
   margin: 10px;
 }
 /* .dopInfo {

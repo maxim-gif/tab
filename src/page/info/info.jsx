@@ -38,10 +38,16 @@ export const Info = () => {
         <div className="containInfo">
                 { searchResult !== null && searchResult?.map((item, index) => ((
                     <div className="infoItem" key={index}>
-                      <img className="itemImg" src="/bgCurse.png" alt=''></img>
-                        <h2>{item.name}</h2>
+                      {item?.image?.icon && <div className="headerItem">
+                        <img className="iconItem" alt='' src={item.image.icon}></img>
+                        <div className="nameItem">{item.name}</div>
+                      </div>}
+                      {!item?.image?.icon && <div className="nameItem" style={{width:"100%", borderRadius:"5px"}}>{item.name}</div>}
+                      <div className="descriptionItem">
                         <span>{item.title}</span>
-                        <h3>{item.general ? `Общее проклятие. Шанс ${generalChance}%`:`Шанс выпадения ${chance}%`}</h3>
+                        {item?.image?.img && <img src={item.image.img} alt=''></img>}
+                      </div>
+                      <div className="chanceItem">{item.general ? `Общее проклятие. Шанс ${generalChance}%`:`Шанс выпадения ${chance}%`}</div>
                     </div>)))
                 }
             </div>

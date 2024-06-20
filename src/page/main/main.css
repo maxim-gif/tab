@@ -114,7 +114,15 @@
     height: 40px;
     width: 100px;
   }
-  .enter > span{
-    font-size: 10px;
+  .historyBox,
+  .moreBox,
+  .enter {
+    font-size: 12px;
+  }
+  .historyPng,
+  .more,
+  .twitch {
+    height: 20px;
+    width: 20px;
   }
 }

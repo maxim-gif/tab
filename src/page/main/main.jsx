@@ -71,13 +71,6 @@ export const Main = () => {
   }, []);
 
  
-  
-
-  // const switchMember = (index) => {
-  //   console.log(index);
-  //   setMember(index)
-  // }
-
   return (
     <div className="containerApp">
       <div className="header">
@@ -100,7 +93,10 @@ export const Main = () => {
             <span>Подробнее:</span>
            <div className="more" onClick={() => {navigate("/info");}} ></div>
           </div>
-          
+          <div className="historyBox">
+            <span>История МИ:</span>
+           <div className="historyPng" onClick={() => {navigate("/history");}} ></div>
+          </div>
         </div>
       </div>
       <div className="memberList">

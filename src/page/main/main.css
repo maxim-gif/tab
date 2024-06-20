@@ -10,6 +10,14 @@
   background-repeat: no-repeat;
   background-image: url('/public/more.png');
 }
+.historyPng{
+  height: 40px;
+  width: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('/public/history.png');
+}
+.historyBox,
 .moreBox {
   display: flex;
   align-items: center;

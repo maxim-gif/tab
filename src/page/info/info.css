@@ -110,4 +110,7 @@
     .searchInfo {
         background-size: 16%; 
     }
+    .descriptionItem {
+        font-size: 13px
+    }
   }

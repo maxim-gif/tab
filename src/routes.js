@@ -3,6 +3,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Main } from "./page/main/main";
 import { Admin } from "./page/admin/admin";
 import { Info } from "./page/info/info";
+import { History } from "./page/history/history";
 import { useEffect } from "react";
 import { getDataMember,getCurses,getNameMembers } from "./api";
 import { useDispatch } from 'react-redux';
@@ -28,20 +29,8 @@ export const AppRoutes = () => {
     localStorage.setItem('members', JSON.stringify(names));
 
   };
-  // if ('serviceWorker' in navigator) {
-  //   window.addEventListener('load', function() {
-  //     navigator.serviceWorker.register('../sw.js').then(function(registration) {
-  //       // Успешная регистрация
-  //       console.log('ServiceWorker registration successful');
-  //     }, function(err) {
-  //       // При регистрации произошла ошибка
-  //       console.log('ServiceWorker registration failed: ', err);
-  //     });
-  //   });
-  // }
-  
- 
-    Notification.requestPermission().then((permission) => {
+
+  Notification.requestPermission().then((permission) => {
       if (permission === 'granted') {
          }})
 
@@ -58,7 +47,8 @@ export const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/admin" element={<Admin />} />
-        <Route path="/info" element={<Info />} />
+        <Route path="/info" element={<Info />}/>
+        <Route path="/history" element={<History />}/>
       </Routes>
     </BrowserRouter>
   );

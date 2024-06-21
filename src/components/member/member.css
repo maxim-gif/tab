@@ -33,12 +33,9 @@
 }
 .curseList {
   background: white;
-  max-height: 660px;
-  overflow-x: auto;
+ 
 }
-.curseList::-webkit-scrollbar {
-  display: none;
-}
+
 .done {
   position: absolute;
   height: 15px;

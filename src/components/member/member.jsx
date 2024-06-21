@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
 import "./member.css";
 import { SelectCurse } from "../list/list.js";
 import { Member1Subscriber } from "../reload/member1.js";
@@ -15,8 +16,7 @@ export const Member = ({ id, moderatorsAccess, name }) => {
   const dispatch = useDispatch();
 
   const [focusCurse, setFocusCurse] = useState("");
-  const [cursorPosX, setCursorPosX] = useState(0);
-  const [cursorPosY, setCursorPosY] = useState(0);
+
 
   const curses = useSelector((state) => state.table.curses);
   const activeCurse = useSelector((state) => state.table.activeIdCurse);
@@ -52,9 +52,6 @@ export const Member = ({ id, moderatorsAccess, name }) => {
   };
 
   const showDescription = (e, index) => {
-    console.log(cursorPosY - document.querySelector( '.element' )?.offsetHeight);
-    setCursorPosX(e.clientX);
-    setCursorPosY(e.clientY);
     const rez = curses.filter((item) => item.name === index);
     setFocusCurse(rez);
     dispatch(setCursesActive(name));
@@ -80,6 +77,7 @@ export const Member = ({ id, moderatorsAccess, name }) => {
             //   top: `${cursorPosY <= 540 ? `${cursorPosY}px` : '50%' }`,
             // }}
           >
+            <h2>{focusCurse[0].name}</h2>
             <span>{focusCurse[0].title}</span>
             {focusCurse[0].image && (
               <div>

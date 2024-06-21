@@ -9,7 +9,7 @@
   top: 0;
   z-index: 20;
   background-color: rgba(0, 0, 0, 0.5);
-
+  cursor: pointer;
 }
 .link1 {
   height: 18px;

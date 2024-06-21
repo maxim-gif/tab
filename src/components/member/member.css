@@ -1,3 +1,16 @@
+.popUp {
+  position: fixed;
+  display: flex;
+  align-items: center;
+    justify-content: center;
+  height: 100vh;
+  width: 100%;
+  right: 0;
+  top: 0;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.5);
+
+}
 .link1 {
   height: 18px;
   width: 18px;
@@ -33,9 +46,12 @@
 }
 .curseList {
   background: white;
- 
+  max-height: 600px;
+  overflow-x: auto;
 }
-
+.curseList::-webkit-scrollbar {
+  display: none;
+}
 .done {
   position: absolute;
   height: 15px;
@@ -77,6 +93,11 @@
   cursor: default;
   position: relative;
 }
+.curse > span:hover,
+.curseDone > span:hover {
+  font-weight: 700;
+  cursor: pointer;
+}
 .curseDone {
   display: flex;
   justify-content: center;
@@ -89,12 +110,10 @@
   border-top: none;
 }
 .description {
-  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  top: 30px;
-  width: calc(100% - 40px);
+  width: 400px;
   padding: 15px;
   border-radius: 5px;
   z-index: 10;
@@ -103,7 +122,13 @@
   background: #f4def7;
   font-size: 17px;
 }
-
+.descriptionClose {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  right: 10px;
+  bottom:  10px;
+}
 .curseIcon {
   position: absolute;
   height: 26px;

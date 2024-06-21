@@ -8,7 +8,8 @@ const initialState = {
     member3: [],
     member4: [],
     curses: [],
-    nameMembers: [],
+    nameMembers:[],
+    activeIdCurse:''
 };
 
 export const appSlice = createSlice({
@@ -37,12 +38,15 @@ export const appSlice = createSlice({
     setCurses: (state, action) => {
       state.curses = action.payload;
     },
+    setCursesActive: (state, action) => {
+      state.activeIdCurse = action.payload;
+    },
     setNameMembers: (state, action) => {
       state.nameMembers = action.payload === null ? []:action.payload;
     },
   },
 });
 
-export const { setParticipant, setModerators,setMember1,setMember2,setMember3,setMember4,setCurses,setNameMembers } = appSlice.actions;
+export const { setParticipant, setModerators,setMember1,setMember2,setMember3,setMember4,setCurses,setNameMembers,setCursesActive } = appSlice.actions;
 
 export default appSlice.reducer;

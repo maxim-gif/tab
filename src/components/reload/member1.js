@@ -14,7 +14,7 @@ export const Member1Subscriber = () => {
     const unsubscribe = onValue(dataRef, (snapshot) => {
       const data = snapshot.val();
       const newDataLength = data?.length || -1;
-      console.log(data?.length);      dispatch(setMember1(data));
+      dispatch(setMember1(data));
       if (newDataLength > dataLengthRef.current) {
         if (dataLengthRef.current !== 0) {
           const name = window.localStorage.getItem("name")

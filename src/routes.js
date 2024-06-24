@@ -5,9 +5,9 @@ import { Admin } from "./page/admin/admin";
 import { Info } from "./page/info/info";
 import { History } from "./page/history/history";
 import { useEffect } from "react";
-import { getDataMember,getCurses,getNameMembers } from "./api";
+import { getDataMember,getCurses,getNameMembers,getDataHistory } from "./api";
 import { useDispatch } from 'react-redux';
-import { setMember1, setMember2,setMember3,setMember4,setCurses,setNameMembers} from './store/slice/slice';
+import { setMember1, setMember2,setMember3,setMember4,setCurses,setNameMembers,setHistory} from './store/slice/slice';
 
 export const AppRoutes = () => {
 
@@ -24,10 +24,11 @@ export const AppRoutes = () => {
     dispatch(setMember4(data4));
     const curses = await getCurses();
     dispatch(setCurses(curses));
+    const history = await getDataHistory();
+    dispatch(setHistory(history));
     const names = await getNameMembers();
     dispatch(setNameMembers(names));
     localStorage.setItem('members', JSON.stringify(names));
-
   };
 
   Notification.requestPermission().then((permission) => {

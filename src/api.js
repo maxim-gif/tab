@@ -59,6 +59,7 @@ export async function getDataHistory() {
 }
 
 export async function addDataHistory(data) {
+  console.log("addDataHistory");
   try {
     if (!auth.currentUser) {
       throw new Error("Доступ запрещен")

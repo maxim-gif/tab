@@ -75,7 +75,7 @@ export const Main = () => {
     <div className="containerApp">
       <div className="header">
         <div className="logoIcon"></div>
-        <div className="logoTitle"></div>
+        {/* <div className="logoTitle"></div> */}
         <div className="icons">
           <div className="enter">
             {name.length === 0 && <span>Войти: </span>}

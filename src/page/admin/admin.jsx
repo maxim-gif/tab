@@ -3,6 +3,7 @@ import { AddList } from "../../components/addCurse/addCurse.jsx";
 import { CurseList } from '../../components/cursesList/cursesList.jsx';
 import { NameMembersList } from '../../components/nameMemberList/nameMemberList.jsx';
 import { ModeratorList } from '../../components/moderators/moderators.jsx';
+import { HistoryAdd } from '../../components/historyAdd/historyAdd.jsx';
 import { useState,useEffect} from "react";
 import { Enter } from '../../api.js';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -56,6 +57,7 @@ export const Admin = () => {
           <NameMembersList setMessage={setMessage}/>
           <CurseList setMessage={setMessage}/>
           <AddList setMessage={setMessage}/>
+          <HistoryAdd/>
         </div>
     </div>
   );

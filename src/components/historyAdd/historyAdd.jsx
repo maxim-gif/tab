@@ -17,7 +17,7 @@ export const HistoryAdd = () => {
   const dataMember3 = useSelector((state) => state.table.member3);
   const dataMember4 = useSelector((state) => state.table.member4);
 
-  const currentYear = 2026
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
      console.log("reload");

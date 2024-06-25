@@ -26,7 +26,7 @@ export const History = () => {
     <div className="history">
         <div className="side">
             <div className="historyLogo" onClick={() => {navigate("/")}}></div>
-            <div className="listSeason">
+            {dataHis.length >  0 && <div className="listSeason">
             { dataHis.map((item, indexYear) => ((
                 <div key={indexYear} onClick={() => {
                     setYear(indexYear)
@@ -39,10 +39,9 @@ export const History = () => {
                 </div>
                     )))
                 }
-            </div>
-            {/* {year === dataHis.length - 1 && <div className="borderBottom"><div></div></div>} */}
+            </div>}
         </div>
-        { dataHis.length >   0 ? (<div className="historyMain">
+        { dataHis.length >  0 ? (<div className="historyMain">
             <div className="listCursesMember">
                 <div className="historyMember">{dataHis[year].release[releaseNumber].data[0].name}</div>
                 { dataHis[year].release[releaseNumber].data[0].curses.map((item, index) => ((
@@ -83,7 +82,7 @@ export const History = () => {
                     )))
                 }
             </div>
-        </div>):(null)}
+        </div>):(<span class="loader"></span>)}
     </div>
   );
 };

@@ -106,3 +106,8 @@
     font-size: 22px;
     font-weight: 700;
 }
+
+.history >span {
+    top: 40%;
+    left: 45%;
+}

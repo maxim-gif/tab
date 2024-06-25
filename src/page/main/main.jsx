@@ -99,12 +99,13 @@ export const Main = () => {
           </div>
         </div>
       </div>
-      <div className="memberList">
+      {!nameMembers[3] ? (<span class="loader"></span>):(<div className="memberList">
         <Member id={0} moderatorsAccess={moderatorsAccess} name={nameMembers[0]} />
         <Member id={1} moderatorsAccess={moderatorsAccess} name={nameMembers[1]} />
         <Member id={2} moderatorsAccess={moderatorsAccess} name={nameMembers[2]} />
         <Member id={3} moderatorsAccess={moderatorsAccess} name={nameMembers[3]} />
-      </div>
+      </div>)}
+      
       <DataSubscriber />
       <MembersSubscriber/>
       <ModeratorSubscriber/>

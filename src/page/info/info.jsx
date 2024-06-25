@@ -35,7 +35,7 @@ export const Info = () => {
         <input className="searchInfo" type='text' value={search} onChange={(e) => {setSearch(e.target.value)}}></input>
         <div className="closePage" onClick={() => {navigate("/")}}></div>
       </div>
-        <div className="containInfo">
+        {curses.length > 0 ?(<div className="containInfo">
                 { searchResult !== null && searchResult?.map((item, index) => ((
                     <div className="infoItem" key={index}>
                       {item?.image?.icon && <div className="headerItem">
@@ -50,7 +50,7 @@ export const Info = () => {
                       <div className="chanceItem">{item.general ? `Общее проклятие. Шанс ${generalChance}%`:`Шанс выпадения ${chance}%`}</div>
                     </div>)))
                 }
-            </div>
+        </div>):(<span class="loader"></span>)}
     </div>
   );
 }

@@ -7,11 +7,14 @@ import { Member3Subscriber } from "../reload/member3.js";
 import { Member4Subscriber } from "../reload/member4.js";
 import { doneCurse, Delete, addCurse } from "../../api";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { setCursesActive } from "../../store/slice/slice.js";
 
-export const Member = ({ id, moderatorsAccess, name }) => {
+export const Member = ({ id, moderatorsAccess, name, container }) => {
+
+  
+
   const selectElement = ["mySelect1", "mySelect2", "mySelect3", "mySelect4"];
   const dispatch = useDispatch();
 
@@ -26,6 +29,13 @@ export const Member = ({ id, moderatorsAccess, name }) => {
   const dataMember4 = useSelector((state) => state.table.member4);
 
   const list = [dataMember1, dataMember2, dataMember3, dataMember4];
+
+  useEffect(() => {
+    if (list[id].length > 22) {
+      container.current.scrollTop = container.current.scrollHeight
+    }
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [list[id]])
 
   const deleteCurse = (index) => {
     let newData;

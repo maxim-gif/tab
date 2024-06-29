@@ -1,5 +1,5 @@
 import "./main.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   getUserToken,
   getUserData,
@@ -16,6 +16,7 @@ import { ModeratorSubscriber } from "../../components/reload/moderator";
 export const Main = () => {
 
   const navigate = useNavigate();
+  const container = useRef(null)
 
   let dataModerators = useSelector((state) => state.table.moderators);
   let nameMembers = useSelector((state) => state.table.nameMembers);
@@ -73,7 +74,7 @@ export const Main = () => {
 
  
   return (
-    <div className="containerApp">
+    <div className="containerApp" ref={container}>
       <div className="header">
         <div className="logoIcon"></div>
         {/* <div className="logoTitle"></div> */}
@@ -101,10 +102,10 @@ export const Main = () => {
         </div>
       </div>
       {!nameMembers[3] ? (<span class="loader"></span>):(<div className="memberList">
-        <Member id={0} moderatorsAccess={moderatorsAccess} name={nameMembers[0]} />
-        <Member id={1} moderatorsAccess={moderatorsAccess} name={nameMembers[1]} />
-        <Member id={2} moderatorsAccess={moderatorsAccess} name={nameMembers[2]} />
-        <Member id={3} moderatorsAccess={moderatorsAccess} name={nameMembers[3]} />
+        <Member id={0} moderatorsAccess={moderatorsAccess} name={nameMembers[0]} container={container}/>
+        <Member id={1} moderatorsAccess={moderatorsAccess} name={nameMembers[1]} container={container}/>
+        <Member id={2} moderatorsAccess={moderatorsAccess} name={nameMembers[2]} container={container}/>
+        <Member id={3} moderatorsAccess={moderatorsAccess} name={nameMembers[3]} container={container}/>
       </div>)}
       
       <DataSubscriber />

@@ -38,9 +38,19 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
     if (id === 1) newData = [...dataMember2];
     if (id === 2) newData = [...dataMember3];
     if (id === 3) newData = [...dataMember4];
-
-    newData.splice(index, 1);
-    Delete(id, newData);
+    console.log(newData[index]);
+    if (newData[index].completedCounter === 0) {
+      newData.splice(index, 1);
+      Delete(id, newData);
+    } else {
+      const newArr = newData.map( item => {
+        if (item.name === newData[index].name) {
+          return { ...item, completedCounter: newData[index].completedCounter - 1 };
+        }
+        return item
+      })
+      addCurse(id, newArr);
+    }
   };
 
   const handleAddCurse = (curse, id) => {
@@ -84,7 +94,6 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
 
   const completedCurseAdd = (index) => {
     let newData = [...list[id]]
-    console.log(newData[index].name);
     const newArr = newData.map( item => {
       if (item.name === newData[index].name) {
         return { ...item, completedCounter: newData[index].completedCounter + 1 };
@@ -148,7 +157,8 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
           <div
             title={item.title}
             key={index}
-            className={item.status ? "curseDone" : "curse"}
+            className="curse"
+            style={{background:`linear-gradient(90deg, rgba(104,241,62,1) ${Math.round(100/item.totalCounter*item.completedCounter)}%, rgba(254,255,254,1) ${Math.round(100/item.totalCounter*item.completedCounter)}%)`}}
           >
             <span
               onClick={(e) => {
@@ -160,7 +170,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
                 <img className="curseIcon" src={item.image.icon} alt=""></img>
               )}
             </span>
-            {moderatorsAccess && item.totalCounter !== item.completedCounter && (
+            { item.totalCounter !== item.completedCounter && (
               <div
                 className="done"
                 onClick={() => {
@@ -168,7 +178,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
                 }}
               ></div>
             )}
-            {moderatorsAccess && (
+            { (
               <div
                 className="delete"
                 onClick={() => {
@@ -179,7 +189,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
           </div>
         ))}
       </div>
-      {moderatorsAccess && (
+      { (
         <SelectCurse handleAddCurse={handleAddCurse} id={id} />
       )}
     </div>

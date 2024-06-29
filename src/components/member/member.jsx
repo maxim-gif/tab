@@ -63,7 +63,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
       addCurse(id, newArr);
     } else {
       newItem.completedCounter = 0
-      newItem.totalCounter = 0
+      newItem.totalCounter = 1
       newData.push(newItem);
       addCurse(id, newData);
     }

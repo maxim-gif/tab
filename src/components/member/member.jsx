@@ -82,8 +82,16 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
     setFocusCurse("");
   };
 
-  const completedCurseAdd = (id) => {
-    console.log(id);
+  const completedCurseAdd = (index) => {
+    let newData = [...list[id]]
+    console.log(newData[index].name);
+    const newArr = newData.map( item => {
+      if (item.name === newData[index].name) {
+        return { ...item, completedCounter: newData[index].completedCounter + 1 };
+      }
+      return item
+    })
+    console.log(newArr);
   }
 
   return (

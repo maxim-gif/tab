@@ -51,8 +51,11 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
       newData = [...list[id]];
     }
     const findItem = curses.filter((item) => item.name === curse);
+    findItem[0].completedCounter = 0
+    findItem[0].totalCounter = 0
     newData.push(findItem[0]);
     console.log(findItem[0]);
+    console.log(newData);
     // addCurse(id, newData);
     document.getElementById(selectElement[id]).value = "";
   };

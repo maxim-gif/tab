@@ -54,7 +54,8 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
     let newItem = {...findItem[0]}
     const indexElement = newData.findIndex (item => item.name === curse)
     if (indexElement !== -1) {
-      newData[indexElement].totalCounter += 1 
+      // newData[indexElement].totalCounter += 1 
+      console.log(newData[indexElement]);
     } else {
       newItem.completedCounter = 0
       newItem.totalCounter = 0

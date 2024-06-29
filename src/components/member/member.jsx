@@ -7,11 +7,11 @@ import { Member3Subscriber } from "../reload/member3.js";
 import { Member4Subscriber } from "../reload/member4.js";
 import { doneCurse, Delete, addCurse } from "../../api";
 import { useSelector } from "react-redux";
-import { useState, useEffect} from "react";
+import { useState} from "react";
 import { useDispatch } from "react-redux";
 import { setCursesActive } from "../../store/slice/slice.js";
 
-export const Member = ({ id, moderatorsAccess, name, container }) => {
+export const Member = ({ id, moderatorsAccess, name, }) => {
 
   
 
@@ -30,12 +30,7 @@ export const Member = ({ id, moderatorsAccess, name, container }) => {
 
   const list = [dataMember1, dataMember2, dataMember3, dataMember4];
 
-  // useEffect(() => {
-  //   if (list[id].length > 22) {
-  //     container.current.scrollTop = container.current.scrollHeight
-  //   }
-	// // eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, [list[id]])
+
 
   const deleteCurse = (index) => {
     let newData;
@@ -57,7 +52,8 @@ export const Member = ({ id, moderatorsAccess, name, container }) => {
     }
     const findItem = curses.filter((item) => item.name === curse);
     newData.push(findItem[0]);
-    addCurse(id, newData);
+    console.log(findItem[0]);
+    // addCurse(id, newData);
     document.getElementById(selectElement[id]).value = "";
   };
 

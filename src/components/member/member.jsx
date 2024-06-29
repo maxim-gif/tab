@@ -30,12 +30,12 @@ export const Member = ({ id, moderatorsAccess, name, container }) => {
 
   const list = [dataMember1, dataMember2, dataMember3, dataMember4];
 
-  useEffect(() => {
-    if (list[id].length > 22) {
-      container.current.scrollTop = container.current.scrollHeight
-    }
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [list[id]])
+  // useEffect(() => {
+  //   if (list[id].length > 22) {
+  //     container.current.scrollTop = container.current.scrollHeight
+  //   }
+	// // eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, [list[id]])
 
   const deleteCurse = (index) => {
     let newData;

@@ -52,9 +52,14 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
     }
     const findItem = curses.filter((item) => item.name === curse);
     let newItem = {...findItem[0]}
-    newItem.completedCounter = 0
-    newItem.totalCounter = 0
-    newData.push(newItem);
+    if (newData.find(item => item.name === curse)) {
+      
+    } else {
+      newItem.completedCounter = 0
+      newItem.totalCounter = 0
+      newData.push(newItem);
+    }
+    
     console.log(newItem);
     console.log(newData);
     // addCurse(id, newData);

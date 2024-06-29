@@ -56,7 +56,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
     if (indexElement !== -1) {
      const newArr = newData.map( item => {
         if (item.name === curse) {
-          return { ...item, totalCounter: +1 };
+          return { ...item, totalCounter: newData[indexElement].totalCounter + 1 };
         }
         return item
       })

@@ -91,7 +91,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
       }
       return item
     })
-    console.log(newArr);
+    addCurse(id, newArr);
   }
 
   return (

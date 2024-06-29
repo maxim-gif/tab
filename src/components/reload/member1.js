@@ -6,17 +6,24 @@ import { getDatabase, ref, onValue } from 'firebase/database';
 
 export const Member1Subscriber = () => {
  
-  const dataLengthRef = useRef(0);
+  const sumRef = useRef(0)
   const dispatch = useDispatch();
   useEffect(() => {
     const db = getDatabase();
     const dataRef = ref(db, 'member1/');
     const unsubscribe = onValue(dataRef, (snapshot) => {
       const data = snapshot.val();
-      const newDataLength = data?.length || -1;
+      let sum = 0;
+      if (data) {
+        data.forEach((item) => {
+          sum += item.totalCounter;
+        });
+      } else {
+        sum = -1
+      }
       dispatch(setMember1(data));
-      if (newDataLength > dataLengthRef.current) {
-        if (dataLengthRef.current !== 0) {
+      if (sum > sumRef.current) {
+        if (sumRef.current !== 0) {
           const name = window.localStorage.getItem("name")
           const members = JSON.parse(localStorage.getItem('members'));
           if (name === members[0]?.split(' & ')[0] || name === members[0]?.split(' & ')[1]) {
@@ -30,7 +37,7 @@ export const Member1Subscriber = () => {
           }
         }
       }
-      dataLengthRef.current = newDataLength;
+      sumRef.current = sum
     });
 
     return () => unsubscribe();

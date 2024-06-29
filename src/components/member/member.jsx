@@ -38,7 +38,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
     if (id === 1) newData = [...dataMember2];
     if (id === 2) newData = [...dataMember3];
     if (id === 3) newData = [...dataMember4];
-    console.log(newData[index]);
+
     if (newData[index].completedCounter === 0) {
       newData.splice(index, 1);
       Delete(id, newData);
@@ -77,7 +77,6 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
       newData.push(newItem);
       addCurse(id, newData);
     }
-    console.log(newData);
     document.getElementById(selectElement[id]).value = "";
   };
 

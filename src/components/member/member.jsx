@@ -52,8 +52,9 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
     }
     const findItem = curses.filter((item) => item.name === curse);
     let newItem = {...findItem[0]}
-    if (newData.find(item => item.name === curse)) {
-      
+    const indexElement = newData.findIndex (item => item.name === curse)
+    if (indexElement !== -1) {
+      newData[indexElement].totalCounter += 1 
     } else {
       newItem.completedCounter = 0
       newItem.totalCounter = 0
@@ -62,7 +63,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
     
     console.log(newItem);
     console.log(newData);
-    // addCurse(id, newData);
+    addCurse(id, newData);
     document.getElementById(selectElement[id]).value = "";
   };
 

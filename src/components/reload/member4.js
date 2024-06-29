@@ -4,17 +4,24 @@ import { setMember4} from '../../store/slice/slice';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
 export const Member4Subscriber = () => {
-  const dataLengthRef3 = useRef(0);
+  const sumRef4 = useRef(0)
   const dispatch = useDispatch();
   useEffect(() => {
     const db = getDatabase();
     const dataRef = ref(db, 'member4/');
     const unsubscribe = onValue(dataRef, (snapshot) => {
       const data = snapshot.val();
-      const newDataLength = data?.length || -1;
+      let sum = 0;
+      if (data) {
+        data.forEach((item) => {
+          sum += item.totalCounter;
+        });
+      } else {
+        sum = -1
+      }
       dispatch(setMember4(data));
-      if (newDataLength > dataLengthRef3.current) {
-        if (dataLengthRef3.current !== 0) {
+      if (sum > sumRef4.current) {
+        if (sumRef4.current !== 0) {
           const name = window.localStorage.getItem("name")
           const members = JSON.parse(localStorage.getItem('members'));
           if (name === members[3]?.split(' & ')[0] || name === members[3]?.split(' & ')[1]) {
@@ -28,7 +35,7 @@ export const Member4Subscriber = () => {
           }
         }
       }
-      dataLengthRef3.current = newDataLength;
+      sumRef4.current = sum
     });
 
     return () => unsubscribe();

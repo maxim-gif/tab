@@ -5,19 +5,26 @@ import { getDatabase, ref, onValue } from 'firebase/database';
 
 
 export const Member3Subscriber = () => {
-  const dataLengthRef2 = useRef(0);
+  const sumRef3 = useRef(0)
   const dispatch = useDispatch();
   useEffect(() => {
     const db = getDatabase();
     const dataRef = ref(db, 'member3/');
     const unsubscribe = onValue(dataRef, (snapshot) => {
       const data = snapshot.val();
-      const newDataLength = data?.length || -1;
+      let sum = 0;
+      if (data) {
+        data.forEach((item) => {
+          sum += item.totalCounter;
+        });
+      } else {
+        sum = -1
+      }
       dispatch(setMember3(data));
-      if (newDataLength > dataLengthRef2.current) {
+      if (sum > sumRef3.current) {
         const name = window.localStorage.getItem("name")
         const members = JSON.parse(localStorage.getItem('members'));
-        if (dataLengthRef2.current !== 0) {
+        if (sumRef3.current !== 0) {
           if (name === members[2]?.split(' & ')[0] || name === members[2]?.split(' & ')[1]) {
             const not3 = new Notification("Добавлено новое проклятие", {
               body: data[data?.length - 1].name,
@@ -29,7 +36,7 @@ export const Member3Subscriber = () => {
           }
         }
       }
-      dataLengthRef2.current = newDataLength;
+      sumRef3.current = sum
     });
 
     return () => unsubscribe();

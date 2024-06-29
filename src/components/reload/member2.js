@@ -4,20 +4,26 @@ import { setMember2} from '../../store/slice/slice';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
 export const Member2Subscriber = () => {
-  const dataLengthRef1 = useRef(0);
+  const sumRef2 = useRef(0)
   const dispatch = useDispatch();
   useEffect(() => {
     const db = getDatabase();
     const dataRef = ref(db, 'member2/');
     const unsubscribe = onValue(dataRef, (snapshot) => {
       const data = snapshot.val();
-      const newDataLength = data?.length || -1;
-     
+      let sum = 0;
+      if (data) {
+        data.forEach((item) => {
+          sum += item.totalCounter;
+        });
+      } else {
+        sum = -1
+      }
       dispatch(setMember2(data));
-      if (newDataLength > dataLengthRef1.current) {
-        if (dataLengthRef1.current !== 0) {
+      if (sum > sumRef2.current) {
+        if (sumRef2.current !== 0) {
           const name = window.localStorage.getItem("name")
-        const members = JSON.parse(localStorage.getItem('members'));
+          const members = JSON.parse(localStorage.getItem('members'));
         if (name === members[1]?.split(' & ')[0] || name === members[1]?.split(' & ')[1]) {
          const not2 =  new Notification("Добавлено новое проклятие", {
             body: data[data?.length - 1].name,
@@ -29,7 +35,7 @@ export const Member2Subscriber = () => {
         }
         }
       }
-      dataLengthRef1.current = newDataLength;
+      sumRef2.current = sum
     });
 
     return () => unsubscribe();

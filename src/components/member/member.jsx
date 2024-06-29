@@ -160,7 +160,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
                 <img className="curseIcon" src={item.image.icon} alt=""></img>
               )}
             </span>
-            {moderatorsAccess && (
+            {moderatorsAccess && item.totalCounter !== item.completedCounter && (
               <div
                 className="done"
                 onClick={() => {
@@ -168,7 +168,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
                 }}
               ></div>
             )}
-            {moderatorsAccess && (
+            {moderatorsAccess && item.totalCounter !== item.completedCounter && (
               <div
                 className="delete"
                 onClick={() => {

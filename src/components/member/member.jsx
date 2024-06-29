@@ -82,6 +82,10 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
     setFocusCurse("");
   };
 
+  const completedCurseAdd = (id) => {
+    console.log(id);
+  }
+
   return (
     <div className="member">
       {id === 0 && <Member1Subscriber />}
@@ -152,7 +156,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
               <div
                 className="done"
                 onClick={() => {
-                  doneCurse(id, index, !item.status);
+                  completedCurseAdd(index);
                 }}
               ></div>
             )}

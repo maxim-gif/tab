@@ -67,10 +67,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
       newData.push(newItem);
       addCurse(id, newData);
     }
-    
-
     console.log(newData);
-    
     document.getElementById(selectElement[id]).value = "";
   };
 
@@ -146,7 +143,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
                 showDescription(e, item.name);
               }}
             >
-              {item.name}
+              {item.name} {item.completedCounter}/{item.totalCounter}
               {item?.image?.icon && (
                 <img className="curseIcon" src={item.image.icon} alt=""></img>
               )}

@@ -62,6 +62,7 @@ export const Main = () => {
   useEffect(() => {
     if (code !== undefined) {
       auth(code);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       code = undefined;
     } else {
       if (window.localStorage.getItem("access_token")) {

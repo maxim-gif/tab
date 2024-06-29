@@ -29,8 +29,15 @@
   align-items: flex-end;
 }
 .containerApp{
+  overflow-x: auto;
   height: 100vh;
+}
+:root {
   background-image: url("/public/bgHeader.jpg");
+}
+.containerApp::-webkit-scrollbar {
+  display: none;
+  
 }
 .header {
   display: flex;

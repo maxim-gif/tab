@@ -79,7 +79,7 @@ export const Member = ({ id, moderatorsAccess, name }) => {
           >
             <h2>{focusCurse[0].name}</h2>
             <span>{focusCurse[0].title}</span>
-            {focusCurse[0].image && (
+            {/* {focusCurse[0].image && (
               <div>
                 {focusCurse[0].image.img && (
                   <img
@@ -89,7 +89,7 @@ export const Member = ({ id, moderatorsAccess, name }) => {
                   ></img>
                 )}
               </div>
-            )}
+            )} */}
           </div>
         </div>
       )}

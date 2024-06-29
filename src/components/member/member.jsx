@@ -5,7 +5,7 @@ import { Member1Subscriber } from "../reload/member1.js";
 import { Member2Subscriber } from "../reload/member2.js";
 import { Member3Subscriber } from "../reload/member3.js";
 import { Member4Subscriber } from "../reload/member4.js";
-import { doneCurse, Delete, addCurse } from "../../api";
+import {Delete, addCurse } from "../../api";
 import { useSelector } from "react-redux";
 import { useState} from "react";
 import { useDispatch } from "react-redux";
@@ -168,7 +168,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
                 }}
               ></div>
             )}
-            {moderatorsAccess && item.totalCounter !== item.completedCounter && (
+            {moderatorsAccess && (
               <div
                 className="delete"
                 onClick={() => {

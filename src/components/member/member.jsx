@@ -51,7 +51,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
       newData = [...list[id]];
     }
     const findItem = curses.filter((item) => item.name === curse);
-    let newItem = findItem[0]
+    let newItem = {...findItem[0]}
     newItem.completedCounter = 0
     newItem.totalCounter = 0
     newData.push(newItem);

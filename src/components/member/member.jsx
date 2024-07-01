@@ -49,8 +49,8 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
       newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
       addCurse(0, newData);
     }
- 
-  }, [dataUncompleted1,dataMember1]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataMember1]);
 
 
   const deleteCurse = (index) => {
@@ -74,19 +74,20 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
     }
   };
 
-  const handleAddCurse = async(curse, id) => {
-
-    let newUncompl
+  const handleAddUncompleted = (curse) => {
+    console.log(curse);
+    let newUnc
     if (dataUncompleted1 === null) {
-      newUncompl = []
+      newUnc = []
     } else {
-      newUncompl = [...dataUncompleted1]
+      newUnc = [...dataUncompleted1]
     }
-    newUncompl.push(curse)
+    newUnc.push(curse)
 
-   await addListUncompletedCurse(newUncompl)
+   addListUncompletedCurse(newUnc)
+  }
 
-
+  const handleAddCurse = async(curse, id) => {
     let newData;
     if (list[id] === null) {
       newData = [];
@@ -133,19 +134,23 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
       }
       return item
     })
-    const newUncompleted = [...dataUncompleted1]
-
-    const indexCurse = newUncompleted.indexOf(newData[index].name);
-    if (index > -1) {
-      newUncompleted.splice(indexCurse, 1);
-    }
-    addListUncompletedCurse(newUncompleted)
+ 
     addCurse(id, newArr);
+  }
+
+  const deleteCurseUncompleted = (curse) => {
+       const newUnc = [...dataUncompleted1]
+
+    const index = newUnc.indexOf(curse);
+    if (index > -1) {
+      newUnc.splice(index, 1);
+    }
+    addListUncompletedCurse(newUnc)
   }
 
   return (
     <div className="member">
-      {id === 0 && <Member1Subscriber />}
+      {id === 0 && <Member1Subscriber dataMember1={dataMember1}/>}
       {id === 1 && <Member2Subscriber />}
       {id === 2 && <Member3Subscriber />}
       {id === 3 && <Member4Subscriber />}
@@ -216,10 +221,11 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
                 className="done"
                 onClick={() => {
                   completedCurseAdd(index);
+                  deleteCurseUncompleted(item.name)
                 }}
               ></div>
             )}
-            {moderatorsAccess && (
+            {moderatorsAccess &&(
               <div
                 className="delete"
                 onClick={() => {
@@ -231,7 +237,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
         ))}
       </div>
       {moderatorsAccess && (
-        <SelectCurse handleAddCurse={handleAddCurse} id={id} />
+        <SelectCurse handleAddCurse={handleAddCurse} handleAddUncompleted={handleAddUncompleted} id={id} />
       )}
     </div>
   );

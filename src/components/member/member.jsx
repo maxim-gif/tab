@@ -225,14 +225,14 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
                 }}
               ></div>
             )}
-            {moderatorsAccess &&(
+            {/* {moderatorsAccess &&(
               <div
                 className="delete"
                 onClick={() => {
                   deleteCurse(index);
                 }}
               ></div>
-            )}
+            )} */}
           </div>
         ))}
       </div>

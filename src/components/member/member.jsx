@@ -5,9 +5,10 @@ import { Member1Subscriber } from "../reload/member1.js";
 import { Member2Subscriber } from "../reload/member2.js";
 import { Member3Subscriber } from "../reload/member3.js";
 import { Member4Subscriber } from "../reload/member4.js";
-import {Delete, addCurse } from "../../api";
+import { UncompletedSubscriber1 } from "../reload/uncompleted1.js";
+import {Delete, addCurse, addListUncompletedCurse } from "../../api";
 import { useSelector } from "react-redux";
-import { useState} from "react";
+import { useState,useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { setCursesActive } from "../../store/slice/slice.js";
 
@@ -27,9 +28,29 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
   const dataMember2 = useSelector((state) => state.table.member2);
   const dataMember3 = useSelector((state) => state.table.member3);
   const dataMember4 = useSelector((state) => state.table.member4);
+  const dataUncompleted1 = useSelector((state) => state.table.uncompleted1);
 
   const list = [dataMember1, dataMember2, dataMember3, dataMember4];
 
+  useEffect(() => {
+    if (dataMember1) {
+      let newUncompleted
+      if (dataUncompleted1 === null) {
+        newUncompleted = []
+      } else {
+       newUncompleted = [...dataUncompleted1]
+      }
+      const newData = [...dataMember1]
+      const sort = [...new Set(newUncompleted)]
+      const getIndex = (name) => {
+        const index = sort.indexOf(name);
+        return index === -1 ? Infinity : index;
+      }
+      newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
+      addCurse(0, newData);
+    }
+ 
+  }, [dataUncompleted1,dataMember1]);
 
 
   const deleteCurse = (index) => {
@@ -53,7 +74,19 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
     }
   };
 
-  const handleAddCurse = (curse, id) => {
+  const handleAddCurse = async(curse, id) => {
+
+    let newUncompl
+    if (dataUncompleted1 === null) {
+      newUncompl = []
+    } else {
+      newUncompl = [...dataUncompleted1]
+    }
+    newUncompl.push(curse)
+
+   await addListUncompletedCurse(newUncompl)
+
+
     let newData;
     if (list[id] === null) {
       newData = [];
@@ -77,6 +110,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
       newData.push(newItem);
       addCurse(id, newData);
     }
+
     document.getElementById(selectElement[id]).value = "";
   };
 
@@ -99,6 +133,13 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
       }
       return item
     })
+    const newUncompleted = [...dataUncompleted1]
+
+    const indexCurse = newUncompleted.indexOf(newData[index].name);
+    if (index > -1) {
+      newUncompleted.splice(indexCurse, 1);
+    }
+    addListUncompletedCurse(newUncompleted)
     addCurse(id, newArr);
   }
 
@@ -108,6 +149,7 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
       {id === 1 && <Member2Subscriber />}
       {id === 2 && <Member3Subscriber />}
       {id === 3 && <Member4Subscriber />}
+      <UncompletedSubscriber1/>
       {activeCurse === name && (
         <div className="popUp"  onClick={() => {closeDescription();}}>
           <div

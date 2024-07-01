@@ -7,6 +7,7 @@ const initialState = {
     member2: [],
     member3: [],
     member4: [],
+    uncompleted1: [],
     curses: [],
     nameMembers:[],
     history:[],
@@ -36,6 +37,9 @@ export const appSlice = createSlice({
     setMember4: (state, action) => {
       state.member4 = action.payload;
     },
+    setUncompleted1: (state, action) => { 
+      state.uncompleted1 = action.payload;
+    },
     setCurses: (state, action) => {
       state.curses = action.payload;
     },
@@ -51,6 +55,6 @@ export const appSlice = createSlice({
   },
 });
 
-export const { setParticipant, setModerators,setMember1,setMember2,setMember3,setMember4,setCurses,setNameMembers,setCursesActive,setHistory } = appSlice.actions;
+export const { setParticipant, setModerators,setMember1,setMember2,setMember3,setMember4,setCurses,setNameMembers,setCursesActive,setHistory,setUncompleted1 } = appSlice.actions;
 
 export default appSlice.reducer;

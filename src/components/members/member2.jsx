@@ -200,7 +200,7 @@ export const Member2 = ({ moderatorsAccess, name }) => {
                 <img className="curseIcon" src={item.image.icon} alt=""></img>
               )}
             </span>
-            {item.totalCounter !== item.completedCounter && (
+            {moderatorsAccess && item.totalCounter !== item.completedCounter && (
               <div
                 className="done"
                 onClick={() => {
@@ -220,7 +220,7 @@ export const Member2 = ({ moderatorsAccess, name }) => {
           </div>
         ))}
       </div>
-      {
+      {moderatorsAccess &&
          <SelectCurse
          handleAddCurse={handleAddCurse}
          handleAddUncompleted={handleAddUncompleted}

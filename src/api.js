@@ -247,7 +247,7 @@ export async function getUserData(token) {
     }
   }) 
   const user = await userData.json()
-  return user.data
+  return user
 }
 
 

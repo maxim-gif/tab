@@ -247,11 +247,6 @@ export async function getUserData(token) {
     }
   }) 
   const user = await userData.json()
-  if (user.status === 401) {
-   const newToken = await refreshToken()
-   getUserData(newToken.access_token)
-  }
-  console.log(user);
   return user.data
 }
 

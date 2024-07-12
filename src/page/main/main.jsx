@@ -36,6 +36,7 @@ export const Main = () => {
   const getUser = async () => {
     const token = window.localStorage.getItem("access_token");
     const userData = await getUserData(token);
+    console.log(userData);
     if (userData) {
       setName(userData[0].display_name);
       window.localStorage.setItem("name", userData[0].display_name);

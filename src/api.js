@@ -231,6 +231,8 @@ export async function refreshToken() {
   body: params
 })
 const token = await getToken.json()
+window.localStorage.setItem("access_token", token.access_token);
+window.localStorage.setItem("refresh_token", token.refresh_token);
 return token
 }
 
@@ -245,6 +247,10 @@ export async function getUserData(token) {
     }
   }) 
   const user = await userData.json()
+  if (user.status === 401) {
+   const newToken = await refreshToken()
+   getUserData(newToken.access_token)
+  }
   console.log(user);
   return user.data
 }

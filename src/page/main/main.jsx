@@ -1,6 +1,6 @@
 import "./main.css";
 import { useState, useEffect } from "react";
-import { getUserToken, getUserData, addUser,refreshToken } from "../../api";
+import { getUserToken, getUserData, addUser } from "../../api";
 import { DataSubscriber } from "../../components/reload/reload";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -60,13 +60,6 @@ export const Main = () => {
     } else {
       if (window.localStorage.getItem("access_token")) {
         getUser();
-      }
-      else {
-        refreshToken().then((res) => {
-          window.localStorage.setItem("access_token", res.access_token);
-          window.localStorage.setItem("refresh_token", res.refresh_token);
-          getUser();
-        })
       }
     }
   }, []);

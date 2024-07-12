@@ -63,7 +63,9 @@ export const Main = () => {
       }
       else {
         refreshToken().then((res) => {
-          console.log(res);
+          window.localStorage.setItem("access_token", res.access_token);
+          window.localStorage.setItem("refresh_token", res.refresh_token);
+          getUser();
         })
       }
     }

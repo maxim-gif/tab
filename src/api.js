@@ -231,7 +231,6 @@ export async function refreshToken() {
   body: params
 })
 const token = await getToken.json()
-console.log(token);
 return token
 }
 

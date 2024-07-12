@@ -62,7 +62,9 @@ export const Main = () => {
         getUser();
       }
       else {
-        refreshToken()
+        refreshToken().then((res) => {
+          console.log(res);
+        })
       }
     }
   }, []);

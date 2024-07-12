@@ -12,7 +12,6 @@ import { useState, useEffect } from "react";
 export const Member1 = ({ moderatorsAccess, name }) => {
 
 
-
   const [focusCurse, setFocusCurse] = useState("");
   const [activeCurse, setActiveCurse] = useState("");
 

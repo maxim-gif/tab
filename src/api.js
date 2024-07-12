@@ -218,6 +218,23 @@ const token = await getToken.json()
 return token
 }
 
+export async function refreshToken() {
+  const url = 'https://id.twitch.tv/oauth2/token';
+  const params = new URLSearchParams();
+  params.append('client_id', '9tme6blew754pa56v75lf5mgqg0iro');
+  params.append('client_secret', 'ls1nk9j93maxa6g94j9fckch0m8you');
+  params.append('grant_type', 'refresh_token');
+  params.append('refresh_token', window.localStorage.getItem("refresh_token"));
+
+ const getToken = await fetch(url, {
+  method: 'POST',
+  body: params
+})
+const token = await getToken.json()
+console.log(token);
+return token
+}
+
 export async function getUserData(token) {
   const url1 = 'https://api.twitch.tv/helix/users';
 
@@ -231,6 +248,8 @@ export async function getUserData(token) {
   const user = await userData.json()
   return user.data
 }
+
+
 
 export async function addUser(id,name) { 
   try {

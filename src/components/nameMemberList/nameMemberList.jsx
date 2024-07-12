@@ -1,7 +1,7 @@
 import "./nameMemberList.css";
 import { useSelector } from "react-redux";
 import { MembersSubscriber } from "../reload/membersName";
-import { addNameMembers } from "../../api";
+import { addNameMembers,addCurse,addListUncompletedCurse } from "../../api";
 import { useState} from "react";
 
 export const NameMembersList = ({setMessage}) => {
@@ -26,11 +26,13 @@ export const NameMembersList = ({setMessage}) => {
     }
 
     const deleteMember = async(index) => {
-        let newData = [...nameMembers]
-        newData.splice(index,1)
-        console.log(newData);
-        const message = await addNameMembers(newData)
-        setMessage(message)
+        // let newData = [...nameMembers]
+        // newData.splice(index,1)
+        // console.log(newData);
+        // const message = await addNameMembers(newData)
+        // setMessage(message)
+        addCurse(index,[])
+        addListUncompletedCurse(index,[])
     }
 
     const edit = (index,item) => {

@@ -1,32 +1,25 @@
 import "./main.css";
 import { useState, useEffect } from "react";
-import {
-  getUserToken,
-  getUserData,
-  addUser,
-} from "../../api";
+import { getUserToken, getUserData, addUser } from "../../api";
 import { DataSubscriber } from "../../components/reload/reload";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Member } from "../../components/member/member";
+import { Member1 } from "../../components/members/member1";
+import { Member2 } from "../../components/members/member2";
+import { Member3 } from "../../components/members/member3";
+import { Member4 } from "../../components/members/member4";
 import { MembersSubscriber } from "../../components/reload/membersName";
 import { ModeratorSubscriber } from "../../components/reload/moderator";
 
-
 export const Main = () => {
-
   const navigate = useNavigate();
- 
 
   let dataModerators = useSelector((state) => state.table.moderators);
   let nameMembers = useSelector((state) => state.table.nameMembers);
-  
-
 
   const [name, setName] = useState("");
   // const [member, setMember] = useState(1);
   const [moderatorsAccess, setModeratorsAccess] = useState(false);
-
 
   const hash = document.location.href;
   const splitHash = hash.split("&")[0];
@@ -38,15 +31,14 @@ export const Main = () => {
     } else {
       setModeratorsAccess(false);
     }
-  }, [dataModerators,name]);
-
+  }, [dataModerators, name]);
 
   const getUser = async () => {
     const token = window.localStorage.getItem("access_token");
     const userData = await getUserData(token);
     if (userData) {
       setName(userData[0].display_name);
-      window.localStorage.setItem("name",userData[0].display_name);
+      window.localStorage.setItem("name", userData[0].display_name);
     }
   };
 
@@ -72,7 +64,6 @@ export const Main = () => {
     }
   }, []);
 
- 
   return (
     <div className="containerApp">
       <div className="header">
@@ -89,28 +80,41 @@ export const Main = () => {
             <a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=9tme6blew754pa56v75lf5mgqg0iro&redirect_uri=https://tab-jet.vercel.app&scope=user:read:email">
               <div className="twitch"></div>
             </a>
-            
           </div>
           <div className="moreBox">
             <span>Подробнее:</span>
-           <div className="more" onClick={() => {navigate("/info");}} ></div>
+            <div
+              className="more"
+              onClick={() => {
+                navigate("/info");
+              }}
+            ></div>
           </div>
           <div className="historyBox">
             <span>История МИ:</span>
-           <div className="historyPng" onClick={() => {navigate("/history");}} ></div>
+            <div
+              className="historyPng"
+              onClick={() => {
+                navigate("/history");
+              }}
+            ></div>
           </div>
         </div>
       </div>
-      {!nameMembers[3] ? (<span class="loader"></span>):(<div className="memberList">
-        <Member id={0} moderatorsAccess={moderatorsAccess} name={nameMembers[0]}/>
-        <Member id={1} moderatorsAccess={moderatorsAccess} name={nameMembers[1]}/>
-        <Member id={2} moderatorsAccess={moderatorsAccess} name={nameMembers[2]}/>
-        <Member id={3} moderatorsAccess={moderatorsAccess} name={nameMembers[3]}/>
-      </div>)}
-      
+      {!nameMembers[3] ? (
+        <span className="loader"></span>
+      ) : (
+        <div className="memberList">
+          <Member1 moderatorsAccess={moderatorsAccess} name={nameMembers[0]} />
+          <Member2 moderatorsAccess={moderatorsAccess} name={nameMembers[1]} />
+          <Member3 moderatorsAccess={moderatorsAccess} name={nameMembers[2]} />
+          <Member4 moderatorsAccess={moderatorsAccess} name={nameMembers[3]} />
+        </div>
+      )}
+
       <DataSubscriber />
-      <MembersSubscriber/>
-      <ModeratorSubscriber/>
+      <MembersSubscriber />
+      <ModeratorSubscriber />
     </div>
   );
 };

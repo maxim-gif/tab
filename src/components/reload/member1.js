@@ -11,6 +11,7 @@ export const Member1Subscriber = () => {
   useEffect(() => {
     const db = getDatabase();
     const dataRef = ref(db, 'member1/');
+    console.log("1");
     const unsubscribe = onValue(dataRef, (snapshot) => {
       const data = snapshot.val();
       let sum = 0;

@@ -1,147 +1,138 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import "./member.css";
 import { SelectCurse } from "../list/list.js";
-import { Member1Subscriber } from "../reload/member1.js";
-import { Member2Subscriber } from "../reload/member2.js";
 import { Member3Subscriber } from "../reload/member3.js";
-import { Member4Subscriber } from "../reload/member4.js";
-import { UncompletedSubscriber1 } from "../reload/uncompleted1.js";
-import {addCurse, addListUncompletedCurse } from "../../api";
+import { UncompletedSubscriber3 } from "../reload/uncompleted3.js";
+import { addCurse, addListUncompletedCurse } from "../../api.js";
 import { useSelector } from "react-redux";
-import { useState,useEffect} from "react";
-import { useDispatch } from "react-redux";
-import { setCursesActive } from "../../store/slice/slice.js";
+import { useState, useEffect } from "react";
 
-export const Member = ({ id, moderatorsAccess, name, }) => {
 
-  
+export const Member3 = ({ moderatorsAccess, name }) => {
 
-  const selectElement = ["mySelect1", "mySelect2", "mySelect3", "mySelect4"];
-  const dispatch = useDispatch();
+
 
   const [focusCurse, setFocusCurse] = useState("");
-
+  const [activeCurse, setActiveCurse] = useState("");
 
   const curses = useSelector((state) => state.table.curses);
-  const activeCurse = useSelector((state) => state.table.activeIdCurse);
-  const dataMember1 = useSelector((state) => state.table.member1);
-  const dataMember2 = useSelector((state) => state.table.member2);
-  const dataMember3 = useSelector((state) => state.table.member3);
-  const dataMember4 = useSelector((state) => state.table.member4);
-  const dataUncompleted1 = useSelector((state) => state.table.uncompleted1);
 
-  const list = [dataMember1, dataMember2, dataMember3, dataMember4];
+  const dataMember3 = useSelector((state) => state.table.member3);
+
+  const dataUncompleted3 = useSelector((state) => state.table.uncompleted3);
 
   useEffect(() => {
-    
-    if (dataMember1) {
-
-      let newUncompleted
-      if (dataUncompleted1 === null) {
-        newUncompleted = []
+    if (dataMember3) {
+      let newUncompleted;
+      if (dataUncompleted3 === null) {
+        newUncompleted = [];
       } else {
-       newUncompleted = [...dataUncompleted1]
+        newUncompleted = [...dataUncompleted3];
       }
-      const newData = [...dataMember1]
-      const sort = [...new Set(newUncompleted)]
+      const newData = [...dataMember3];
+      const sort = [...new Set(newUncompleted)];
       const getIndex = (name) => {
         const index = sort.indexOf(name);
         return index === -1 ? Infinity : index;
-      }
+      };
       newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
-      addCurse(0, newData);
+      addCurse(2, newData);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataMember1]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataMember3]);
 
-
-
-
+  
   const handleAddUncompleted = (curse) => {
-    const list = ["uncompleted1/","uncompleted2/","uncompleted3/","uncompleted4/"]
-    console.log(curse);
-    let newUnc
-    if (list[id] === null) {
-      newUnc = []
+    let newUnc;
+    if (dataUncompleted3 === null) {
+      newUnc = [];
     } else {
-      newUnc = [...list[id]]
+      newUnc = [...dataUncompleted3];
     }
-    newUnc.push(curse)
+    newUnc.push(curse);
 
-   addListUncompletedCurse(id,newUnc)
-  }
+    addListUncompletedCurse(2, newUnc);
+  };
 
-  const handleAddCurse = async(curse, id) => {
+  const handleAddCurse = async (curse) => {
     let newData;
-    if (list[id] === null) {
+    if (dataMember3 === null) {
       newData = [];
     } else {
-      newData = [...list[id]];
+      newData = [...dataMember3];
     }
     const findItem = curses.filter((item) => item.name === curse);
-    let newItem = {...findItem[0]}
-    const indexElement = newData.findIndex (item => item.name === curse)
+    let newItem = { ...findItem[0] };
+    const indexElement = newData.findIndex((item) => item.name === curse);
     if (indexElement !== -1) {
-     const newArr = newData.map( item => {
+      const newArr = newData.map((item) => {
         if (item.name === curse) {
-          return { ...item, totalCounter: newData[indexElement].totalCounter + 1 };
+          return {
+            ...item,
+            totalCounter: newData[indexElement].totalCounter + 1,
+          };
         }
-        return item
-      })
-      addCurse(id, newArr);
+        return item;
+      });
+      addCurse(2, newArr);
     } else {
-      newItem.completedCounter = 0
-      newItem.totalCounter = 1
+      newItem.completedCounter = 0;
+      newItem.totalCounter = 1;
       newData.push(newItem);
-      addCurse(id, newData);
+      addCurse(2, newData);
     }
 
-    document.getElementById(selectElement[id]).value = "";
+    document.getElementById("mySelect3").value = "";
   };
 
   const showDescription = (e, index) => {
     const rez = curses.filter((item) => item.name === index);
     setFocusCurse(rez);
-    dispatch(setCursesActive(name));
+    setActiveCurse(name)
   };
 
   const closeDescription = () => {
-    dispatch(setCursesActive(""));
+
     setFocusCurse("");
+    setActiveCurse("")
   };
 
   const completedCurseAdd = (index) => {
-    let newData = [...list[id]]
-    const newArr = newData.map( item => {
+    let newData = [...dataMember3];
+    const newArr = newData.map((item) => {
       if (item.name === newData[index].name) {
-        return { ...item, completedCounter: newData[index].completedCounter + 1 };
+        return {
+          ...item,
+          completedCounter: newData[index].completedCounter + 1,
+        };
       }
-      return item
-    })
- 
-    addCurse(id, newArr);
-  }
+      return item;
+    });
+
+    addCurse(2, newArr);
+  };
 
   const deleteCurseUncompleted = (curse) => {
-    const list = ["uncompleted1/","uncompleted2/","uncompleted3/","uncompleted4/"]
-    const newUnc = [...list[id]]
+    const newUnc = [...dataUncompleted3];
 
     const index = newUnc.indexOf(curse);
     if (index > -1) {
       newUnc.splice(index, 1);
     }
-    addListUncompletedCurse(id,newUnc)
-  }
+    addListUncompletedCurse(2, newUnc);
+  };
 
   return (
     <div className="member">
-      {id === 0 && <Member1Subscriber dataMember1={dataMember1}/>}
-      {id === 1 && <Member2Subscriber />}
-      {id === 2 && <Member3Subscriber />}
-      {id === 3 && <Member4Subscriber />}
-      <UncompletedSubscriber1/>
+      <Member3Subscriber/>
+      <UncompletedSubscriber3/>
       {activeCurse === name && (
-        <div className="popUp"  onClick={() => {closeDescription();}}>
+        <div
+          className="popUp"
+          onClick={() => {
+            closeDescription();
+          }}
+        >
           <div
             className="description"
             // style={{
@@ -184,12 +175,18 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
         className="curseList"
         style={{ gridTemplateRows: `repeat(5, 25px)` }}
       >
-        {list[id]?.map((item, index) => (
+        {dataMember3?.map((item, index) => (
           <div
             title={item.title}
             key={index}
             className="curse"
-            style={{background:`linear-gradient(90deg, rgba(104,241,62,1) ${Math.round(100/item.totalCounter*item.completedCounter)}%, rgba(254,255,254,1) ${Math.round(100/item.totalCounter*item.completedCounter)}%)`}}
+            style={{
+              background: `linear-gradient(90deg, rgba(104,241,62,1) ${Math.round(
+                (100 / item.totalCounter) * item.completedCounter
+              )}%, rgba(254,255,254,1) ${Math.round(
+                (100 / item.totalCounter) * item.completedCounter
+              )}%)`,
+            }}
           >
             <span
               onClick={(e) => {
@@ -201,12 +198,12 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
                 <img className="curseIcon" src={item.image.icon} alt=""></img>
               )}
             </span>
-            {item.totalCounter !== item.completedCounter && (
+            {moderatorsAccess && item.totalCounter !== item.completedCounter && (
               <div
                 className="done"
                 onClick={() => {
                   completedCurseAdd(index);
-                  deleteCurseUncompleted(item.name)
+                  deleteCurseUncompleted(item.name);
                 }}
               ></div>
             )}
@@ -221,9 +218,13 @@ export const Member = ({ id, moderatorsAccess, name, }) => {
           </div>
         ))}
       </div>
-      {(
-        <SelectCurse handleAddCurse={handleAddCurse} handleAddUncompleted={handleAddUncompleted} id={id} />
-      )}
+      {moderatorsAccess &&
+         <SelectCurse
+         handleAddCurse={handleAddCurse}
+         handleAddUncompleted={handleAddUncompleted}
+         id={2}
+       />
+      }
     </div>
   );
 };

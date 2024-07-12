@@ -57,8 +57,9 @@ export async function getDataHistory() {
   const data = await response.json();
   return data;
 }
-export async function getListUncompleted() {
-  const response = await fetch(`https://table-d13fe-default-rtdb.firebaseio.com/uncompleted1.json`);
+export async function getListUncompleted(id) {
+  const members = ["uncompleted1","uncompleted2","uncompleted3","uncompleted4"]
+  const response = await fetch(`https://table-d13fe-default-rtdb.firebaseio.com/` + members[id] +`.json`);
   const data = await response.json();
   return data;
 }
@@ -77,10 +78,10 @@ export async function addDataHistory(data) {
   }
 }
 
-export async function addListUncompletedCurse(data) {
-  
+export async function addListUncompletedCurse(id,data) {
+  const list = ["uncompleted1/","uncompleted2/","uncompleted3/","uncompleted4/"]
   try {
-      const userRef = ref(db, 'uncompleted1/');
+      const userRef = ref(db, list[id]);
       await set(userRef, data); 
   } catch (error) {
     return error.message

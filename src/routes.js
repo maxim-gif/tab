@@ -7,7 +7,7 @@ import { History } from "./page/history/history";
 import { useEffect } from "react";
 import { getDataMember,getCurses,getNameMembers,getDataHistory,getListUncompleted } from "./api";
 import { useDispatch } from 'react-redux';
-import { setMember1, setMember2,setMember3,setMember4,setCurses,setNameMembers,setHistory,setUncompleted1} from './store/slice/slice';
+import { setMember1, setMember2,setMember3,setMember4,setCurses,setNameMembers,setHistory,setUncompleted1,setUncompleted2} from './store/slice/slice';
 
 export const AppRoutes = () => {
 
@@ -22,8 +22,10 @@ export const AppRoutes = () => {
     dispatch(setMember3(data3));
     const data4 = await getDataMember(3);
     dispatch(setMember4(data4));
-    const dataUncompleted = await getListUncompleted();
+    const dataUncompleted = await getListUncompleted(0);
     dispatch(setUncompleted1(dataUncompleted));
+    const dataUncompleted2 = await getListUncompleted(1);
+    dispatch(setUncompleted2(dataUncompleted2));
     const curses = await getCurses();
     dispatch(setCurses(curses));
     const history = await getDataHistory();

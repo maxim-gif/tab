@@ -1,17 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    participant: [],
-    moderators: [],
-    member1: [],
-    member2: [],
-    member3: [],
-    member4: [],
-    uncompleted1: [],
-    curses: [],
-    nameMembers:[],
-    history:[],
-    activeIdCurse:''
+  participant: [],
+  moderators: [],
+  member1: [],
+  member2: [],
+  member3: [],
+  member4: [],
+  uncompleted1: [],
+  uncompleted2: [],
+  uncompleted3: [],
+  uncompleted4: [],
+  curses: [],
+  nameMembers: [],
+  history: [],
+  activeIdCurse: "",
 };
 
 export const appSlice = createSlice({
@@ -37,8 +40,17 @@ export const appSlice = createSlice({
     setMember4: (state, action) => {
       state.member4 = action.payload;
     },
-    setUncompleted1: (state, action) => { 
+    setUncompleted1: (state, action) => {
       state.uncompleted1 = action.payload;
+    },
+    setUncompleted2: (state, action) => {
+      state.uncompleted2 = action.payload;
+    },
+    setUncompleted3: (state, action) => {
+      state.uncompleted3 = action.payload;
+    },
+    setUncompleted4: (state, action) => {
+      state.uncompleted4 = action.payload;
     },
     setCurses: (state, action) => {
       state.curses = action.payload;
@@ -50,11 +62,26 @@ export const appSlice = createSlice({
       state.activeIdCurse = action.payload;
     },
     setNameMembers: (state, action) => {
-      state.nameMembers = action.payload === null ? []:action.payload;
+      state.nameMembers = action.payload === null ? [] : action.payload;
     },
   },
 });
 
-export const { setParticipant, setModerators,setMember1,setMember2,setMember3,setMember4,setCurses,setNameMembers,setCursesActive,setHistory,setUncompleted1 } = appSlice.actions;
+export const {
+  setParticipant,
+  setModerators,
+  setMember1,
+  setMember2,
+  setMember3,
+  setMember4,
+  setCurses,
+  setNameMembers,
+  setCursesActive,
+  setHistory,
+  setUncompleted1,
+  setUncompleted2,
+  setUncompleted3,
+  setUncompleted4,
+} = appSlice.actions;
 
 export default appSlice.reducer;

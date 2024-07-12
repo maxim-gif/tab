@@ -1,6 +1,6 @@
 import "./main.css";
 import { useState, useEffect } from "react";
-import { getUserToken, getUserData, addUser } from "../../api";
+import { getUserToken, getUserData, addUser,refreshToken } from "../../api";
 import { DataSubscriber } from "../../components/reload/reload";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -35,11 +35,16 @@ export const Main = () => {
 
   const getUser = async () => {
     const token = window.localStorage.getItem("access_token");
-    const userData = await getUserData(token);
+    let userData = await getUserData(token);
     console.log(userData);
-    if (userData) {
-      setName(userData[0].display_name);
-      window.localStorage.setItem("name", userData[0].display_name);
+    if (userData.status === 401) {
+      const newToken = await refreshToken()
+      userData = await getUserData(newToken)
+    }
+    console.log(userData);
+    if (userData.data) {
+      setName(userData.data[0].display_name);
+      window.localStorage.setItem("name", userData.data[0].display_name);
     }
   };
 

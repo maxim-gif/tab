@@ -233,7 +233,7 @@ export async function refreshToken() {
 const token = await getToken.json()
 window.localStorage.setItem("access_token", token.access_token);
 window.localStorage.setItem("refresh_token", token.refresh_token);
-return token
+return token.access_token
 }
 
 export async function getUserData(token) {

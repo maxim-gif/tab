@@ -22,7 +22,9 @@ export const Member2 = ({ moderatorsAccess, name }) => {
   const dataUncompleted2 = useSelector((state) => state.table.uncompleted2);
 
   useEffect(() => {
+   
     if (dataMember2) {
+        console.log("sdfgsdg");
       let newUncompleted;
       if (dataUncompleted2 === null) {
         newUncompleted = [];
@@ -198,12 +200,12 @@ export const Member2 = ({ moderatorsAccess, name }) => {
                 <img className="curseIcon" src={item.image.icon} alt=""></img>
               )}
             </span>
-            {moderatorsAccess && item.totalCounter !== item.completedCounter && (
+            {item.totalCounter !== item.completedCounter && (
               <div
                 className="done"
                 onClick={() => {
-                  completedCurseAdd(index);
-                  deleteCurseUncompleted(item.name);
+                    deleteCurseUncompleted(item.name);
+                    completedCurseAdd(index);
                 }}
               ></div>
             )}
@@ -218,7 +220,7 @@ export const Member2 = ({ moderatorsAccess, name }) => {
           </div>
         ))}
       </div>
-      {moderatorsAccess &&
+      {
          <SelectCurse
          handleAddCurse={handleAddCurse}
          handleAddUncompleted={handleAddUncompleted}

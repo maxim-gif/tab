@@ -202,8 +202,8 @@ export const Member3 = ({ moderatorsAccess, name }) => {
               <div
                 className="done"
                 onClick={() => {
-                  completedCurseAdd(index);
                   deleteCurseUncompleted(item.name);
+                    completedCurseAdd(index);
                 }}
               ></div>
             )}

@@ -245,6 +245,7 @@ export async function getUserData(token) {
     }
   }) 
   const user = await userData.json()
+  console.log(user);
   return user.data
 }
 

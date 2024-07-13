@@ -4,6 +4,7 @@ import { getUserToken, getUserData, addUser,refreshToken } from "../../api";
 import { DataSubscriber } from "../../components/reload/reload";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Member } from "../../components/member/member";
 import { Member1 } from "../../components/members/member1";
 import { Member2 } from "../../components/members/member2";
 import { Member3 } from "../../components/members/member3";
@@ -127,10 +128,10 @@ export const Main = () => {
         <span className="loader"></span>
       ) : (
         <div className="memberList">
-          <Member1 moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[0]} />
-          <Member2 moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[1]} />
-          <Member3 moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[2]} />
-          <Member4 moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[3]} />
+          <Member id={0} moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[0]} />
+          <Member id={1} moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[0]} />
+          <Member id={2} moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[0]} />
+          <Member id={3} moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[0]} />
           
         </div>
       )}

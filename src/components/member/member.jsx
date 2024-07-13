@@ -12,7 +12,7 @@ import { useState,useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { setCursesActive } from "../../store/slice/slice.js";
 
-export const Member = ({ id, moderatorsAccess, name, }) => {
+export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) => {
 
   
 

@@ -41,8 +41,8 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
 
   useEffect(() => {
     
-  
-
+    if (dataMember1) {
+console.log("xgdfgf");
       let newUncompleted
       if (dataUncompleted1 === null) {
         newUncompleted = []
@@ -57,9 +57,9 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
       }
       newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
       addCurse(0, newData);
-
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataMember1,dataUncompleted1]);
+  }, [dataMember1]);
 
 
 

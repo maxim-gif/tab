@@ -39,7 +39,7 @@ export const Member3 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
       addCurse(2, newData);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataUncompleted3,dataMember3]);
+  }, [dataMember3]);
 
   
   const handleAddUncompleted = (curse) => {

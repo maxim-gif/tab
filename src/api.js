@@ -216,6 +216,7 @@ export async function Delete(id, data) {
 
 
 export async function getUserToken(code) {
+  console.log(code);
   const url = 'https://id.twitch.tv/oauth2/token';
   const params = new URLSearchParams();
   params.append('client_id', '9tme6blew754pa56v75lf5mgqg0iro');

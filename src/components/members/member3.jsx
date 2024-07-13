@@ -1,16 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import "./member.css";
 import { SelectCurse } from "../list/list.js";
-import { Member3Subscriber } from "../reload/member3.js";
-import { UncompletedSubscriber3 } from "../reload/uncompleted3.js";
+import { Member3Subscriber } from "../reload/member1.js";
+import { UncompletedSubscriber3 } from "../reload/uncompleted1.js";
 import { addCurse, addListUncompletedCurse } from "../../api.js";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
 
+
 export const Member3 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
-
-
 
   const [focusCurse, setFocusCurse] = useState("");
   const [activeCurse, setActiveCurse] = useState("");
@@ -22,7 +21,6 @@ export const Member3 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
   const dataUncompleted3 = useSelector((state) => state.table.uncompleted3);
 
   useEffect(() => {
-    console.log("3");
     if (dataMember3) {
       let newUncompleted;
       if (dataUncompleted3 === null) {
@@ -42,7 +40,7 @@ export const Member3 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataMember3]);
 
-  
+
   const handleAddUncompleted = (curse) => {
     let newUnc;
     if (dataUncompleted3 === null) {
@@ -83,7 +81,7 @@ export const Member3 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
       addCurse(2, newData);
     }
 
-    document.getElementById("mySelect3").value = "";
+    document.getElementById('mySelect1').value = "";
   };
 
   const showDescription = (e, index) => {
@@ -120,13 +118,13 @@ export const Member3 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
     if (index > -1) {
       newUnc.splice(index, 1);
     }
-    addListUncompletedCurse(2, newUnc);
+    addListUncompletedCurse(0, newUnc);
   };
 
   return (
     <div className="member">
       <Member3Subscriber/>
-      <UncompletedSubscriber3/>
+      <UncompletedSubscriber3 />
       {activeCurse === name && (
         <div
           className="popUp"
@@ -204,7 +202,7 @@ export const Member3 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
                 className="done"
                 onClick={() => {
                   deleteCurseUncompleted(item.name);
-                    completedCurseAdd(index);
+                  completedCurseAdd(index);
                 }}
               ></div>
             )}
@@ -219,12 +217,12 @@ export const Member3 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
           </div>
         ))}
       </div>
-      {superModeratorsAccess &&
-         <SelectCurse
-         handleAddCurse={handleAddCurse}
-         handleAddUncompleted={handleAddUncompleted}
-         id={2}
-       />
+      {superModeratorsAccess && 
+        <SelectCurse
+          handleAddCurse={handleAddCurse}
+          handleAddUncompleted={handleAddUncompleted}
+          id={2}
+        />
       }
     </div>
   );

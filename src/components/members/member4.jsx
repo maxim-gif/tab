@@ -37,6 +37,7 @@ export const Member4 = ({ moderatorsAccess, superModeratorsAccess , name }) => {
         return index === -1 ? Infinity : index;
       };
       newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
+      console.log(newData);
       addCurse(3, newData);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

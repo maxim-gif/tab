@@ -101,7 +101,7 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
       newData.push(newItem);
       addCurse(id, newData);
     }
-
+console.log(id);
     document.getElementById(selectElement[id]).value = "";
   };
 

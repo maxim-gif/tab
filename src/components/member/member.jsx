@@ -51,6 +51,7 @@ console.log("xgdfgf");
       }
       const newData = [...dataMember1]
       const sort = [...new Set(newUncompleted)]
+      console.log(sort);
       const getIndex = (name) => {
         const index = sort.indexOf(name);
         return index === -1 ? Infinity : index;

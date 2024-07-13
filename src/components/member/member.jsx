@@ -39,47 +39,29 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
   const list = [dataMember1, dataMember2, dataMember3, dataMember4];
   const listUn = [dataUncompleted1, dataUncompleted2, dataUncompleted3, dataUncompleted4];
 
-  // useEffect(() => {
+  useEffect(() => {
     
-  //   if (dataMember1) {
+  
 
-  //     let newUncompleted
-  //     if (dataUncompleted1 === null) {
-  //       newUncompleted = []
-  //     } else {
-  //      newUncompleted = [...dataUncompleted1]
-  //     }
-  //     const newData = [...dataMember1]
-  //     const sort = [...new Set(newUncompleted)]
-  //     const getIndex = (name) => {
-  //       const index = sort.indexOf(name);
-  //       return index === -1 ? Infinity : index;
-  //     }
-  //     newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
-  //     addCurse(0, newData);
-  //   }
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [dataUncompleted1]);
+      let newUncompleted
+      if (dataUncompleted1 === null) {
+        newUncompleted = []
+      } else {
+       newUncompleted = [...dataUncompleted1]
+      }
+      const newData = [...dataMember1]
+      const sort = [...new Set(newUncompleted)]
+      const getIndex = (name) => {
+        const index = sort.indexOf(name);
+        return index === -1 ? Infinity : index;
+      }
+      newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
+      addCurse(0, newData);
 
-const reload = () => {
-  if (dataMember1) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataMember1,dataUncompleted1]);
 
-    let newUncompleted
-    if (dataUncompleted1 === null) {
-      newUncompleted = []
-    } else {
-     newUncompleted = [...dataUncompleted1]
-    }
-    const newData = [...dataMember1]
-    const sort = [...new Set(newUncompleted)]
-    const getIndex = (name) => {
-      const index = sort.indexOf(name);
-      return index === -1 ? Infinity : index;
-    }
-    newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
-    addCurse(0, newData);
-  }
-}
+
 
 
   const handleAddUncompleted = (curse) => {
@@ -121,7 +103,7 @@ const reload = () => {
       newData.push(newItem);
       addCurse(id, newData);
     }
-
+console.log(id);
     document.getElementById(selectElement[id]).value = "";
   };
 
@@ -136,7 +118,7 @@ const reload = () => {
     setFocusCurse("");
   };
 
-  const completedCurseAdd = async(index) => {
+  const completedCurseAdd = (index) => {
     let newData = [...list[id]]
     const newArr = newData.map( item => {
       if (item.name === newData[index].name) {
@@ -145,8 +127,7 @@ const reload = () => {
       return item
     })
  
-    await addCurse(id, newArr);
-    reload()
+    addCurse(id, newArr);
   }
 
   const deleteCurseUncompleted = (curse) => {

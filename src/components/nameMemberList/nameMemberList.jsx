@@ -58,7 +58,7 @@ export const NameMembersList = ({setMessage}) => {
                     {index === indexElement ? (<input className="itemInput" value={editName} onChange={(e) =>{setEditName(e.target.value)}}></input>):(<span>{item}</span>)}
                     {indexElement !== index && <div className="editItem" onClick={() => {edit(index,item)}}></div>}
                     {indexElement === index && <div className="saveEditItem" onClick={() => {saveEdit(index)}}></div>}
-                    {/* <div className="curseItemDelete" onClick={() => {deleteMember(index)}}></div> */}
+                    <div className="curseItemDelete" onClick={() => {deleteMember(index)}}></div>
                 </div>
             ))}
             {nameMembers === null || nameMembers.length < 4 ? (

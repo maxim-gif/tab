@@ -39,72 +39,72 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
   const list = [dataMember1, dataMember2, dataMember3, dataMember4];
   const listUn = [dataUncompleted1, dataUncompleted2, dataUncompleted3, dataUncompleted4];
 
+//   useEffect(() => {
+    
+//     if (dataMember1) {
+// console.log(1);
+//       let newUncompleted
+//       if (dataUncompleted1 === null) {
+//         newUncompleted = []
+//       } else {
+//        newUncompleted = [...dataUncompleted1]
+//       }
+//       const newData = [...dataMember1]
+//       const sort = [...new Set(newUncompleted)]
+//       console.log(sort);
+//       const getIndex = (name) => {
+//         const index = sort.indexOf(name);
+//         return index === -1 ? Infinity : index;
+//       }
+//       newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
+//       addCurse(0, newData);
+//     }
+//   // eslint-disable-next-line react-hooks/exhaustive-deps
+//   }, [dataMember1]);
+//   useEffect(() => {
+    
+//     if (dataMember4) {
+// console.log(4);
+//       let newUncompleted
+//       if (dataUncompleted4 === null) {
+//         newUncompleted = []
+//       } else {
+//        newUncompleted = [...dataUncompleted4]
+//       }
+//       const newData = [...dataMember4]
+//       const sort = [...new Set(newUncompleted)]
+//       console.log(sort);
+//       const getIndex = (name) => {
+//         const index = sort.indexOf(name);
+//         return index === -1 ? Infinity : index;
+//       }
+//       newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
+//       addCurse(3, newData);
+//     }
+//   // eslint-disable-next-line react-hooks/exhaustive-deps
+//   }, [dataMember4]);
   useEffect(() => {
     
-    if (dataMember1) {
-console.log(1);
-      let newUncompleted
-      if (dataUncompleted1 === null) {
-        newUncompleted = []
-      } else {
-       newUncompleted = [...dataUncompleted1]
-      }
-      const newData = [...dataMember1]
-      const sort = [...new Set(newUncompleted)]
-      console.log(sort);
-      const getIndex = (name) => {
-        const index = sort.indexOf(name);
-        return index === -1 ? Infinity : index;
-      }
-      newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
-      addCurse(0, newData);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataMember1]);
-  useEffect(() => {
-    
-    if (dataMember4) {
-console.log(4);
-      let newUncompleted
-      if (dataUncompleted4 === null) {
-        newUncompleted = []
-      } else {
-       newUncompleted = [...dataUncompleted4]
-      }
-      const newData = [...dataMember4]
-      const sort = [...new Set(newUncompleted)]
-      console.log(sort);
-      const getIndex = (name) => {
-        const index = sort.indexOf(name);
-        return index === -1 ? Infinity : index;
-      }
-      newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
-      addCurse(3, newData);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataMember4]);
-  // useEffect(() => {
-    
-  //   if (list[id]) {
+    if (list[id]) {
 
-  //     let newUncompleted
-  //     if (listUn[id] === null) {
-  //       newUncompleted = []
-  //     } else {
-  //      newUncompleted = [...listUn[id]]
-  //     }
-  //     const newData = [...list[id]]
-  //     const sort = [...new Set(newUncompleted)]
-  //     console.log(sort);
-  //     const getIndex = (name) => {
-  //       const index = sort.indexOf(name);
-  //       return index === -1 ? Infinity : index;
-  //     }
-  //     newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
-  //     addCurse(id, newData);
-  //   }
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [list[id]]);
+      let newUncompleted
+      if (listUn[id] === null) {
+        newUncompleted = []
+      } else {
+       newUncompleted = [...listUn[id]]
+      }
+      const newData = [...list[id]]
+      const sort = [...new Set(newUncompleted)]
+      console.log(sort);
+      const getIndex = (name) => {
+        const index = sort.indexOf(name);
+        return index === -1 ? Infinity : index;
+      }
+      newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
+      addCurse(id, newData);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [list[id]]);
 
 
   const handleAddUncompleted = (curse) => {

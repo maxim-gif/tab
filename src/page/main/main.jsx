@@ -127,10 +127,10 @@ export const Main = () => {
         <span className="loader"></span>
       ) : (
         <div className="memberList">
-          <Member3 moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[2]} />
-          <Member4 moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[3]} />
           <Member1 moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[0]} />
           <Member2 moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[1]} />
+          <Member3 moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[2]} />
+          <Member4 moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[3]} />
           
         </div>
       )}

@@ -132,8 +132,8 @@ console.log(id);
   }
 
   const deleteCurseUncompleted = (curse) => {
-    const list = ["uncompleted1/","uncompleted2/","uncompleted3/","uncompleted4/"]
-    const newUnc = [...list[id]]
+
+    const newUnc = [...listUn[id]]
 
     const index = newUnc.indexOf(curse);
     if (index > -1) {

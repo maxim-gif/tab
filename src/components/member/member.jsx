@@ -16,7 +16,7 @@ import { useDispatch } from "react-redux";
 import { setCursesActive } from "../../store/slice/slice.js";
 
 export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) => {
-console.log(id);
+
   
 
   const selectElement = ["mySelect1", "mySelect2", "mySelect3", "mySelect4"];
@@ -65,6 +65,7 @@ console.log(id);
 
 
   const handleAddUncompleted = (curse) => {
+    
     console.log(curse);
     let newUnc
     if (listUn[id] === null) {
@@ -78,6 +79,7 @@ console.log(id);
   }
 
   const handleAddCurse = async(curse, id) => {
+    console.log(id);
     let newData;
     if (list[id] === null) {
       newData = [];

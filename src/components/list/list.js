@@ -9,7 +9,7 @@ export const SelectCurse = ({handleAddCurse,handleAddUncompleted, id}) => {
   const curses = useSelector((state) => state.table.curses);
   const selectElement = ["mySelect1", "mySelect2", "mySelect3", "mySelect4"]
   const handleAdd = (curse) => {
-    handleAddCurse(curse)
+    handleAddCurse(curse, id)
     handleAddUncompleted(curse)
   }
   return (

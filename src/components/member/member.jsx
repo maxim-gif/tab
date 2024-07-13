@@ -41,15 +41,15 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
 
   useEffect(() => {
     
-    if (dataMember1) {
-console.log("xgdfgf");
+    if (list[id]) {
+
       let newUncompleted
-      if (dataUncompleted1 === null) {
+      if (listUn[id] === null) {
         newUncompleted = []
       } else {
-       newUncompleted = [...dataUncompleted1]
+       newUncompleted = [...listUn[id]]
       }
-      const newData = [...dataMember1]
+      const newData = [...list[id]]
       const sort = [...new Set(newUncompleted)]
       console.log(sort);
       const getIndex = (name) => {
@@ -57,10 +57,10 @@ console.log("xgdfgf");
         return index === -1 ? Infinity : index;
       }
       newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
-      addCurse(0, newData);
+      addCurse(id, newData);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataMember1]);
+  }, [list[id]]);
 
 
 

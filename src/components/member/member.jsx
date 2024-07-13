@@ -82,7 +82,7 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
     if (list[id] === null) {
       newData = [];
     } else {
-      newData = [...list[id]];
+      newData = [...new Set(list[id])]
     }
     const findItem = curses.filter((item) => item.name === curse);
     let newItem = {...findItem[0]}

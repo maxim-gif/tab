@@ -6,6 +6,9 @@ import { Member2Subscriber } from "../reload/member2.js";
 import { Member3Subscriber } from "../reload/member3.js";
 import { Member4Subscriber } from "../reload/member4.js";
 import { UncompletedSubscriber1 } from "../reload/uncompleted1.js";
+import { UncompletedSubscriber2 } from "../reload/uncompleted2.js";
+import { UncompletedSubscriber3 } from "../reload/uncompleted3.js";
+import { UncompletedSubscriber4 } from "../reload/uncompleted4.js";
 import {addCurse, addListUncompletedCurse } from "../../api";
 import { useSelector } from "react-redux";
 import { useState,useEffect} from "react";
@@ -139,7 +142,10 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
       {id === 1 && <Member2Subscriber />}
       {id === 2 && <Member3Subscriber />}
       {id === 3 && <Member4Subscriber />}
-      <UncompletedSubscriber1/>
+      {id === 0 && <UncompletedSubscriber1/>}
+      {id === 1 && <UncompletedSubscriber1/>}
+      {id === 2 && <UncompletedSubscriber1/>}
+      {id === 3 && <UncompletedSubscriber1/>}
       {activeCurse === name && (
         <div className="popUp"  onClick={() => {closeDescription();}}>
           <div

@@ -56,7 +56,7 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
         return index === -1 ? Infinity : index;
       }
       newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
-      addCurse(id, newData);
+      addCurse(0, newData);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataMember1]);

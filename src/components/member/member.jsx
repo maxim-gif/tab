@@ -59,7 +59,7 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
       addCurse(0, newData);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataMember1]);
+  }, [dataUncompleted1]);
 
 
 

@@ -16,7 +16,7 @@ import { useDispatch } from "react-redux";
 import { setCursesActive } from "../../store/slice/slice.js";
 
 export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) => {
-
+console.log(id);
   
 
   const selectElement = ["mySelect1", "mySelect2", "mySelect3", "mySelect4"];

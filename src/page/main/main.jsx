@@ -61,6 +61,7 @@ export const Main = () => {
   };
 
   const auth = async (code) => {
+    console.log("auth");
     const token = await getUserToken(code);
     window.localStorage.setItem("access_token", token.access_token);
     window.localStorage.setItem("refresh_token", token.refresh_token);

@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import "./member.css";
 import { SelectCurse } from "../list/list.js";
-import { Member3Subscriber } from "../reload/member1.js";
-import { UncompletedSubscriber3 } from "../reload/uncompleted1.js";
+import { Member3Subscriber } from "../reload/member3.js";
+import { UncompletedSubscriber3 } from "../reload/uncompleted3.js";
 import { addCurse, addListUncompletedCurse } from "../../api.js";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";

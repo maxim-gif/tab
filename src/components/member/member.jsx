@@ -37,7 +37,7 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
 
   useEffect(() => {
     
-    if (list[id]) {
+    if (dataMember1) {
 
       let newUncompleted
       if (dataUncompleted1 === null) {
@@ -55,7 +55,7 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
       addCurse(0, newData);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [list[id]]);
+  }, [dataMember1]);
 
 
 

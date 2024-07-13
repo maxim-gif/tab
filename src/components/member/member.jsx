@@ -37,7 +37,7 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
 
   useEffect(() => {
     
-    if (dataMember1) {
+    if (list[id]) {
 
       let newUncompleted
       if (dataUncompleted1 === null) {
@@ -207,7 +207,7 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
                 <img className="curseIcon" src={item.image.icon} alt=""></img>
               )}
             </span>
-            {item.totalCounter !== item.completedCounter && (
+            { moderatorsAccess && item.totalCounter !== item.completedCounter && (
               <div
                 className="done"
                 onClick={() => {
@@ -227,7 +227,7 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
           </div>
         ))}
       </div>
-      {(
+      {superModeratorsAccess && (
         <SelectCurse handleAddCurse={handleAddCurse} handleAddUncompleted={handleAddUncompleted} id={id} />
       )}
     </div>

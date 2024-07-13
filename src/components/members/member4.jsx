@@ -22,6 +22,7 @@ export const Member4 = ({ moderatorsAccess, superModeratorsAccess , name }) => {
   const dataUncompleted4 = useSelector((state) => state.table.uncompleted4);
 
   useEffect(() => {
+    console.log("4");
     if (dataMember4) {
       let newUncompleted;
       if (dataUncompleted4 === null) {

@@ -143,9 +143,9 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
       {id === 2 && <Member3Subscriber />}
       {id === 3 && <Member4Subscriber />}
       {id === 0 && <UncompletedSubscriber1/>}
-      {id === 1 && <UncompletedSubscriber1/>}
-      {id === 2 && <UncompletedSubscriber1/>}
-      {id === 3 && <UncompletedSubscriber1/>}
+      {id === 1 && <UncompletedSubscriber2/>}
+      {id === 2 && <UncompletedSubscriber3/>}
+      {id === 3 && <UncompletedSubscriber4/>}
       {activeCurse === name && (
         <div className="popUp"  onClick={() => {closeDescription();}}>
           <div

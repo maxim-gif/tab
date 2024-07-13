@@ -157,6 +157,15 @@ export async function Enter(email,password) {
   }
 }
 
+export async function addCurse1(data) {
+  try {
+    const userRef = ref(db, "member1/");
+    await set(userRef, data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function addCurse(id, data) {
   console.log(id);
   const list = ["member1/","member2/","member3/","member4/"]

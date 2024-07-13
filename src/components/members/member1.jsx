@@ -3,7 +3,7 @@ import "./member.css";
 import { SelectCurse } from "../list/list.js";
 import { Member1Subscriber } from "../reload/member1.js";
 import { UncompletedSubscriber1 } from "../reload/uncompleted1.js";
-import { addCurse, addListUncompletedCurse } from "../../api.js";
+import { addCurse1, addListUncompletedCurse } from "../../api.js";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
@@ -36,7 +36,7 @@ export const Member1 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
       };
       newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
       if (newData) {
-        addCurse(0, newData);
+        addCurse1(newData);
       }
       
     }
@@ -56,7 +56,7 @@ export const Member1 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
     addListUncompletedCurse(0, newUnc);
   };
 
-  const handleAddCurse = async (curse) => {
+  const handleAddCurse1 = async (curse) => {
     let newData;
     if (dataMember1 === null) {
       newData = [];
@@ -76,12 +76,12 @@ export const Member1 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
         }
         return item;
       });
-      addCurse(0, newArr);
+      addCurse1(newArr);
     } else {
       newItem.completedCounter = 0;
       newItem.totalCounter = 1;
       newData.push(newItem);
-      addCurse(0, newData);
+      addCurse1(newData);
     }
 
     document.getElementById('mySelect1').value = "";
@@ -111,7 +111,7 @@ export const Member1 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
       return item;
     });
 
-    addCurse(0, newArr);
+    addCurse1(newArr);
   };
 
   const deleteCurseUncompleted = (curse) => {
@@ -222,7 +222,7 @@ export const Member1 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
       </div>
       {superModeratorsAccess && 
         <SelectCurse
-          handleAddCurse={handleAddCurse}
+          handleAddCurse1={handleAddCurse1}
           handleAddUncompleted={handleAddUncompleted}
           id={0}
         />

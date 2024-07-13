@@ -20,28 +20,28 @@ export const Member1 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
 
   const dataUncompleted1 = useSelector((state) => state.table.uncompleted1);
 
-  // useEffect(() => {
-  //   if (dataMember1) {
-  //     let newUncompleted;
-  //     if (dataUncompleted1 === null) {
-  //       newUncompleted = [];
-  //     } else {
-  //       newUncompleted = [...dataUncompleted1];
-  //     }
-  //     const newData = [...dataMember1];
-  //     const sort = [...new Set(newUncompleted)];
-  //     const getIndex = (name) => {
-  //       const index = sort.indexOf(name);
-  //       return index === -1 ? Infinity : index;
-  //     };
-  //     newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
-  //     if (newData) {
-  //       addCurse1(newData);
-  //     }
+  useEffect(() => {
+    if (dataMember1) {
+      let newUncompleted;
+      if (dataUncompleted1 === null) {
+        newUncompleted = [];
+      } else {
+        newUncompleted = [...dataUncompleted1];
+      }
+      const newData = [...dataMember1];
+      const sort = [...new Set(newUncompleted)];
+      const getIndex = (name) => {
+        const index = sort.indexOf(name);
+        return index === -1 ? Infinity : index;
+      };
+      newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
+      if (newData) {
+        addCurse1(newData);
+      }
       
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [dataMember1]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataMember1]);
 
 
   const handleAddUncompleted = (curse) => {
@@ -56,7 +56,7 @@ export const Member1 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
     addListUncompletedCurse(0, newUnc);
   };
 
-  const handleAddCurse1 = async (curse) => {
+  const handleAddCurse = async (curse) => {
     let newData;
     if (dataMember1 === null) {
       newData = [];
@@ -222,7 +222,7 @@ export const Member1 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
       </div>
       {superModeratorsAccess && 
         <SelectCurse
-          handleAddCurse1={handleAddCurse1}
+          handleAddCurse={handleAddCurse}
           handleAddUncompleted={handleAddUncompleted}
           id={0}
         />

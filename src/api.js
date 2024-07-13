@@ -268,6 +268,8 @@ export async function getUserData(token) {
 
 
 export async function addUser(id,name) { 
+  console.log(id);
+  console.log(name);
   try {
     const userRef = ref(db, 'users/' + String(id));
     await set(userRef, {id:id,name:name});

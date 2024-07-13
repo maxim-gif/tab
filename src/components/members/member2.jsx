@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
 
-export const Member2 = ({ moderatorsAccess, name }) => {
+export const Member2 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
 
 
 
@@ -220,7 +220,7 @@ export const Member2 = ({ moderatorsAccess, name }) => {
           </div>
         ))}
       </div>
-      {moderatorsAccess &&
+      {superModeratorsAccess &&
          <SelectCurse
          handleAddCurse={handleAddCurse}
          handleAddUncompleted={handleAddUncompleted}

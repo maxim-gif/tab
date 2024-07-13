@@ -9,8 +9,7 @@ import { useState, useEffect } from "react";
 
 
 
-export const Member1 = ({ moderatorsAccess, name }) => {
-
+export const Member1 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
 
   const [focusCurse, setFocusCurse] = useState("");
   const [activeCurse, setActiveCurse] = useState("");
@@ -218,7 +217,7 @@ export const Member1 = ({ moderatorsAccess, name }) => {
           </div>
         ))}
       </div>
-      {moderatorsAccess && 
+      {superModeratorsAccess && 
         <SelectCurse
           handleAddCurse={handleAddCurse}
           handleAddUncompleted={handleAddUncompleted}

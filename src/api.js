@@ -147,6 +147,7 @@ export async function GetModerators () {
 }
 
 
+
 export async function Enter(email,password) {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
@@ -172,6 +173,19 @@ export async function sendModerator(data) {
       throw new Error("Доступ запрещен")
     } else {
       const userRef = ref(db, 'moderators/');
+      await set(userRef, data);
+    }
+  } catch (error) {
+    return error.message
+  }
+}
+
+export async function sendSuperModerator(data) {
+  try {
+    if (!auth.currentUser) {
+      throw new Error("Доступ запрещен")
+    } else {
+      const userRef = ref(db, 'superModerators/');
       await set(userRef, data);
     }
   } catch (error) {

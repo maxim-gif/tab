@@ -10,16 +10,19 @@ import { Member3 } from "../../components/members/member3";
 import { Member4 } from "../../components/members/member4";
 import { MembersSubscriber } from "../../components/reload/membersName";
 import { ModeratorSubscriber } from "../../components/reload/moderator";
+import { SuperModeratorSubscriber } from "../../components/reload/superModerators";
 
 export const Main = () => {
   const navigate = useNavigate();
 
   let dataModerators = useSelector((state) => state.table.moderators);
+  let dataSuperModerators = useSelector((state) => state.table.superModerators);
   let nameMembers = useSelector((state) => state.table.nameMembers);
 
   const [name, setName] = useState("");
   // const [member, setMember] = useState(1);
   const [moderatorsAccess, setModeratorsAccess] = useState(false);
+  const [superModeratorsAccess, setSuperModeratorsAccess] = useState(false);
 
   const hash = document.location.href;
   const splitHash = hash.split("&")[0];
@@ -32,6 +35,17 @@ export const Main = () => {
       setModeratorsAccess(false);
     }
   }, [dataModerators, name]);
+
+
+  useEffect(() => {
+    if (dataSuperModerators !== null) {
+      setSuperModeratorsAccess(dataSuperModerators.includes(name));
+      setModeratorsAccess(dataSuperModerators.includes(name));
+    } else {
+      setSuperModeratorsAccess(false);
+      setModeratorsAccess(false);
+    }
+  }, [dataSuperModerators, name]);
 
   const getUser = async () => {
     const token = window.localStorage.getItem("access_token");
@@ -109,16 +123,17 @@ export const Main = () => {
         <span className="loader"></span>
       ) : (
         <div className="memberList">
-          <Member1 moderatorsAccess={moderatorsAccess} name={nameMembers[0]} />
-          <Member2 moderatorsAccess={moderatorsAccess} name={nameMembers[1]} />
-          <Member3 moderatorsAccess={moderatorsAccess} name={nameMembers[2]} />
-          <Member4 moderatorsAccess={moderatorsAccess} name={nameMembers[3]} />
+          <Member1 moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[0]} />
+          <Member2 moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[1]} />
+          <Member3 moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[2]} />
+          <Member4 moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[3]} />
         </div>
       )}
 
       <DataSubscriber />
       <MembersSubscriber />
       <ModeratorSubscriber />
+      <SuperModeratorSubscriber/>
     </div>
   );
 };

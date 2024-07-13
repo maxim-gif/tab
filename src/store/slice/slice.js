@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   participant: [],
   moderators: [],
+  superModerators: [],
   member1: [],
   member2: [],
   member3: [],
@@ -27,6 +28,9 @@ export const appSlice = createSlice({
     },
     setModerators: (state, action) => {
       state.moderators = action.payload;
+    },
+    setSuperModerators: (state, action) => {
+      state.superModerators = action.payload;
     },
     setMember1: (state, action) => {
       state.member1 = action.payload;
@@ -82,6 +86,7 @@ export const {
   setUncompleted2,
   setUncompleted3,
   setUncompleted4,
+  setSuperModerators
 } = appSlice.actions;
 
 export default appSlice.reducer;

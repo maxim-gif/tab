@@ -32,30 +32,34 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
   const dataMember3 = useSelector((state) => state.table.member3);
   const dataMember4 = useSelector((state) => state.table.member4);
   const dataUncompleted1 = useSelector((state) => state.table.uncompleted1);
+  const dataUncompleted2 = useSelector((state) => state.table.uncompleted2);
+  const dataUncompleted3 = useSelector((state) => state.table.uncompleted3);
+  const dataUncompleted4 = useSelector((state) => state.table.uncompleted4);
 
   const list = [dataMember1, dataMember2, dataMember3, dataMember4];
+  const listUn = [dataUncompleted1, dataUncompleted2, dataUncompleted3, dataUncompleted4];
 
   useEffect(() => {
     
-    if (dataMember1) {
+    if (list[id]) {
 
       let newUncompleted
-      if (dataUncompleted1 === null) {
+      if (listUn[id] === null) {
         newUncompleted = []
       } else {
-       newUncompleted = [...dataUncompleted1]
+       newUncompleted = [...listUn[id]]
       }
-      const newData = [...dataMember1]
+      const newData = [...list[id]]
       const sort = [...new Set(newUncompleted)]
       const getIndex = (name) => {
         const index = sort.indexOf(name);
         return index === -1 ? Infinity : index;
       }
       newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
-      addCurse(0, newData);
+      addCurse(id, newData);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataMember1]);
+  }, [list[id]]);
 
 
 

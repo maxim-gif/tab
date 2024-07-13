@@ -65,13 +65,12 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
 
 
   const handleAddUncompleted = (curse) => {
-    const list = ["uncompleted1/","uncompleted2/","uncompleted3/","uncompleted4/"]
     console.log(curse);
     let newUnc
-    if (list[id] === null) {
+    if (listUn[id] === null) {
       newUnc = []
     } else {
-      newUnc = [...list[id]]
+      newUnc = [...listUn[id]]
     }
     newUnc.push(curse)
 

@@ -67,10 +67,10 @@ export const Main = () => {
     window.localStorage.setItem("refresh_token", token.refresh_token);
     const userData = await getUserData(token.access_token);
     console.log(userData);
-    console.log(userData[0].id);
-    console.log(userData[0].display_name);
-    addUser(userData[0].id, userData[0].display_name);
-    setName(userData[0].display_name);
+    console.log(userData.data[0].id);
+    console.log(userData.data[0].display_name);
+    addUser(userData.data[0].id, userData.data[0].display_name);
+    setName(userData.data[0].display_name);
     navigate("/");
   };
 

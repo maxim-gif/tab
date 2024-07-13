@@ -143,10 +143,10 @@ console.log(id);
 
   return (
     <div className="member">
-      {id === 0 && <Member1Subscriber dataMember1={dataMember1}/>}
-      {id === 1 && <Member2Subscriber />}
-      {id === 2 && <Member3Subscriber />}
-      {id === 3 && <Member4Subscriber />}
+       <Member1Subscriber />
+      <Member2Subscriber />
+       <Member3Subscriber />
+      <Member4Subscriber />
       <UncompletedSubscriber1/>
       <UncompletedSubscriber2/>
       <UncompletedSubscriber3/>

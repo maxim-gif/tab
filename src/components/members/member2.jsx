@@ -24,7 +24,6 @@ export const Member2 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
   useEffect(() => {
    
     if (dataMember2) {
-        console.log("sdfgsdg");
       let newUncompleted;
       if (dataUncompleted2 === null) {
         newUncompleted = [];

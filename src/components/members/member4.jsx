@@ -8,9 +8,9 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
 
-export const Member4 = ({ moderatorsAccess, superModeratorsAccess , name }) => {
+export const Member4 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
 
- 
+
 
   const [focusCurse, setFocusCurse] = useState("");
   const [activeCurse, setActiveCurse] = useState("");
@@ -22,7 +22,7 @@ export const Member4 = ({ moderatorsAccess, superModeratorsAccess , name }) => {
   const dataUncompleted4 = useSelector((state) => state.table.uncompleted4);
 
   useEffect(() => {
-    console.log("4");
+   
     if (dataMember4) {
       let newUncompleted;
       if (dataUncompleted4 === null) {
@@ -37,7 +37,6 @@ export const Member4 = ({ moderatorsAccess, superModeratorsAccess , name }) => {
         return index === -1 ? Infinity : index;
       };
       newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
-      console.log(newData);
       addCurse(3, newData);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -127,7 +126,7 @@ export const Member4 = ({ moderatorsAccess, superModeratorsAccess , name }) => {
   return (
     <div className="member">
       <Member4Subscriber/>
-      <UncompletedSubscriber4/>
+      <UncompletedSubscriber4 />
       {activeCurse === name && (
         <div
           className="popUp"
@@ -204,7 +203,7 @@ export const Member4 = ({ moderatorsAccess, superModeratorsAccess , name }) => {
               <div
                 className="done"
                 onClick={() => {
-                  deleteCurseUncompleted(item.name);
+                    deleteCurseUncompleted(item.name);
                     completedCurseAdd(index);
                 }}
               ></div>

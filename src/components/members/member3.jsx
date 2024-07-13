@@ -81,7 +81,7 @@ export const Member3 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
       addCurse(2, newData);
     }
 
-    document.getElementById('mySelect1').value = "";
+    document.getElementById('mySelect3').value = "";
   };
 
   const showDescription = (e, index) => {
@@ -118,7 +118,7 @@ export const Member3 = ({ moderatorsAccess, superModeratorsAccess, name }) => {
     if (index > -1) {
       newUnc.splice(index, 1);
     }
-    addListUncompletedCurse(0, newUnc);
+    addListUncompletedCurse(2, newUnc);
   };
 
   return (

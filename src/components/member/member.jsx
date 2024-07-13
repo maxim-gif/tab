@@ -41,25 +41,25 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
 
   useEffect(() => {
     
-    if (list[id]) {
+    if (dataMember1) {
 
       let newUncompleted
-      if (listUn[id] === null) {
+      if (dataUncompleted1 === null) {
         newUncompleted = []
       } else {
-       newUncompleted = [...listUn[id]]
+       newUncompleted = [...dataUncompleted1]
       }
-      const newData = [...list[id]]
+      const newData = [...dataMember1]
       const sort = [...new Set(newUncompleted)]
       const getIndex = (name) => {
         const index = sort.indexOf(name);
         return index === -1 ? Infinity : index;
       }
       newData.sort((a, b) => getIndex(a.name) - getIndex(b.name));
-      addCurse(id, newData);
+      addCurse(0, newData);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dataMember1]);
 
 
 

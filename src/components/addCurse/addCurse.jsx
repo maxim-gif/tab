@@ -1,13 +1,13 @@
 import './addCurse.css';
 import { useSelector } from "react-redux";
 import { useState, useEffect} from "react";
-import { addListCurses } from '../../api';
+import { updateAdminData } from "../../api";
 import { AddFile } from '../../api';
 
 
 export const AddList = ({setMessage}) => {
 
-  const curses = useSelector((state) => state.table.curses);
+  let admin = useSelector((state) => state.table.adminData);
 
   const [loading, setLoading] = useState(false);
   const [curseName, setCurseName] = useState("");
@@ -36,13 +36,13 @@ export const AddList = ({setMessage}) => {
     // }
 
     let newData 
-    if (curses === null) {
+    if (admin.curses === null) {
       newData = []
     } else {
-      newData = [...curses]
+      newData = [...admin.curses]
     }
     newData.push({name:curseName,title:curseTitle,general:checked,image:imagesUrl})
-    const message = await addListCurses(newData)
+    const message = await updateAdminData("curses/", newData)
     setCurseName("")
     setCurseTitle("")
     setMessage(message)

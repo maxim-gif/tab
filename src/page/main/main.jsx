@@ -1,23 +1,20 @@
 import "./main.css";
 import { useState, useEffect } from "react";
-import { getUserToken, getUserData, addUser,refreshToken } from "../../api";
-import { DataSubscriber } from "../../components/reload/reload";
+import { getUserToken, getUserData, addUser, refreshToken } from "../../api";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Member } from "../../components/member/member";
-import { MembersSubscriber } from "../../components/reload/membersName";
-import { ModeratorSubscriber } from "../../components/reload/moderator";
-import { SuperModeratorSubscriber } from "../../components/reload/superModerators";
+import { Participants } from "../../components/participants/participants";
+import { UpdateAdmin } from "../../components/reload/updateAdmin";
+
 
 export const Main = () => {
   const navigate = useNavigate();
 
-  let dataModerators = useSelector((state) => state.table.moderators);
-  let dataSuperModerators = useSelector((state) => state.table.superModerators);
-  let nameMembers = useSelector((state) => state.table.nameMembers);
+  let admin = useSelector((state) => state.table.adminData);
 
-  const [name, setName] = useState("");
-  // const [member, setMember] = useState(1);
+
+  const [name, setName] = useState("DowesErwin");
+
   const [moderatorsAccess, setModeratorsAccess] = useState(false);
   const [superModeratorsAccess, setSuperModeratorsAccess] = useState(false);
 
@@ -26,30 +23,30 @@ export const Main = () => {
   let code = splitHash.split("=")[1];
 
   useEffect(() => {
-    if (dataModerators !== null) {
-      setModeratorsAccess(dataModerators.includes(name));
+ 
+    if (admin.moderators !== undefined) {
+      setModeratorsAccess(admin.moderators.includes(name));
     } else {
       setModeratorsAccess(false);
     }
-  }, [dataModerators, name]);
-
+  }, [admin.moderators, name]);
 
   useEffect(() => {
-    if (dataSuperModerators !== null) {
-      setSuperModeratorsAccess(dataSuperModerators.includes(name));
-      setModeratorsAccess(dataSuperModerators.includes(name));
+    if (admin.superModerators !== undefined) {
+      setSuperModeratorsAccess(admin.superModerators.includes(name));
+      setModeratorsAccess(admin.superModerators.includes(name));
     } else {
       setSuperModeratorsAccess(false);
       setModeratorsAccess(false);
     }
-  }, [dataSuperModerators, name]);
+  }, [admin.superModerators, name]);
 
   const getUser = async () => {
     const token = window.localStorage.getItem("access_token");
     let userData = await getUserData(token);
     if (userData.status === 401) {
-      const newToken = await refreshToken()
-      userData = await getUserData(newToken)
+      const newToken = await refreshToken();
+      userData = await getUserData(newToken);
     }
     if (userData.data) {
       setName(userData.data[0].display_name);
@@ -58,14 +55,10 @@ export const Main = () => {
   };
 
   const auth = async (code) => {
-    console.log("auth");
     const token = await getUserToken(code);
     window.localStorage.setItem("access_token", token.access_token);
     window.localStorage.setItem("refresh_token", token.refresh_token);
     const userData = await getUserData(token.access_token);
-    console.log(userData);
-    console.log(userData.data[0].id);
-    console.log(userData.data[0].display_name);
     addUser(userData.data[0].id, userData.data[0].display_name);
     setName(userData.data[0].display_name);
     navigate("/");
@@ -85,6 +78,7 @@ export const Main = () => {
 
   return (
     <div className="containerApp">
+      <UpdateAdmin/>
       <div className="header">
         <div className="logoIcon"></div>
         {/* <div className="logoTitle"></div> */}
@@ -93,7 +87,7 @@ export const Main = () => {
             {name.length === 0 && <span>Войти: </span>}
             {name !== "" && (
               <span>
-                {name} {moderatorsAccess}
+                {name}
               </span>
             )}
             <a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=9tme6blew754pa56v75lf5mgqg0iro&redirect_uri=https://tab-jet.vercel.app&scope=user:read:email">
@@ -120,22 +114,8 @@ export const Main = () => {
           </div>
         </div>
       </div>
-      {!nameMembers[3] ? (
-        <span className="loader"></span>
-      ) : (
-        <div className="memberList">
-          <Member id={0} moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[0]} />
-          <Member id={1} moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[1]} />
-          <Member id={2} moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[2]} />
-          <Member id={3} moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess} name={nameMembers[3]} />
-          
-        </div>
-      )}
+      <Participants moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess}/>
 
-      <DataSubscriber />
-      <MembersSubscriber />
-      <ModeratorSubscriber />
-      <SuperModeratorSubscriber/>
     </div>
   );
 };

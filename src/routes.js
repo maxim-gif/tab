@@ -5,34 +5,22 @@ import { Admin } from "./page/admin/admin";
 import { Info } from "./page/info/info";
 import { History } from "./page/history/history";
 import { useEffect } from "react";
-import { getDataMember,getCurses,getNameMembers,getDataHistory,getListUncompleted } from "./api";
+import { getAdminData, getParticipantData,getDataHistory, } from "./api";
 import { useDispatch } from 'react-redux';
-import { setMember1, setMember2,setMember3,setMember4,setCurses,setNameMembers,setHistory,setUncompleted1,setUncompleted2} from './store/slice/slice';
+import { setAdminData, setParticipantData, setHistory,} from './store/slice/slice';
 
 export const AppRoutes = () => {
 
   const dispatch = useDispatch();
 
   const handleGetData = async() => {
-    const data1 = await getDataMember(0);
-    dispatch(setMember1(data1));
-    const data2 = await getDataMember(1);
-    dispatch(setMember2(data2));
-    const data3 = await getDataMember(2);
-    dispatch(setMember3(data3));
-    const data4 = await getDataMember(3);
-    dispatch(setMember4(data4));
-    const dataUncompleted = await getListUncompleted(0);
-    dispatch(setUncompleted1(dataUncompleted));
-    const dataUncompleted2 = await getListUncompleted(1);
-    dispatch(setUncompleted2(dataUncompleted2));
-    const curses = await getCurses();
-    dispatch(setCurses(curses));
+    const adminData = await getAdminData();
+    dispatch(setAdminData(adminData));
+    const userData = await getParticipantData();
+    dispatch(setParticipantData(userData));
     const history = await getDataHistory();
     dispatch(setHistory(history));
-    const names = await getNameMembers();
-    dispatch(setNameMembers(names));
-    localStorage.setItem('members', JSON.stringify(names));
+    localStorage.setItem('members', JSON.stringify(adminData.listMember));
   };
 
   Notification.requestPermission().then((permission) => {

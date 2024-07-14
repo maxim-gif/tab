@@ -1,0 +1,82 @@
+.participants {
+    position: relative;
+    display: grid;
+    align-items: start;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 30px;
+    gap: 30px;
+}
+.link1 {
+    height: 18px;
+    width: 18px;
+    left: -20px;
+    top: 0px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("/public/linkTwitch.png");
+    position: absolute;
+  }
+  .link2 {
+    height: 18px;
+    width: 18px;
+    right: -20px;
+    top: 0px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("/public/linkTwitch.png");
+    position: absolute;
+  }
+  .linkName {
+    position: relative;
+  }
+  .memberName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(52,225,242);
+    text-align: center;
+    height: 30px;
+    border-radius: 5px 5px 0 0 ;
+    border: 1px solid rgb(199, 180, 180);
+  }
+  .curseList {
+    background: white;
+  }
+  .curse {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    border-bottom: 1px solid grey;
+    align-items: center;
+    height: 30px;
+    border: 1px solid rgb(199, 180, 180);
+    border-top: none;
+    background: rgb(104,241,62);
+    transition: all 2s;
+  }
+  .curse > span {
+    cursor: default;
+    position: relative;
+  }
+  .curse > span:hover {
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .curseIcon {
+    position: absolute;
+    height: 26px;
+    width: 26px;
+    top: -4px;
+    left: -30px;
+    border-radius: 50%;
+  }
+  .done {
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    right: 10px;
+    top: 7px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("/public/done.png");
+  }

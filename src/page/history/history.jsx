@@ -10,13 +10,7 @@ export const History = () => {
     const [year, setYear] = useState(0);
     const [releaseNumber, setReleaseNumber] = useState(0);
 
-    // useEffect(() => {
-    //     // console.log(dataHis[0]?.release[0].url.split('be/')[1]);
-    //     // console.log(dataHis[0]?.release[0].data[0].curses);
-    //     // const st = dataHis[0]?.release[1].url
-    //     // const arrSt = st.split('be/')
-    //     // console.log(arrSt[1]);
-    //   }, [dataHis]);
+
     const switchNumber = (e,index) => {
         e.stopPropagation()
         setReleaseNumber(index)

@@ -18,21 +18,16 @@ export const Admin = () => {
 
   const auth = getAuth();
   onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid;
-      console.log(uid);
-    }
+ 
   });
 
   const Auth = async() => {
     const response = await Enter(email,password)
-    console.log(response);
     if (response.uid) {
       setMessage("Вход выполнен успешно")
     } else {
       setMessage("Ошибка авторизации")
     }
-    console.log(response.uid);
     setEmail('')
     setPassword("")
   }

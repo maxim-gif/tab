@@ -4,12 +4,15 @@ import { useSelector } from "react-redux";
 import { SelectCurse } from "../list/list.js";
 import { updateParticipantData } from "../../api";
 import { UpdateParticipant } from "../reload/updateParticipant.js";
+import { useState} from "react";
 
 export const Participants = ({superModeratorsAccess,moderatorsAccess}) => {
   const admin = useSelector((state) => state.table.adminData);
   const participant = useSelector((state) => state.table.participantData);
 
+
   const selectElement = ["mySelect1", "mySelect2", "mySelect3", "mySelect4"];
+  const [focusCurse, setFocusCurse] = useState();
 
   const handleAddCurse = async (curse, id) => {
     let newUncompletedCursesList;
@@ -75,8 +78,43 @@ export const Participants = ({superModeratorsAccess,moderatorsAccess}) => {
     updateParticipantData(`${index}/uncompletedCursesList`, newUncompletedCursesList);
   }
 
+  const showDescription = (e, index) => {
+    const rez = admin.curses.filter((item) => item.name === index);
+    setFocusCurse(rez);
+    console.log(rez);
+  };
+
+  const closeDescription = () => {
+    setFocusCurse("");
+  };
+
   return (
     <div className="participants">
+    {focusCurse && (
+        <div className="popUp"  onClick={() => {closeDescription();}}>
+          <div
+            className="description"
+            // style={{
+            //   left: `${cursorPosX}px`,
+            //   top: `${cursorPosY <= 540 ? `${cursorPosY}px` : '50%' }`,
+            // }}
+          >
+            <h2>{focusCurse[0].name}</h2>
+            <span>{focusCurse[0].title}</span>
+            {/* {focusCurse[0].image && (
+              <div>
+                {focusCurse[0].image.img && (
+                  <img
+                    className="descriptionImg"
+                    src={focusCurse[0].image.img}
+                    alt=""
+                  ></img>
+                )}
+              </div>
+            )} */}
+          </div>
+        </div>
+      )}
       <UpdateParticipant />
       {admin.listMember &&
         admin.listMember.map((name, index) => (
@@ -116,7 +154,7 @@ export const Participants = ({superModeratorsAccess,moderatorsAccess}) => {
                   >
                     <span
                       onClick={(e) => {
-                        //   showDescription(e, item.name);
+                          showDescription(e, item.name);
                       }}
                     >
                       {item.name} {item.completedCounter}/{item.totalCounter}

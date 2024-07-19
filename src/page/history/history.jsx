@@ -15,12 +15,12 @@ export const History = () => {
         e.stopPropagation()
         setReleaseNumber(index)
     }
-
+console.log(dataHis);
   return (
     <div className="history">
         <div className="side">
             <div className="historyLogo" onClick={() => {navigate("/")}}></div>
-            {dataHis.length >  0 && <div className="listSeason">
+            {dataHis && <div className="listSeason">
             { dataHis.map((item, indexYear) => ((
                 <div key={indexYear} onClick={() => {
                     setYear(indexYear)
@@ -39,21 +39,21 @@ export const History = () => {
             <div className="listCursesMember">
                 <div className="historyMember">{dataHis[year].release[releaseNumber].data[0].name}</div>
                 { dataHis[year].release[releaseNumber].data[0].curses.map((item, index) => ((
-                    <div className="historyCurse" key={index}>{item}</div>
+                    <div className="historyCurse" key={index}>{item.name} x {item.completedCounter}</div>
                     )))
                 }
             </div>
             <div className="listCursesMember">
                 <div className="historyMember">{dataHis[year].release[releaseNumber].data[1].name}</div>
                 { dataHis[year].release[releaseNumber].data[1].curses.map((item, index) => ((
-                    <div className="historyCurse" key={index}>{item}</div>
+                    <div className="historyCurse" key={index}>{item.name} x {item.completedCounter}</div>
                     )))
                 }
             </div>
             <div>
                 <iframe
-                width="900"
-                height="500"
+                width="700"
+                height="400"
                 src={'https://www.youtube.com/embed/' + dataHis[year].release[releaseNumber].url.split('be/')[1]}
                 title="YouTube video player"
                 frameBorder="0"
@@ -65,14 +65,14 @@ export const History = () => {
             <div className="listCursesMember">
                 <div className="historyMember">{dataHis[year].release[releaseNumber].data[2].name}</div>
                 { dataHis[year].release[releaseNumber].data[2].curses.map((item, index) => ((
-                    <div className="historyCurse" key={index}>{item}</div>
+                    <div className="historyCurse" key={index}>{item.name} x {item.completedCounter}</div>
                     )))
                 }
             </div>
             <div className="listCursesMember">
                 <div className="historyMember">{dataHis[year].release[releaseNumber].data[3].name}</div>
                 { dataHis[year].release[releaseNumber].data[3].curses.map((item, index) => ((
-                    <div className="historyCurse" key={index}>{item}</div>
+                    <div className="historyCurse" key={index}>{item.name} x {item.completedCounter}</div>
                     )))
                 }
             </div>

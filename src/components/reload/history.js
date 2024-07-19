@@ -7,7 +7,7 @@ export const HistorySubscriber = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     const db = getDatabase();
-    const dataRef = ref(db, 'historys/');
+    const dataRef = ref(db, 'history/');
     const unsubscribe = onValue(dataRef, (snapshot) => {
       const data = snapshot.val();
       dispatch(setHistory(data));

@@ -118,43 +118,22 @@ export async function updateParticipantData(address, data) {
 
 
 
-export async function getDataMember(id) {
-  const members = ["member1", "member2", "member3", "member4"];
-  const response = await fetch(
-    `https://table-d13fe-default-rtdb.firebaseio.com/` + members[id] + `.json`
-  );
-  const data = await response.json();
-  return data;
-}
+
 
 export async function getDataHistory() {
   const response = await fetch(
-    `https://table-d13fe-default-rtdb.firebaseio.com/historys.json`
-  );
-  const data = await response.json();
-  return data;
-}
-export async function getListUncompleted(id) {
-  const members = [
-    "uncompleted1",
-    "uncompleted2",
-    "uncompleted3",
-    "uncompleted4",
-  ];
-  const response = await fetch(
-    `https://table-d13fe-default-rtdb.firebaseio.com/` + members[id] + `.json`
+    `https://table-d13fe-default-rtdb.firebaseio.com/history.json`
   );
   const data = await response.json();
   return data;
 }
 
 export async function addDataHistory(data) {
-  console.log("addDataHistory");
   try {
     if (!auth.currentUser) {
       throw new Error("Доступ запрещен");
     } else {
-      const userRef = ref(db, "historys/");
+      const userRef = ref(db, "history/");
       await set(userRef, data);
     }
   } catch (error) {
@@ -162,61 +141,6 @@ export async function addDataHistory(data) {
   }
 }
 
-export async function addListUncompletedCurse(id, data) {
-  const list = [
-    "uncompleted1/",
-    "uncompleted2/",
-    "uncompleted3/",
-    "uncompleted4/",
-  ];
-  try {
-    const userRef = ref(db, list[id]);
-    await set(userRef, data);
-  } catch (error) {
-    return error.message;
-  }
-}
-
-export async function getCurses() {
-  const response = await fetch(
-    `https://table-d13fe-default-rtdb.firebaseio.com/curses.json`
-  );
-  const data = await response.json();
-  return data;
-}
-export async function getNameMembers() {
-  const response = await fetch(
-    `https://table-d13fe-default-rtdb.firebaseio.com/members.json`
-  );
-  const data = await response.json();
-  return data;
-}
-
-export async function addNameMembers(data) {
-  try {
-    if (!auth.currentUser) {
-      throw new Error("Доступ запрещен");
-    } else {
-      const userRef = ref(db, "members/");
-      await set(userRef, data);
-    }
-  } catch (error) {
-    return error.message;
-  }
-}
-
-export async function addListCurses(data) {
-  try {
-    if (!auth.currentUser) {
-      throw new Error("Доступ запрещен");
-    } else {
-      const userRef = ref(db, "curses/");
-      await set(userRef, data);
-    }
-  } catch (error) {
-    return error.message;
-  }
-}
 
 export async function GetAuth(email, password) {
   console.log(email);
@@ -232,13 +156,6 @@ export async function GetAuth(email, password) {
     });
 }
 
-export async function GetModerators() {
-  const response = await fetch(
-    "https://table-d13fe-default-rtdb.firebaseio.com/moderators.json"
-  );
-  const data = await response.json();
-  return data;
-}
 
 export async function Enter(email, password) {
   try {
@@ -252,72 +169,6 @@ export async function Enter(email, password) {
     return error.message;
   }
 }
-
-export async function addCurse1(data) {
-  try {
-    const userRef = ref(db, "member1/");
-    await set(userRef, data);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export async function addCurse(id, data) {
-  console.log(id);
-  const list = ["member1/", "member2/", "member3/", "member4/"];
-  try {
-    const userRef = ref(db, list[id]);
-    await set(userRef, data);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export async function sendModerator(data) {
-  try {
-    if (!auth.currentUser) {
-      throw new Error("Доступ запрещен");
-    } else {
-      const userRef = ref(db, "moderators/");
-      await set(userRef, data);
-    }
-  } catch (error) {
-    return error.message;
-  }
-}
-
-export async function sendSuperModerator(data) {
-  try {
-    if (!auth.currentUser) {
-      throw new Error("Доступ запрещен");
-    } else {
-      const userRef = ref(db, "superModerators/");
-      await set(userRef, data);
-    }
-  } catch (error) {
-    return error.message;
-  }
-}
-
-export async function Delete(id, data) {
-  const list = ["member1/", "member2/", "member3/", "member4/"];
-  try {
-    const userRef = ref(db, list[id]);
-    await set(userRef, data);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-// export async function doneCurse(id, curse,status) {
-//   const members = ["member1/","member2/","member3/","member4/"]
-//   try {
-//     const curseRef = ref(db, members[id] + curse);
-//     await update(curseRef, {status:status});
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
 
 export async function getUserToken(code) {
   console.log(code);

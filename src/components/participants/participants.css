@@ -80,3 +80,9 @@
     background-repeat: no-repeat;
     background-image: url("/public/done.png");
   }
+
+  @media (max-width: 600px) {
+  .participants {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

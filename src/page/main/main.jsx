@@ -13,7 +13,7 @@ export const Main = () => {
   let admin = useSelector((state) => state.table.adminData);
 
 
-  const [name, setName] = useState("DowesErwin");
+  const [name, setName] = useState("");
 
   const [moderatorsAccess, setModeratorsAccess] = useState(false);
   const [superModeratorsAccess, setSuperModeratorsAccess] = useState(false);

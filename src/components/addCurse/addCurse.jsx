@@ -36,7 +36,7 @@ export const AddList = ({setMessage}) => {
     // }
 
     let newData 
-    if (admin.curses === null) {
+    if (admin.curses === undefined) {
       newData = []
     } else {
       newData = [...admin.curses]

@@ -60,6 +60,7 @@ export const Participants = ({superModeratorsAccess,moderatorsAccess}) => {
   };
 
   const completedCurseAdd = (index,indexCurse) => {
+
     let newData = [...participant[index].curses]
     const newArr = newData.map( item => {
       if (item.name === newData[indexCurse].name) {
@@ -70,7 +71,7 @@ export const Participants = ({superModeratorsAccess,moderatorsAccess}) => {
     updateParticipantData(`${index}/curses`, newArr);
 
     const newUncompletedCursesList = [...participant[index]?.uncompletedCursesList]
-
+    alert(newUncompletedCursesList)
     const indexItem = newUncompletedCursesList.indexOf(participant[index].curses[indexCurse].name);
     if (indexItem > -1) {
         newUncompletedCursesList.splice(indexItem, 1);

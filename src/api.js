@@ -93,12 +93,10 @@ export async function getParticipantData() {
 
 export async function updateParticipantData(address, data) {
   try {
-    if (!auth.currentUser) {
-      throw new Error("Доступ запрещен");
-    } else {
+ 
       const userRef = ref(db, "participantData/" + address);
       await set(userRef, data);
-    }
+  
   } catch (error) {
     return error.message;
   }

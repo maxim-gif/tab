@@ -71,7 +71,6 @@ export const Participants = ({superModeratorsAccess,moderatorsAccess}) => {
     updateParticipantData(`${index}/curses`, newArr);
 
     const newUncompletedCursesList = [...participant[index]?.uncompletedCursesList]
-    alert(newUncompletedCursesList)
     const indexItem = newUncompletedCursesList.indexOf(participant[index].curses[indexCurse].name);
     if (indexItem > -1) {
         newUncompletedCursesList.splice(indexItem, 1);

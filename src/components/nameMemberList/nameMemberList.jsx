@@ -1,12 +1,14 @@
 import "./nameMemberList.css";
 import { useSelector } from "react-redux";
 import { UpdateAdmin } from "../reload/updateAdmin";
+import { UpdateParticipant } from "../reload/updateParticipant.js";
 import { updateAdminData , updateParticipantData} from "../../api";
 import { useState } from "react";
 
 export const NameMembersList = ({ setMessage }) => {
   let admin = useSelector((state) => state.table.adminData);
-  // const [name, setName] = useState("");
+  const participant = useSelector((state) => state.table.participantData);
+  
   const [editName, setEditName] = useState("");
 
   const [indexElement, setIndexElement] = useState();
@@ -14,6 +16,7 @@ export const NameMembersList = ({ setMessage }) => {
 
 
   const deleteMember = async (index) => {
+    console.log(participant);
     updateParticipantData(index,[])
   };
 
@@ -33,6 +36,7 @@ export const NameMembersList = ({ setMessage }) => {
   return (
     <div className="membersList">
       <UpdateAdmin />
+      <UpdateParticipant />
       <span className="titleAdmin">Участники</span>
       {admin.listMember !== null &&
         admin.listMember?.map((item, index) => (
@@ -64,12 +68,12 @@ export const NameMembersList = ({ setMessage }) => {
                 }}
               ></div>
             )}
-            <div
+            {participant !== null && participant[index] && <div
               className="curseItemDelete"
               onClick={() => {
                 deleteMember(index);
               }}
-            ></div>
+            ></div>}
           </div>
         ))}
     </div>

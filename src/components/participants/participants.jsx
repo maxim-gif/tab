@@ -4,15 +4,44 @@ import { useSelector } from "react-redux";
 import { SelectCurse } from "../list/list.js";
 import { updateParticipantData } from "../../api";
 import { UpdateParticipant } from "../reload/updateParticipant.js";
-import { useState} from "react";
+import { useState, useEffect} from "react";
 
-export const Participants = ({superModeratorsAccess,moderatorsAccess}) => {
+export const Participants = ({name}) => {
+
   const admin = useSelector((state) => state.table.adminData);
   const participant = useSelector((state) => state.table.participantData);
 
 
   const selectElement = ["mySelect1", "mySelect2", "mySelect3", "mySelect4"];
   const [focusCurse, setFocusCurse] = useState();
+  const [moderatorsAccess, setModeratorsAccess] = useState(false);
+  const [superModeratorsAccess, setSuperModeratorsAccess] = useState(false);
+
+  // useEffect(() => {
+  //   console.log(name);
+    
+  //   if (admin.moderators !== undefined) {
+  //     console.log(admin.moderators.includes(name));
+  //     setModeratorsAccess(admin.moderators.includes(name));
+  //   } else {
+  //     setModeratorsAccess(false);
+  //   }
+
+  // }, [admin.moderators, name,moderatorsAccess]);
+
+  useEffect(() => {
+    if (admin.superModerators !== undefined) {
+      if (admin.superModerators.includes(name)) {
+        setModeratorsAccess(true);
+        setSuperModeratorsAccess(true);
+      } else {
+        if (admin.moderators !== undefined) {
+          setModeratorsAccess(admin.moderators.includes(name));
+        }
+        setSuperModeratorsAccess(false);
+      }
+    }
+  }, [admin.superModerators, admin.moderators, name]);
 
   const handleAddCurse = async (curse, id) => {
     let newUncompletedCursesList;

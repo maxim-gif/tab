@@ -13,33 +13,33 @@ export const Main = () => {
   let admin = useSelector((state) => state.table.adminData);
 
 
-  const [name, setName] = useState("");
+  const [name, setName] = useState("DowesErwin");
 
-  const [moderatorsAccess, setModeratorsAccess] = useState(false);
-  const [superModeratorsAccess, setSuperModeratorsAccess] = useState(false);
+  // const [moderatorsAccess, setModeratorsAccess] = useState(false);
+  // const [superModeratorsAccess, setSuperModeratorsAccess] = useState(false);
 
   const hash = document.location.href;
   const splitHash = hash.split("&")[0];
   let code = splitHash.split("=")[1];
 
-  useEffect(() => {
- 
-    if (admin.moderators !== undefined) {
-      setModeratorsAccess(admin.moderators.includes(name));
-    } else {
-      setModeratorsAccess(false);
-    }
-  }, [admin.moderators, name]);
+  // useEffect(() => {
+  //   if (admin.moderators !== undefined) {
+  //     console.log(admin.moderators.includes(name));
+  //     setModeratorsAccess(admin.moderators.includes(name));
+  //   } else {
+  //     setModeratorsAccess(false);
+  //   }
+  // }, [admin.moderators, name]);
 
-  useEffect(() => {
-    if (admin.superModerators !== undefined) {
-      setSuperModeratorsAccess(admin.superModerators.includes(name));
-      setModeratorsAccess(admin.superModerators.includes(name));
-    } else {
-      setSuperModeratorsAccess(false);
-      setModeratorsAccess(false);
-    }
-  }, [admin.superModerators, name]);
+  // useEffect(() => {
+  //   if (admin.superModerators !== undefined) {
+  //     setSuperModeratorsAccess(admin.superModerators.includes(name));
+  //     setModeratorsAccess(admin.superModerators.includes(name));
+  //   } else {
+  //     setSuperModeratorsAccess(false);
+  //     setModeratorsAccess(false);
+  //   }
+  // }, [admin.superModerators, name]);
 
   const getUser = async () => {
     const token = window.localStorage.getItem("access_token");
@@ -114,7 +114,7 @@ export const Main = () => {
           </div>
         </div>
       </div>
-      <Participants moderatorsAccess={moderatorsAccess} superModeratorsAccess={superModeratorsAccess}/>
+      <Participants name={name}/>
 
     </div>
   );

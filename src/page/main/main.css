@@ -45,7 +45,10 @@
   align-items: center;
   padding: 20px;
 }
-
+.header > h2 {
+  font-size: 50px;
+  color: rgb(67, 14, 117);
+}
 .logoIcon {
   height: 100px;
   width: 150px;

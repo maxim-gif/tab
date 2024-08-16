@@ -25,10 +25,10 @@ export const AddList = ({setMessage}) => {
      const url = await AddFile(curseName,firstFile,"icon")
      imagesUrl.icon = url
     }
-    if (secondFile !== '') {
-      const url = await AddFile(curseName,secondFile,"img")
-      imagesUrl.img = url
-    }
+    // if (secondFile !== '') {
+    //   const url = await AddFile(curseName,secondFile,"img")
+    //   imagesUrl.img = url
+    // }
     // if (thirdFile !== '') {
     //   const url = await AddFile(curseName,thirdFile,thirdFile.name)
     //   imagesUrl.push(url)
@@ -53,6 +53,16 @@ export const AddList = ({setMessage}) => {
     setLoading(false)
   }
 
+const addCurseBg = async() => {
+     if (secondFile !== '') {
+      const url = await AddFile("curse",secondFile,"bg")
+      let curseBgUrl = url
+      const message = await updateAdminData("curseBG/", curseBgUrl);
+      setMessage(message);
+      setSecondFile('')
+    }
+}
+
 const deleteImg = (e,index) => {
   e.preventDefault()
   index === 1 ? setFirstFile(''): setSecondFile('')
@@ -60,6 +70,15 @@ const deleteImg = (e,index) => {
 
   return (
    <div className="addList">
+
+        <button className="buttonAdmin" onClick={() => {addCurseBg()}} disabled={secondFile === ""}>Закрепить фон</button>
+
+        <label className="file">
+              {secondFile === '' && <input type='file' onChange={(e) => {setSecondFile(e.target.files[0])}}></input>}
+              <img className="fileImgBg" src={secondFile ? URL.createObjectURL(secondFile):admin.curseBG} alt=''></img>
+              {secondFile !== '' && <div className="deleteFile" onClick={(e) => {deleteImg(e,2)}}></div>}
+        </label>
+
         <input type='text' className="inputAdmin" value={curseName} placeholder='Введите название проклятия' onChange={(e) => {setCurseName(e.target.value)}}></input>
         <textarea className="curseTitle" value={curseTitle} placeholder='Описане проклятия' onChange={(e) => {setCurseTitle(e.target.value)}}></textarea>
         <div className="fileBox">
@@ -68,12 +87,8 @@ const deleteImg = (e,index) => {
               <img className="fileImg" src={firstFile ? URL.createObjectURL(firstFile):'/addImg.png'} alt=''></img>
               {firstFile !== '' && <div className="deleteFile" onClick={(e) => {deleteImg(e,1)}}></div>}
             </label>
-            <span> Иконка | Фото</span>
-            <label className="file">
-              {secondFile === '' && <input type='file' onChange={(e) => {setSecondFile(e.target.files[0])}}></input>}
-              <img className="fileImg" src={secondFile ? URL.createObjectURL(secondFile):'/addImg.png'} alt=''></img>
-              {secondFile !== '' && <div className="deleteFile" onClick={(e) => {deleteImg(e,2)}}></div>}
-            </label>
+            <span> Иконка </span>
+           
             {/* <label className="file">
               {thirdFile === '' && <input type='file' onChange={(e) => {setThirdFile(e.target.files[0])}}></input>}
               <img className="fileImg" src={thirdFile ? URL.createObjectURL(thirdFile):'/addImg.png'} alt=''></img>

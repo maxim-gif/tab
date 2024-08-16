@@ -104,20 +104,6 @@ export async function updateParticipantData(address, data) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export async function getDataHistory() {
   const response = await fetch(
     `https://table-d13fe-default-rtdb.firebaseio.com/history.json`

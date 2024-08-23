@@ -5,6 +5,7 @@ import { NameMembersList } from '../../components/nameMemberList/nameMemberList.
 import { ModeratorList } from '../../components/moderators/moderators.jsx';
 import { HistoryAdd } from '../../components/historyAdd/historyAdd.jsx';
 import { SupModeratorList } from '../../components/superModerators/supModerators.jsx';
+import { ConditionsAdd } from '../../components/victoryConditions/victoryConditions.jsx';
 import { useState,useEffect} from "react";
 import { Enter } from '../../api.js';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -53,11 +54,12 @@ export const Admin = () => {
         {message === "" &&<span className="message"></span>}
         <div className="modContain">
           {switchElement === 1 && <ModeratorList setMessage={setMessage}/>}
-          {switchElement === 1 &&<SupModeratorList setMessage={setMessage}/>}
+          {switchElement === 1 && <SupModeratorList setMessage={setMessage}/>}
           {switchElement === 1 && <NameMembersList setMessage={setMessage}/>}
           {switchElement === 1 && <CurseList setMessage={setMessage}/>}
-          {switchElement === 1   && <AddList setMessage={setMessage}/>}
+          {switchElement === 1 && <AddList setMessage={setMessage}/>}
           {switchElement === 2 && <HistoryAdd/>}
+          {switchElement === 2 && <ConditionsAdd/>}
         </div>
     </div>
   );

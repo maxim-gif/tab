@@ -1,6 +1,6 @@
 import './addCurse.css';
 import { useSelector } from "react-redux";
-import { useState, useEffect} from "react";
+import { useState} from "react";
 import { updateAdminData } from "../../api";
 import { AddFile } from '../../api';
 

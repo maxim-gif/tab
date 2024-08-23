@@ -14,3 +14,8 @@
 option {
     background: white;
 }
+.general  {
+    color: red;
+    font-weight: 700;
+    font-size: 15px;
+}

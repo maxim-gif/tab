@@ -82,7 +82,7 @@ export const Main = () => {
       <div className="header">
         <div className="logoIcon"></div>
         {/* <div className="logoTitle"></div> */}
-        <h2>Risk of Rain 2</h2>
+        <h2>{admin.gameName}</h2>
         <div className="icons">
           <div className="enter">
             {name.length === 0 && <span>Войти: </span>}

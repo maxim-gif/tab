@@ -8,7 +8,7 @@
 }
 .searchInfo {
     height: 40px;
-    width: 600px;
+    width: 500px;
     border-radius: 10px;
     border: 1px solid #c7b4b4;
     outline: none;
@@ -27,7 +27,7 @@
     font-size: 20px;
     background-color: rgb(251, 245, 253);
     height: 40px;
-    width: 300px;
+    width: 500px;
     border-radius: 10px;
     font-weight: 700;
 }

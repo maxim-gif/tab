@@ -10,6 +10,7 @@ export const SelectCurse = ({ handleAddCurse , id }) => {
     handleAddCurse(curse, id);
     // handleAddUncompleted(curse);
   };
+  
   return (
     <select
       id={selectElement[id]}
@@ -22,7 +23,7 @@ export const SelectCurse = ({ handleAddCurse , id }) => {
       <option value="">Добавить проклятие</option>
       {admin.curses !== null &&
         admin.curses?.map((item, index) => (
-          <option key={index} value={item.name}>
+          <option key={index} value={item.name} className={item.general ? 'general' : ''}>
             {item.name}
           </option>
         ))}

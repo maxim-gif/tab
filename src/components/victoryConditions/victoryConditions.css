@@ -1,0 +1,18 @@
+.conditionsAdd {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    grid-column: 2 / 5;
+}
+.conditionsAdd > input {
+    width: 300px;
+    margin: 0;
+}
+.conditionsButtons {
+    display: flex;
+    gap: 20px;
+}
+.conditionsVic {
+height: 130px;
+padding: 10px;
+}

@@ -157,7 +157,11 @@ border: 1px solid rgb(168, 12, 142);
         grid-template-columns: repeat(1, 1fr);
     }
     .searchInfo {
-        width: 200px;
+        width: 150px;
+    }
+    .buttonConditionsVictory {
+        width: 150px;
+        font-size: 15px;
     }
     .descriptionItem > img {
         height: 150px;

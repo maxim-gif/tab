@@ -115,6 +115,7 @@ export const Main = () => {
           </div>
         </div>
       </div>
+      <h2>{admin.gameName}</h2>
       <Participants name={name}/>
 
     </div>

@@ -49,6 +49,10 @@
   font-size: 50px;
   color: rgb(67, 14, 117);
 }
+.containerApp > h2 {
+  display: none;
+  color: rgb(67, 14, 117);
+}
 .logoIcon {
   height: 100px;
   width: 150px;
@@ -100,6 +104,14 @@
   display: none;
 }
 @media (max-width: 600px) {
+  .header > h2 {
+    display: none;
+  }
+  .containerApp > h2 {
+    display: flex;
+    font-size: 30px;
+    justify-content: center;
+  }
   .memberList {
     grid-template-columns: repeat(1, 1fr);
   }

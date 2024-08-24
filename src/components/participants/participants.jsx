@@ -191,7 +191,7 @@ export const Participants = ({name}) => {
                         <img
                           className="curseIcon"
                           src={item.image.icon}
-                          alt=""
+                          
                         ></img>
                       )}
                     </span>

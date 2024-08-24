@@ -117,6 +117,14 @@ export const Participants = ({name}) => {
     setFocusCurse("");
   };
 
+  useEffect(() => {
+    if (admin.curses) {
+      console.log(admin.curses.find(curse => curse.name === 'Коммандо').image.icon);
+    }
+
+  }, [admin.curses]);
+
+
   return (
     <div className="participants">
     {focusCurse && (
@@ -190,8 +198,8 @@ export const Participants = ({name}) => {
                       {item?.image?.icon && (
                         <img
                           className="curseIcon"
-                          src={item.image.icon}
-                          
+                          src={admin.curses.find(curse => curse.name === item.name).image.icon}
+                          alt=""
                         ></img>
                       )}
                     </span>

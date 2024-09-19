@@ -117,12 +117,6 @@ export const Participants = ({name}) => {
     setFocusCurse("");
   };
 
-  useEffect(() => {
-    if (admin.curses) {
-      console.log(admin.curses.find(curse => curse.name === 'Коммандо').image.icon);
-    }
-
-  }, [admin.curses]);
 
 
   return (

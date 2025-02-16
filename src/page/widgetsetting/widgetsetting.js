@@ -15,16 +15,11 @@ export const WidgetSetting = () => {
     setAmount("");
   };
 
-  useEffect(() => {
-  updateAdminData("priority/", {idMember:idMember,count:count});
-  }, [idMember,count]);
-
-  useEffect(() => {
-    if (admin.priority !== undefined) {
-        setCount(admin.priority.count)
+    const handle = () => {
+      updateAdminData("priority/", {idMember:idMember,count:count})
+      setIdMember(0)
+      setCount(0)
     }
-   
-    }, [admin.priority]);
 
   return (
     <div className="widgetSetting">
@@ -84,7 +79,7 @@ export const WidgetSetting = () => {
         <span>{count}</span>
         <button onClick={() => {setCount(prevCount => prevCount + 1)}}>+</button>
       </div>
-
+      <button onClick={() => {handle()}}>Применить</button>
     </div>
   );
 };

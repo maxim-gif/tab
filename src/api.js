@@ -162,7 +162,7 @@ export async function getUserToken(code) {
   params.append("client_secret", "ls1nk9j93maxa6g94j9fckch0m8you");
   params.append("code", code);
   params.append("grant_type", "authorization_code");
-  params.append("redirect_uri", "https://tab-jet.vercel.app");
+  params.append("redirect_uri", "https://www.masterigorey-roguelike.ru");
 
   const getToken = await fetch(url, {
     method: "POST",

@@ -91,7 +91,7 @@ export const Main = () => {
                 {name}
               </span>
             )}
-            <a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=9tme6blew754pa56v75lf5mgqg0iro&redirect_uri=https://tab-jet.vercel.app&scope=user:read:email">
+            <a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=9tme6blew754pa56v75lf5mgqg0iro&redirect_uri=https://www.masterigorey-roguelike.ru&scope=user:read:email">
               <div className="twitch"></div>
             </a>
           </div>

@@ -1,0 +1,82 @@
+:root {
+    --translate-value: -2500px;
+    
+}
+
+@keyframes spin {
+    
+    100% {
+      transform: translateX(var(--translate-value));
+    }
+}
+
+
+
+.spin {
+    animation: spin 10s cubic-bezier(.08,.33,.04,1) forwards;
+}
+
+
+
+.containerWidget {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+.widget {
+    position: relative;
+    height: 300px;
+    width: 250px;
+    border:1px solid gray;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 20px;
+    overflow: hidden;
+}
+.icon {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    height: 50px;
+    width: 60px;
+    rotate: 32deg;
+    z-index: 10;
+}
+.curseWidget {
+    height: 220px;
+    min-width: 220px;
+    border: 5px solid  #f165f1;
+    border-radius: 20px;
+    background: #37303d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 15px;
+}
+.iconCurse {
+    height: 100px;
+    width: 100px;
+}
+.nameCurse {
+    font-size: 25px;
+    font-weight: 700;
+    color: #f165f1;
+}
+.nameMember {
+    font-size: 20px;
+    color: #ffffff;
+}
+.listCurses {
+    display: flex;
+    left: 0;
+ 
+}
+
+/* .listCurse:hover {
+    animation: spin 5s cubic-bezier(.32,.85,.16,1);
+} */

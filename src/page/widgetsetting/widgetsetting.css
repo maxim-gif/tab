@@ -1,0 +1,12 @@
+.widgetSetting {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+.counter {
+    display: flex;
+}
+.counter > button {
+    width: 20px;
+    margin: 0 5px;
+}

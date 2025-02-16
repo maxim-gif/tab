@@ -8,6 +8,8 @@ import { useEffect } from "react";
 import { getAdminData, getParticipantData,getDataHistory, } from "./api";
 import { useDispatch } from 'react-redux';
 import { setAdminData, setParticipantData, setHistory,} from './store/slice/slice';
+import { Widgetrullet } from "./page/widgetrullet/widgetrullet";
+import { WidgetSetting } from "./page/widgetsetting/widgetsetting";
 
 export const AppRoutes = () => {
 
@@ -23,13 +25,13 @@ export const AppRoutes = () => {
     localStorage.setItem('members', JSON.stringify(adminData.listMember));
   };
 
-  Notification.requestPermission().then((permission) => {
-      if (permission === 'granted') {
-         }})
+  // Notification.requestPermission().then((permission) => {
+  //     if (permission === 'granted') {
+  //        }})
 
-  Notification.requestPermission(function(status) {
-    console.log('Статус разрешения уведомления:', status);
-  });
+  // Notification.requestPermission(function(status) {
+  //   console.log('Статус разрешения уведомления:', status);
+  // });
   
   useEffect(() => {
     handleGetData()
@@ -42,6 +44,8 @@ export const AppRoutes = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="/info" element={<Info />}/>
         <Route path="/history" element={<History />}/>
+        <Route path="/widgetrullet" element={<Widgetrullet />}/>
+        <Route path="/widgetSetting" element={<WidgetSetting />}/>
       </Routes>
     </BrowserRouter>
   );

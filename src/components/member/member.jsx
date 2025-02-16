@@ -39,7 +39,7 @@ export const Member = ({ id, moderatorsAccess, superModeratorsAccess, name, }) =
   const list = [dataMember1, dataMember2, dataMember3, dataMember4];
   const listUn = [dataUncompleted1, dataUncompleted2, dataUncompleted3, dataUncompleted4];
 
-//   useEffect(() => {
+  // useEffect(() => {
     
     if (dataMember1) {
 console.log(1);

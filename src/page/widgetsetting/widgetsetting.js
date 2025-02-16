@@ -10,26 +10,13 @@ export const WidgetSetting = () => {
   const admin = useSelector((state) => state.table.adminData);
   const priority = useSelector((state) => state.table.priorityData);
   const [amount, setAmount] = useState("");
-  const [idMember, setIdMember] = useState(0);
-  const [count, setCount] = useState(0);
+ 
 
   const start = () => {
     updateAdminData("money/", Number(amount + admin.money));
     setAmount("");
   };
 
-  useEffect(() => {
-    if (priority.count !== undefined) {
-      setCount(priority.count)
-    }
-  },[priority.count])
-
-useEffect(() => {
-  if (count >= 0) {
-  updatePriorityData({id:idMember,count:count})
-  }
-  
-},[count])
 
   return (
     <div className="widgetSetting">
@@ -63,22 +50,22 @@ useEffect(() => {
         <legend>Выберите участника:</legend>
 
         <div>
-          <input type="radio" id="scales" value={admin.listMember[0]} name="member" checked={idMember===0} onChange={() =>{setIdMember(0)}}/>
+          <input type="radio" id="scales" value={admin.listMember[0]} name="member" checked={priority.id===0} onChange={() =>{updatePriorityData({id:0,count:priority.count})}}/>
           <label htmlFor="scales">{admin.listMember[0]}</label>
         </div>
 
         <div>
-          <input type="radio" id="horns" value={admin.listMember[1]} name="member" checked={idMember===1} onChange={() =>{setIdMember(1)}}/>
+          <input type="radio" id="horns" value={admin.listMember[1]} name="member" checked={priority.id===1} onChange={() =>{updatePriorityData({id:1,count:priority.count})}}/>
           <label htmlFor="horns">{admin.listMember[1]}</label>
         </div>
 
         <div>
-          <input type="radio" id="horns" value={admin.listMember[2]} name="member" checked={idMember===2} onChange={() =>{setIdMember(2)}}/>
+          <input type="radio" id="horns" value={admin.listMember[2]} name="member" checked={priority.id===2} onChange={() =>{updatePriorityData({id:2,count:priority.count})}}/>
           <label htmlFor="horns">{admin.listMember[2]}</label>
         </div>
 
         <div>
-          <input type="radio" id="horns" value={admin.listMember[3]} name="member" checked={idMember===3} onChange={() =>{setIdMember(3)}}/>
+          <input type="radio" id="horns" value={admin.listMember[3]} name="member" checked={priority.id===3} onChange={() =>{updatePriorityData({id:3,count:priority.count})}}/>
           <label htmlFor="horns">{admin.listMember[3]}</label>
         </div>
 
@@ -86,11 +73,10 @@ useEffect(() => {
 
       <div className="counter">
         <span>Количество проклятий:</span>
-        <button onClick={() => {setCount(prevCount => prevCount - 1)}} disabled={count === 0}>-</button>
+        <button onClick={() => {updatePriorityData({id:priority.id,count:priority.count-1})}} disabled={priority.count === 0}>-</button>
         <span>{priority.count}</span>
-        <button onClick={() => {setCount(prevCount => prevCount + 1)}}>+</button>
+        <button onClick={() => {updatePriorityData({id:priority.id,count:priority.count+1})}}>+</button>
       </div>
-      {/* <button onClick={() => {handle()}}>Применить</button> */}
     </div>
   );
 };

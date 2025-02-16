@@ -4,6 +4,7 @@ const initialState = {
   adminData:[],
   participantData:[],
   history: [],
+  priorityData: [],
 };
 
 export const appSlice = createSlice({
@@ -13,6 +14,9 @@ export const appSlice = createSlice({
   reducers: {
     setAdminData: (state, action) => {
       state.adminData = action.payload;
+    },
+    setPriorityData: (state, action) => {
+      state.priorityData = action.payload;
     },
     setParticipantData: (state, action) => {
       state.participantData = action.payload;
@@ -27,6 +31,7 @@ export const {
   setAdminData,
   setParticipantData,
   setHistory,
+  setPriorityData,
 } = appSlice.actions;
 
 export default appSlice.reducer;

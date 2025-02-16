@@ -1,8 +1,9 @@
 import "./widgetrullet.css";
 import { useEffect, useState } from "react";
-import { updateParticipantData, updateAdminData } from "../../api";
+import { updateParticipantData, updatePriorityData } from "../../api";
 import { useSelector } from "react-redux";
 import { UpdateAdmin } from "../../components/reload/updateAdmin";
+import { UpdatePriority } from "../../components/reload/updatePriority";
 import { UpdateParticipant } from "../../components/reload/updateParticipant";
 import random from "lodash/random";
 
@@ -21,6 +22,7 @@ export const Widgetrullet = () => {
   let curses = useSelector((state) => state.table.adminData.curses);
   const admin = useSelector((state) => state.table.adminData);
   const participant = useSelector((state) => state.table.participantData);
+  const priority = useSelector((state) => state.table.priorityData);
 
   const handleAddCurse = async (curse, id) => {
     let newUncompletedCursesList;
@@ -142,12 +144,7 @@ export const Widgetrullet = () => {
     }
   }, [admin.money]);
 
-  useEffect(() => {
-    if (admin.priority !== undefined) {
-    setPriorityCount(admin.priority.count)
-    setPriorityId(admin.priority.idMember)
-    }
-  }, [admin.priority]);
+ 
   
   useEffect(() => {
     // console.log(priorityCount);
@@ -184,11 +181,10 @@ export const Widgetrullet = () => {
       }, 11000);
     } else {
       let randomNumber
-      if (priorityCount > 0) {
-        console.log(priorityCount);
-        console.log(priorityId);
-        
-        randomNumber = priorityId
+      if (priority.count > 0) {
+        console.log(priority.count);
+        updatePriorityData({id:priority.id,count:priority.count-1})
+        randomNumber = priority.id
       } else {
         const randomIndex = random(0, base.length - 1);
         randomNumber = base[randomIndex];
@@ -215,9 +211,9 @@ export const Widgetrullet = () => {
       setVisible("flex");
       setTimeout(() => {
         setVisible("none");
-        setPriorityCount(prevCount => prevCount - 1)
         handleAddCurse(arrCurses[arrCurses.length - 1].name, randomNumber);
       }, 11000);
+      setPriorityCount(prevCount => prevCount - 1)
     }
   };
 
@@ -227,7 +223,7 @@ export const Widgetrullet = () => {
     <div className="containerWidget">
       <UpdateAdmin />
       <UpdateParticipant />
-     
+     <UpdatePriority/>
       <button
         id="myButton"
         onClick={() => {

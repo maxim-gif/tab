@@ -70,6 +70,25 @@ export async function getAdminData() {
   return data;
 }
 
+export async function getPriorityData() {
+  const response = await fetch(
+    `https://table-d13fe-default-rtdb.firebaseio.com/priorityCounter.json`
+  );
+  const data = await response.json();
+  return data;
+}
+
+export async function updatePriorityData(data) {
+  try {
+ 
+      const userRef = ref(db, "priorityCounter/");
+      await set(userRef, data);
+  
+  } catch (error) {
+    return error.message;
+  }
+}
+
 export async function updateAdminData(address, data) {
   try {
     if (!auth.currentUser) {
@@ -90,6 +109,8 @@ export async function getParticipantData() {
   const data = await response.json();
   return data;
 }
+
+
 
 export async function updateParticipantData(address, data) {
   try {

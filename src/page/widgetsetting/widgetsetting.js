@@ -3,9 +3,12 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { updateAdminData } from "../../api";
 import { UpdateAdmin } from "../../components/reload/updateAdmin";
+import { updatePriorityData } from "../../api";
+import { UpdatePriority } from "../../components/reload/updatePriority";
 
 export const WidgetSetting = () => {
   const admin = useSelector((state) => state.table.adminData);
+  const priority = useSelector((state) => state.table.priorityData);
   const [amount, setAmount] = useState("");
   const [idMember, setIdMember] = useState(0);
   const [count, setCount] = useState(0);
@@ -15,15 +18,23 @@ export const WidgetSetting = () => {
     setAmount("");
   };
 
-    const handle = () => {
-      updateAdminData("priority/", {idMember:idMember,count:count})
-      setIdMember(0)
-      setCount(0)
+  useEffect(() => {
+    if (priority.count !== undefined) {
+      setCount(priority.count)
     }
+  },[priority.count])
+
+useEffect(() => {
+  if (count >= 0) {
+  updatePriorityData({id:idMember,count:count})
+  }
+  
+},[count])
 
   return (
     <div className="widgetSetting">
       <UpdateAdmin />
+      <UpdatePriority/>
       <span>{admin.money}</span>
       <input
         type="number"
@@ -76,10 +87,10 @@ export const WidgetSetting = () => {
       <div className="counter">
         <span>Количество проклятий:</span>
         <button onClick={() => {setCount(prevCount => prevCount - 1)}} disabled={count === 0}>-</button>
-        <span>{count}</span>
+        <span>{priority.count}</span>
         <button onClick={() => {setCount(prevCount => prevCount + 1)}}>+</button>
       </div>
-      <button onClick={() => {handle()}}>Применить</button>
+      {/* <button onClick={() => {handle()}}>Применить</button> */}
     </div>
   );
 };

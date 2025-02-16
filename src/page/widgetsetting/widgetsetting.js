@@ -16,13 +16,14 @@ export const WidgetSetting = () => {
   };
 
   useEffect(() => {
-  console.log(idMember);
-  console.log(count);
   updateAdminData("priority/", {idMember:idMember,count:count});
   }, [idMember,count]);
 
   useEffect(() => {
-    setCount(admin.priority.count)
+    if (admin.priority !== undefined) {
+        setCount(admin.priority.count)
+    }
+   
     }, [admin.priority]);
 
   return (

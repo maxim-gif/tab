@@ -9,7 +9,8 @@ import random from "lodash/random";
 export const Widgetrullet = () => {
   const [base, setBase] = useState([0, 1, 2, 3, 0, 1, 2, 3]);
   const [newCurses, setNewCurses] = useState(null);
- 
+  const [priorityCount, setPriorityCount] = useState(0);
+  const [priorityId, setPriorityId] = useState(0);
   const [oddMoney, setOddMoney] = useState(0);
   const [oddMoneyBalance, setOddMoneyBalance] = useState(0);
   const [balance, setBalance] = useState(0);
@@ -36,7 +37,7 @@ export const Widgetrullet = () => {
       `${id}/uncompletedCursesList`,
       newUncompletedCursesList
     );
-
+    
     let newData;
     if (participant === null || participant[id]?.curses === undefined) {
       newData = [];
@@ -101,7 +102,6 @@ export const Widgetrullet = () => {
   }, [curses]);
 
 
-
   useEffect(() => {
     if (admin.money !== undefined) {
       // console.log(admin.money);
@@ -142,6 +142,17 @@ export const Widgetrullet = () => {
     }
   }, [admin.money]);
 
+  useEffect(() => {
+    if (admin.priority !== undefined) {
+    setPriorityCount(admin.priority.count)
+    setPriorityId(admin.priority.idMember)
+    }
+  }, [admin.priority]);
+  
+  useEffect(() => {
+    // console.log(priorityCount);
+  }, [priorityCount]);
+
   const scrolling = (curse) => {
     if (curse) {
       // console.log(generalArr);
@@ -166,8 +177,6 @@ export const Widgetrullet = () => {
       setVisible("flex");
       setTimeout(() => {
         setVisible("none");
-        // console.log(newArr.length);
-        // console.log(newArr[newArr.length-1].name);
         handleAddCurse(newArr[newArr.length - 1].name, 0);
         handleAddCurse(newArr[newArr.length - 1].name, 1);
         handleAddCurse(newArr[newArr.length - 1].name, 2);
@@ -175,10 +184,11 @@ export const Widgetrullet = () => {
       }, 11000);
     } else {
       let randomNumber
-      if (admin.priority.count > 0) {
-          console.log(admin.priority.idMember);
-          updateAdminData("priority/", {idMember:admin.priority.idMember,count:admin.priority.count-1});
-          randomNumber = admin.priority.idMember
+      if (priorityCount > 0) {
+        console.log(priorityCount);
+        console.log(priorityId);
+        
+        randomNumber = priorityId
       } else {
         const randomIndex = random(0, base.length - 1);
         randomNumber = base[randomIndex];
@@ -186,13 +196,9 @@ export const Widgetrullet = () => {
         console.log(newBase);
         setBase(newBase.length === 0 ? [0, 1, 2, 3, 0, 1, 2, 3] : newBase);
       }
-   
-      // console.log(randomNumber);
 
       const listCurses = admin.curses.filter((item) => item.general !== true);
-      // console.log(listCurses);
       const randomCurses = listCurses[random(0, listCurses.length - 1)];
-      // console.log(randomCurses);
 
       let arrCurses = [...shuffle(simpleArr)];
       arrCurses[arrCurses.length - 1] = {
@@ -206,16 +212,11 @@ export const Widgetrullet = () => {
       );
       setNewCurses(arrCurses);
 
-      // const  id = admin.listMember.indexOf(arrCurses[arrCurses.length-1].nameMember)
-      // console.log(id);
-
       setVisible("flex");
       setTimeout(() => {
         setVisible("none");
-        //   console.log(arrCurses.length);
-        //   console.log(arrCurses[arrCurses.length-1].name);
+        setPriorityCount(prevCount => prevCount - 1)
         handleAddCurse(arrCurses[arrCurses.length - 1].name, randomNumber);
-        //   console.log(balance);
       }, 11000);
     }
   };

@@ -24,6 +24,7 @@ export const WidgetSetting = () => {
       <UpdatePriority/>
       <span>{admin.money}</span>
       <input
+        className="widthSettingWidget"
         type="number"
         placeholder="Введите сумму"
         value={amount}
@@ -32,6 +33,7 @@ export const WidgetSetting = () => {
         }}
       ></input>
       <button
+      className="widthSettingWidget"
         onClick={() => {
           start();
         }}
@@ -39,6 +41,7 @@ export const WidgetSetting = () => {
         Внести
       </button>
       <button
+      className="widthSettingWidget"
         onClick={() => {
           updateAdminData("money/", 0);
         }}

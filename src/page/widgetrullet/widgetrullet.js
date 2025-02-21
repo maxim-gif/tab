@@ -133,7 +133,15 @@ export const Widgetrullet = () => {
             const button1 = document.getElementById("myButton1");
             if (generalScroll > 0) {
               button1.click();
-              generalScroll--;
+              generalScroll--
+              const timerId = setInterval(() => {
+                if (generalScroll <= 0) {
+                  clearInterval(timerId);
+                } else {
+                  button1.click();
+                  generalScroll--
+                }
+              }, 11500)
             }
           } else {
             button.click();
@@ -162,9 +170,9 @@ export const Widgetrullet = () => {
       }
       shuffle(newArr);
       newArr = [...newArr, generalArr[idCurse]];
-      // console.log(newArr);
+      console.log(newArr);
+      console.log(idCurse);
       const newArray = generalArr.filter((_, index) => index !== idCurse);
-      //  console.log(newArray);
       setGeneralArr(newArray.length === 0 ? generalArrSave : newArray);
       document.documentElement.style.setProperty(
         "--translate-value",

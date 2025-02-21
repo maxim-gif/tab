@@ -26,6 +26,7 @@ export const Admin = () => {
   const Auth = async() => {
     const response = await Enter(email,password)
     if (response.uid) {
+      console.log(response.uid);
       setMessage("Вход выполнен успешно")
     } else {
       setMessage("Ошибка авторизации")
@@ -55,7 +56,7 @@ export const Admin = () => {
         <div className="modContain">
           {switchElement === 1 && <ModeratorList setMessage={setMessage}/>}
           {switchElement === 1 && <SupModeratorList setMessage={setMessage}/>}
-          {switchElement === 1 && <NameMembersList setMessage={setMessage}/>}
+          {switchElement === 1 && <NameMembersList setMessage={setMessage} auth={auth}/>}
           {switchElement === 1 && <CurseList setMessage={setMessage}/>}
           {switchElement === 1 && <AddList setMessage={setMessage}/>}
           {switchElement === 2 && <HistoryAdd/>}

@@ -5,7 +5,7 @@ import { UpdateParticipant } from "../reload/updateParticipant.js";
 import { updateAdminData , updateParticipantData} from "../../api";
 import { useState } from "react";
 
-export const NameMembersList = ({ setMessage }) => {
+export const NameMembersList = ({ setMessage, auth }) => {
   let admin = useSelector((state) => state.table.adminData);
   const participant = useSelector((state) => state.table.participantData);
   
@@ -16,6 +16,8 @@ export const NameMembersList = ({ setMessage }) => {
 
 
   const deleteMember = async (index) => {
+    console.log(auth.currentUser);
+    console.log("delete");
     console.log(participant);
     updateParticipantData(index,[])
   };
@@ -68,7 +70,7 @@ export const NameMembersList = ({ setMessage }) => {
                 }}
               ></div>
             )}
-            {participant !== null && participant[index] && <div
+            {participant !== null && auth.currentUser !== null && participant[index] && <div
               className="curseItemDelete"
               onClick={() => {
                 deleteMember(index);

@@ -4,6 +4,7 @@
     width: 100%;
     gap: 10px;
     align-items: center;
+    width: 300px;
 }
 .counter {
     display: flex;
@@ -11,4 +12,11 @@
 .counter > button {
     width: 20px;
     margin: 0 5px;
+}
+fieldset {
+    width: 100%;
+    padding: 10px;
+}
+.widthSettingWidget {
+    width: 100%;
 }

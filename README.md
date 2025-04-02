@@ -6,4 +6,4 @@ https://tab-jet.vercel.app/admin - функционал администрато
 
 Испозованные технологии: React, Redux-toolkit, CSS, HTML, база данных реализована в firebase (Realtime Database, Authentication, Storage, аналог вебсокетов),  регистрация через Twitch API
 
-Сайт доступен по адресу https://tab-jet.vercel.app/
+Сайт доступен по адресу www.masterigorey-roguelike.ru

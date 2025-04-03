@@ -1,7 +1,7 @@
 import "./widgetsetting.css";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { updateAdminData } from "../../api";
+import { Enter, updateAdminData } from "../../api";
 import { UpdateAdmin } from "../../components/reload/updateAdmin";
 import { updatePriorityData } from "../../api";
 import { UpdatePriority } from "../../components/reload/updatePriority";
@@ -10,18 +10,48 @@ export const WidgetSetting = () => {
   const admin = useSelector((state) => state.table.adminData);
   const priority = useSelector((state) => state.table.priorityData);
   const [amount, setAmount] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
  
+  useEffect(() => {
+    setTimeout(() => {
+      setMessage("")
+    },1500)
+  }, [message]);
+
 
   const start = () => {
     updateAdminData("money/", Number(amount + admin.money));
     setAmount("");
   };
 
+ const Auth = async() => {
+    const response = await Enter(email,password)
+    if (response.uid) {
+      console.log(response.uid);
+      setMessage("Вход выполнен успешно")
+    } else {
+      setMessage("Ошибка авторизации")
+    }
+    setEmail('')
+    setPassword("")
+  }
+
 
   return (
     <div className="widgetSetting">
       <UpdateAdmin />
       <UpdatePriority/>
+
+       
+          <input type='text' className="authInput" placeholder='Введити email' value={email} onChange={(e) => {setEmail(e.target.value)}}></input>
+          <input type='text' className="authInput" placeholder='Введите пароль' value={password} onChange={(e) => {setPassword(e.target.value)}}></input>
+          <button className="authButton" onClick={() => {Auth()}}>Войти</button>
+        
+        {message !== "" && <span className="message">{message}</span>}
+        {message === "" &&<span className="message"></span>}
+
       <span>{admin.money}</span>
       <input
         className="widthSettingWidget"

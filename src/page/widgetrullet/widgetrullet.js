@@ -142,7 +142,7 @@ export const Widgetrullet = () => {
         const button = document.getElementById("myButton");
         if (simpleScroll > 0) {
           console.log("sound");
-          // audioStart.play()
+          audioStart.play()
           button.click();
         }
         simpleScroll--;

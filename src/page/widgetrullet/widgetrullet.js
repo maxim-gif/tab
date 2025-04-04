@@ -24,6 +24,10 @@ export const Widgetrullet = () => {
   const participant = useSelector((state) => state.table.participantData);
   const priority = useSelector((state) => state.table.priorityData);
 
+  const audioStart = new Audio('/start.wav');
+
+
+
   const handleAddCurse = async (curse, id) => {
     let newUncompletedCursesList;
     if (
@@ -89,8 +93,18 @@ export const Widgetrullet = () => {
         });
         newSimpleCurses = newSimpleCurses.concat(result);
       }
+      let result
+  
+      if (newSimpleCurses.length > 30) {
+        result = newSimpleCurses.slice(0, 30);
+        console.log(result.length);
+      }
+      if (newSimpleCurses.length < 30) {
+        const dopArr = newSimpleCurses.slice(0,30-newSimpleCurses.length )
+        result = newSimpleCurses.concat(dopArr)
+      }
 
-      setSimpleArr(newSimpleCurses);
+      setSimpleArr(result);
       // console.log(newSimpleCurses);
 
       const generalCurses = curses.filter((item) => {
@@ -110,6 +124,9 @@ export const Widgetrullet = () => {
       // console.log(admin.money.balance);
       let amount = admin.money - balance;
       if (simpleArr !== null) {
+
+
+
         console.log(amount);
         setBalance(admin.money);
         let sum = amount + oddMoney;
@@ -124,6 +141,8 @@ export const Widgetrullet = () => {
 
         const button = document.getElementById("myButton");
         if (simpleScroll > 0) {
+          console.log("sound");
+          // audioStart.play()
           button.click();
         }
         simpleScroll--;
@@ -161,13 +180,15 @@ export const Widgetrullet = () => {
   const scrolling = (curse) => {
     if (curse) {
       // console.log(generalArr);
-      let newArr = [];
+      let res = [];
       const idCurse = Math.floor(Math.random() * generalArr.length);
       // console.log(idCurse);
       // console.log(generalArr[idCurse]);
-      while (newArr.length <= 16) {
-        newArr = newArr.concat(generalArr);
+      while (res.length <= 30) {
+        res = res.concat(generalArr);
       }
+      let newArr = res.slice(0, 30);
+      console.log(newArr.length);
       shuffle(newArr);
       newArr = [...newArr, generalArr[idCurse]];
       console.log(newArr);
@@ -209,7 +230,7 @@ export const Widgetrullet = () => {
         ...randomCurses,
         nameMember: admin.listMember[randomNumber],
       };
-      // console.log(arrCurses);
+      console.log(simpleArr.length);
       document.documentElement.style.setProperty(
         "--translate-value",
         `${(simpleArr.length - 1) * -250}px`

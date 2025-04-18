@@ -17,7 +17,18 @@
 }
 
 
-
+.widgetborder {
+    position: absolute;
+    background-image: url(/public/widborder5.png);
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    
+}
 .containerWidget {
     display: flex;
     height: 100vh;
@@ -26,12 +37,18 @@
 }
 .widget {
     position: relative;
-    height: 300px;
-    width: 250px;
+    height: 400px;
+    width: 400px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
+    overflow: hidden;
+    z-index: 20;
+}
+.spinWrapper {
+    height: 230px;
+    width: 270px;
     overflow: hidden;
 }
 .icon {
@@ -44,8 +61,8 @@
     z-index: 10;
 }
 .curseWidget {
-    height: 220px;
-    min-width: 220px;
+    height: 200px;
+    min-width: 200px;
     border: 5px solid  #f165f1;
     border-radius: 20px;
     background: #37303d;
@@ -54,7 +71,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin: 0 15px;
+    margin: 0 35px;  
 }
 .iconCurse {
     height: 100px;
@@ -72,6 +89,7 @@
 .listCurses {
     display: flex;
     left: 0;
+    align-items: center;
  
 }
 

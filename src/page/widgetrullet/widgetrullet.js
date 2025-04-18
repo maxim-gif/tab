@@ -1,32 +1,37 @@
 import "./widgetrullet.css";
 import { useEffect, useState } from "react";
-import { updateParticipantData, updatePriorityData } from "../../api";
+import {
+  updateParticipantData,
+  updatePriorityData,
+  updateWidgetData,
+  updateWidgetCurses
+} from "../../api";
 import { useSelector } from "react-redux";
 import { UpdateAdmin } from "../../components/reload/updateAdmin";
 import { UpdatePriority } from "../../components/reload/updatePriority";
 import { UpdateParticipant } from "../../components/reload/updateParticipant";
+import { UpdateWidgetData } from "../../components/reload/updateWidgetData";
+import { UpdateWidgetCurses } from "../../components/reload/updateWidgetCurses";
 import random from "lodash/random";
 
 export const Widgetrullet = () => {
   const [base, setBase] = useState([0, 1, 2, 3, 0, 1, 2, 3]);
   const [newCurses, setNewCurses] = useState(null);
   const [priorityCount, setPriorityCount] = useState(0);
-  const [priorityId, setPriorityId] = useState(0);
-  const [oddMoney, setOddMoney] = useState(0);
-  const [oddMoneyBalance, setOddMoneyBalance] = useState(0);
-  const [balance, setBalance] = useState(0);
   const [simpleArr, setSimpleArr] = useState(null);
-  const [generalArr, setGeneralArr] = useState(null);
-  const [generalArrSave, setGeneralArrSave] = useState(null);
+  // const [generalArr, setGeneralArr] = useState(null);
+  // const [generalArrSave, setGeneralArrSave] = useState(null);
   const [visible, setVisible] = useState("none");
+  const [borderVisible, setBorderVisible] = useState("none");
   let curses = useSelector((state) => state.table.adminData.curses);
   const admin = useSelector((state) => state.table.adminData);
   const participant = useSelector((state) => state.table.participantData);
   const priority = useSelector((state) => state.table.priorityData);
+  const widgetData = useSelector((state) => state.table.widgetData);
+  const widgetCurses = useSelector((state) => state.table.widgetCurses);
 
-  const audioStart = new Audio('/start.wav');
-
-
+  const audioStart = new Audio("/start.wav");
+  const audioScroll = new Audio("/scroll.mp3");
 
   const handleAddCurse = async (curse, id) => {
     let newUncompletedCursesList;
@@ -43,7 +48,7 @@ export const Widgetrullet = () => {
       `${id}/uncompletedCursesList`,
       newUncompletedCursesList
     );
-    
+
     let newData;
     if (participant === null || participant[id]?.curses === undefined) {
       newData = [];
@@ -93,132 +98,117 @@ export const Widgetrullet = () => {
         });
         newSimpleCurses = newSimpleCurses.concat(result);
       }
-      let result
-  
+      let result;
+
       if (newSimpleCurses.length > 30) {
         result = newSimpleCurses.slice(0, 30);
         console.log(result.length);
       }
       if (newSimpleCurses.length < 30) {
-        const dopArr = newSimpleCurses.slice(0,30-newSimpleCurses.length )
-        result = newSimpleCurses.concat(dopArr)
+        const dopArr = newSimpleCurses.slice(0, 30 - newSimpleCurses.length);
+        result = newSimpleCurses.concat(dopArr);
       }
 
       setSimpleArr(result);
       // console.log(newSimpleCurses);
 
-      const generalCurses = curses.filter((item) => {
-        return item.general === true;
-      });
+      // const generalCurses = curses.filter((item) => {
+      //   return item.general === true;
+      // });
 
-      setGeneralArr(generalCurses);
-      setGeneralArrSave(generalCurses);
+      // setGeneralArr(generalCurses);
+      // setGeneralArrSave(generalCurses);
       // console.log(generalCurses);
     }
   }, [curses]);
 
-
-  useEffect(() => {
-    if (admin.money !== undefined) {
-      // console.log(admin.money);
-      // console.log(admin.money.balance);
-      let amount = admin.money - balance;
-      if (simpleArr !== null) {
-
-
-
-        console.log(amount);
-        setBalance(admin.money);
-        let sum = amount + oddMoney;
-        let simpleScroll = Math.floor(sum / 500);
-        const difference = sum - simpleScroll * 500;
-        setOddMoney(difference);
-
-        let sumSize = amount + oddMoneyBalance;
-        let generalScroll = Math.floor(sumSize / 5000);
-        const differenceSize = sumSize - generalScroll * 5000;
-        setOddMoneyBalance(differenceSize);
-
-        const button = document.getElementById("myButton");
-        if (simpleScroll > 0) {
-          console.log("sound");
-          audioStart.play()
-          button.click();
-        }
-        simpleScroll--;
-        const timerId = setInterval(() => {
-          if (simpleScroll <= 0) {
-            clearInterval(timerId);
-            const button1 = document.getElementById("myButton1");
-            if (generalScroll > 0) {
-              button1.click();
-              generalScroll--
-              const timerId = setInterval(() => {
-                if (generalScroll <= 0) {
-                  clearInterval(timerId);
-                } else {
-                  button1.click();
-                  generalScroll--
-                }
-              }, 11500)
-            }
-          } else {
-            button.click();
-            simpleScroll--;
-          }
-        }, 11500);
-      }
+  const clearBorder = (x, y, time) => {
+    if (x === 0 && y === 0) {
+      setTimeout(() => {
+        setBorderVisible("none");
+      }, time);
     }
-  }, [admin.money]);
+  };
 
- 
-  
+const performClicks = (element, count, delay) => {
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => {
+        element.click();
+    }, i * delay);
+}
+}
+
   useEffect(() => {
-    // console.log(priorityCount);
-  }, [priorityCount]);
+    if (widgetData.countScroll !== undefined && simpleArr !== null && (widgetData.countScroll.simpleScroll > 0 || widgetData.countScroll.generalScroll > 0)) {
+      let simpleScroll = widgetData.countScroll.simpleScroll
+      let generalScroll = widgetData.countScroll.generalScroll
+      const interval = 12000
+
+      const button = document.getElementById("myButton");
+      const button1 = document.getElementById("myButton1");
+      setBorderVisible("flex")
+      audioStart.play()
+
+      setTimeout(() => {
+        performClicks(button, simpleScroll, interval)
+      }, 1500);
+      
+
+      setTimeout(() => {
+        performClicks(button1, generalScroll, interval);
+        setTimeout(() => {
+          console.log("очистка");
+          updateWidgetData("countScroll", {simpleScroll: 0, generalScroll: 0 , remainder: widgetData.countScroll.remainder})
+          setBorderVisible("none")
+        }, generalScroll*interval); 
+      }, (simpleScroll * interval)+1500);
+    }
+  }, [widgetData.countScroll]);
 
   const scrolling = (curse) => {
     if (curse) {
-      // console.log(generalArr);
-      let res = [];
-      const idCurse = Math.floor(Math.random() * generalArr.length);
-      // console.log(idCurse);
-      // console.log(generalArr[idCurse]);
-      while (res.length <= 30) {
-        res = res.concat(generalArr);
+      const fixGeneralCurses = admin.curses.filter((item) => {
+        return item.general === true;
+      });
+      let generalCurses = [...widgetCurses]
+      let bigGeneralCurses = generalCurses
+      const idCurse = Math.floor(Math.random() * generalCurses.length);
+      while (bigGeneralCurses.length < 30) {
+        bigGeneralCurses = bigGeneralCurses.concat(bigGeneralCurses);
       }
-      let newArr = res.slice(0, 30);
-      console.log(newArr.length);
-      shuffle(newArr);
-      newArr = [...newArr, generalArr[idCurse]];
-      console.log(newArr);
-      console.log(idCurse);
-      const newArray = generalArr.filter((_, index) => index !== idCurse);
-      setGeneralArr(newArray.length === 0 ? generalArrSave : newArray);
+      bigGeneralCurses = bigGeneralCurses.slice(0, 29);
+      shuffle(bigGeneralCurses)
+      bigGeneralCurses = [...bigGeneralCurses, generalCurses[idCurse]];
+      generalCurses.splice(idCurse,1)
+      console.log(generalCurses);
+      console.log(fixGeneralCurses);
+   
+  
+      updateWidgetCurses(generalCurses.length === 0 ? fixGeneralCurses:generalCurses);
       document.documentElement.style.setProperty(
         "--translate-value",
-        `${(newArr.length - 1) * -250}px`
+        `${(bigGeneralCurses.length - 1) * -270}px`
       );
-      setNewCurses(newArr);
+      setNewCurses(bigGeneralCurses)
       setVisible("flex");
+      audioScroll.play();
       setTimeout(() => {
         setVisible("none");
-        handleAddCurse(newArr[newArr.length - 1].name, 0);
-        handleAddCurse(newArr[newArr.length - 1].name, 1);
-        handleAddCurse(newArr[newArr.length - 1].name, 2);
-        handleAddCurse(newArr[newArr.length - 1].name, 3);
+        handleAddCurse(bigGeneralCurses[bigGeneralCurses.length - 1].name, 0);
+        handleAddCurse(bigGeneralCurses[bigGeneralCurses.length - 1].name, 1);
+        handleAddCurse(bigGeneralCurses[bigGeneralCurses.length - 1].name, 2);
+        handleAddCurse(bigGeneralCurses[bigGeneralCurses.length - 1].name, 3);
       }, 11000);
     } else {
-      let randomNumber
+      let randomNumber;
       if (priority.count > 0) {
         console.log(priority.count);
-        updatePriorityData({id:priority.id,count:priority.count-1})
-        randomNumber = priority.id
+        updatePriorityData({ id: priority.id, count: priority.count - 1 });
+        randomNumber = priority.id;
       } else {
         const randomIndex = random(0, base.length - 1);
         randomNumber = base[randomIndex];
         const newBase = base.filter((_, index) => index !== randomIndex);
-        console.log(newBase);
         setBase(newBase.length === 0 ? [0, 1, 2, 3, 0, 1, 2, 3] : newBase);
       }
 
@@ -230,29 +220,30 @@ export const Widgetrullet = () => {
         ...randomCurses,
         nameMember: admin.listMember[randomNumber],
       };
-      console.log(simpleArr.length);
+
       document.documentElement.style.setProperty(
         "--translate-value",
-        `${(simpleArr.length - 1) * -250}px`
+        `${(simpleArr.length - 1) * -270}px`
       );
       setNewCurses(arrCurses);
 
       setVisible("flex");
+      audioScroll.play();
       setTimeout(() => {
         setVisible("none");
         handleAddCurse(arrCurses[arrCurses.length - 1].name, randomNumber);
       }, 11000);
-      setPriorityCount(prevCount => prevCount - 1)
+      setPriorityCount((prevCount) => prevCount - 1);
     }
   };
-
- 
 
   return (
     <div className="containerWidget">
       <UpdateAdmin />
       <UpdateParticipant />
-     <UpdatePriority/>
+      <UpdatePriority />
+      <UpdateWidgetData />
+      <UpdateWidgetCurses/>
       <button
         id="myButton"
         onClick={() => {
@@ -271,19 +262,22 @@ export const Widgetrullet = () => {
       >
         222
       </button>
-      <div className="widget" style={{ display: visible }}>
+      <div className="widget">
+        <div className="widgetborder" style={{ display: borderVisible }}></div>
         {/* <img src="/rog.png" className="icon" alt=""></img> */}
-        <div className="listCurses spin">
-          {newCurses !== null &&
-            newCurses.map((item, index) => (
-              <div className="curseWidget" key={index}>
-                <img src={item.image.icon} className="iconCurse" alt=""></img>
-                <span className="nameCurse">{item.name}</span>
-                {item.nameMember !== null && (
-                  <span className="nameMember">{item.nameMember}</span>
-                )}
-              </div>
-            ))}
+        <div className="spinWrapper" style={{ display: visible }}>
+          <div className="listCurses spin">
+            {newCurses !== null &&
+              newCurses.map((item, index) => (
+                <div className="curseWidget" key={index}>
+                  <img src={item.image.icon} className="iconCurse" alt=""></img>
+                  <span className="nameCurse">{item.name}</span>
+                  {item.nameMember !== null && (
+                    <span className="nameMember">{item.nameMember}</span>
+                  )}
+                </div>
+              ))}
+          </div>
         </div>
       </div>
     </div>

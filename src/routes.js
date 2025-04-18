@@ -5,9 +5,9 @@ import { Admin } from "./page/admin/admin";
 import { Info } from "./page/info/info";
 import { History } from "./page/history/history";
 import { useEffect } from "react";
-import { getAdminData, getParticipantData,getDataHistory, } from "./api";
+import { getAdminData, getParticipantData,getDataHistory,getWidgetData,getWidgetCurses } from "./api";
 import { useDispatch } from 'react-redux';
-import { setAdminData, setParticipantData, setHistory,} from './store/slice/slice';
+import { setAdminData, setParticipantData, setHistory,setWidgetData,setWidgetCurses} from './store/slice/slice';
 import { Widgetrullet } from "./page/widgetrullet/widgetrullet";
 import { WidgetSetting } from "./page/widgetsetting/widgetsetting";
 
@@ -18,6 +18,10 @@ export const AppRoutes = () => {
   const handleGetData = async() => {
     const adminData = await getAdminData();
     dispatch(setAdminData(adminData));
+    const widgetData = await getWidgetData();
+    dispatch(setWidgetData(widgetData));
+    const widgetCurses = await getWidgetCurses();
+    dispatch(setWidgetCurses(widgetCurses));
     const userData = await getParticipantData();
     dispatch(setParticipantData(userData));
     const history = await getDataHistory();

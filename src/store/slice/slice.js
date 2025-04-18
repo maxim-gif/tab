@@ -5,6 +5,8 @@ const initialState = {
   participantData:[],
   history: [],
   priorityData: [],
+  widgetData: [],
+  widgetCurses: [],
 };
 
 export const appSlice = createSlice({
@@ -17,6 +19,12 @@ export const appSlice = createSlice({
     },
     setPriorityData: (state, action) => {
       state.priorityData = action.payload;
+    },
+    setWidgetData: (state, action) => {
+      state.widgetData = action.payload;
+    },
+    setWidgetCurses: (state, action) => {
+      state.widgetCurses = action.payload;
     },
     setParticipantData: (state, action) => {
       state.participantData = action.payload;
@@ -32,6 +40,8 @@ export const {
   setParticipantData,
   setHistory,
   setPriorityData,
+  setWidgetData,
+  setWidgetCurses,
 } = appSlice.actions;
 
 export default appSlice.reducer;

@@ -89,6 +89,44 @@ export async function updatePriorityData(data) {
   }
 }
 
+export async function getWidgetData() {
+  const response = await fetch(
+    `https://table-d13fe-default-rtdb.firebaseio.com/widgetData.json`
+  );
+  const data = await response.json();
+  return data;
+}
+
+export async function updateWidgetData(address,data) {
+  try {
+ 
+      const userRef = ref(db, "widgetData/" + address);
+      await set(userRef, data);
+  
+  } catch (error) {
+    return error.message;
+  }
+}
+
+export async function getWidgetCurses() {
+  const response = await fetch(
+    `https://table-d13fe-default-rtdb.firebaseio.com/widgetCurses.json`
+  );
+  const data = await response.json();
+  return data;
+}
+
+export async function updateWidgetCurses(data) {
+  try {
+ 
+      const userRef = ref(db, "widgetCurses/");
+      await set(userRef, data);
+  
+  } catch (error) {
+    return error.message;
+  }
+}
+
 export async function updateAdminData(address, data) {
   try {
     if (!auth.currentUser) {

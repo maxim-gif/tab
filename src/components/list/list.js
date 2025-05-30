@@ -11,9 +11,13 @@ export const SelectCurse = ({ handleAddCurse , id }) => {
     const findItem = admin.curses.find((item) => item.name === curse )
 
     if (findItem.general) {
-      for (let index = 0; index < 4; index++) {
-        handleAddCurse(curse, index);
-      }
+     
+        handleAddCurse(curse, 0);
+        handleAddCurse(curse, 1);
+        handleAddCurse(curse, 2);
+        handleAddCurse(curse, 3);
+     
+    
     } else {
       handleAddCurse(curse, id);
     }

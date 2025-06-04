@@ -5,6 +5,7 @@
   display: grid;
   grid-template-rows: 60px auto;
  position: relative;
+ 
 }
 .searchInfo {
     height: 40px;
@@ -161,11 +162,11 @@ border: 1px solid rgb(168, 12, 142);
         margin-top: 10px;
         }
     .searchInfo {
-        width: 120px;
+        width: 100px;
     }
     .buttonConditionsVictory {
-        width: 120px;
-        font-size: 14px;
+        width: 100px;
+        font-size: 11px;
     }
     .descriptionItem > img {
         height: 150px;

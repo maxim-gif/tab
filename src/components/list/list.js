@@ -12,10 +12,10 @@ export const SelectCurse = ({ handleAddCurse , id }) => {
 
     if (findItem.general) {
      
-        handleAddCurse(curse, 0);
-        handleAddCurse(curse, 1);
-        handleAddCurse(curse, 2);
-        handleAddCurse(curse, 3);
+        // handleAddCurse(curse, 0);
+        // handleAddCurse(curse, 1);
+        // handleAddCurse(curse, 2);
+        handleAddCurse(curse, id);
      
     
     } else {

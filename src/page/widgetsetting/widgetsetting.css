@@ -11,6 +11,7 @@
 }
 .counter {
     display: flex;
+    margin-bottom: 20px;
 }
 .counter > button {
     width: 20px;

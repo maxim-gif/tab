@@ -158,7 +158,7 @@ const performClicks = (element, count, delay) => {
         performClicks(button1, generalScroll, interval);
         setTimeout(() => {
           console.log("очистка");
-          updateWidgetData("countScroll", {simpleScroll: 0, generalScroll: 0 , remainder: widgetData.countScroll.remainder})
+          updateWidgetData("countScroll", {simpleScroll: 0, generalScroll: 0 , remainder: widgetData.countScroll.remainder, globalRemainder: widgetData.countScroll.globalRemainder})
           setBorderVisible("none")
         }, generalScroll*interval); 
       }, (simpleScroll * interval)+1500);

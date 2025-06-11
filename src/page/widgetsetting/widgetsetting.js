@@ -263,6 +263,7 @@ export const WidgetSetting = () => {
           +
         </button>
       </div>
+
       {widgetData.priceCurse && (
         <input
           type="number"

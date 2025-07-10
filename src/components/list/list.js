@@ -6,8 +6,9 @@ import { UpdateAdmin } from "../reload/updateAdmin";
 export const SelectCurse = ({ handleAddCurse , id }) => {
   const admin = useSelector((state) => state.table.adminData);
   const selectElement = ["mySelect1", "mySelect2", "mySelect3", "mySelect4"];
-  const handleAdd = (curse) => {
 
+
+  const handleAdd = (curse) => {
     const findItem = admin.curses.find((item) => item.name === curse )
 
     if (findItem.general) {

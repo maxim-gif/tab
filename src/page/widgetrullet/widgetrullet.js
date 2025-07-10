@@ -192,12 +192,17 @@ const performClicks = (element, count, delay) => {
       setNewCurses(bigGeneralCurses)
       setVisible("flex");
       audioScroll.play();
-      setTimeout(() => {
+      setTimeout(async () => {
         setVisible("none");
-        handleAddCurse(bigGeneralCurses[bigGeneralCurses.length - 1].name, 0);
-        handleAddCurse(bigGeneralCurses[bigGeneralCurses.length - 1].name, 1);
-        handleAddCurse(bigGeneralCurses[bigGeneralCurses.length - 1].name, 2);
-        handleAddCurse(bigGeneralCurses[bigGeneralCurses.length - 1].name, 3);
+        const curseName = bigGeneralCurses[bigGeneralCurses.length - 1].name;
+        for (let i = 0; i < 4; i++) {
+          try {
+            await handleAddCurse(curseName, i);
+            console.log(`Успешно добавлено ${i}`);
+          } catch (e) {
+            console.error(`Ошибка при добавлении ${i}:`, e);
+          }
+        }
       }, 11000);
     } else {
       let randomNumber;
